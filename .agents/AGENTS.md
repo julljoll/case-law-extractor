@@ -140,6 +140,9 @@ flowchart LR
 > [!NOTE]  
 > **5. Optimización SEO & Accesibilidad Universal Obligatoria:** Todas las entregas documentales, recursos gráficos SVG e interfaces web deben incorporar de forma automática estándares completos de SEO y accesibilidad: atributos `role="img"`, `aria-labelledby`, metadatos `<metadata>` con Schema.org / Dublin Core, etiquetas `<title>` y `<desc>` semánticas, y estructura HTML5 / Markdown optimizada para motores de búsqueda y lectores de pantalla.
 
+> [!NOTE]  
+> **6. Arquitectura Web Dashboard 100% Python (Dash + Bootstrap):** Todas las interfaces gráficas web desarrolladas deben proveer una alternativa 100% Python mediante `dash` y `dash-bootstrap-components` (`gui/dash_app.py`), garantizando la selección interactiva de Sala (0-7), Mes (0-12), visor emergente de Pop-Ups y exportación emparejada 1:1 de bases de datos SQLite (`.db`) y matrices Excel (`.xlsx`) respetando la paleta institucional DC3 Cyber Center.
+
 ---
 
 <div align="center">

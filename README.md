@@ -165,6 +165,8 @@ Todas las dependencias necesarias están especificadas en `requirements.txt`. A 
 | `tqdm` | `>= 4.66.0` | Barras de progreso animadas en la terminal durante el escaneo. |
 | `reportlab` | `>= 4.0.0` | Motor de maquetación y generación de documentos PDF con formato oficial. |
 | `pillow` | `>= 10.0.0` | Procesamiento e inserción de imágenes/emblemas en los encabezados PDF. |
+| `dash` | `>= 2.14.0` | Framework web reactivo 100% Python para el Dashboard en tiempo real. |
+| `dash-bootstrap-components` | `>= 1.5.0` | Maquetación web nativa en Python con Bootstrap 5 e interfaz estilo DC3 Cyber Center. |
 
 ---
 
@@ -225,12 +227,20 @@ python src/create_assets.py
 
 #### Paso 6: Ejecutar el Sistema
 
-- **Opción A: Modo Menú Interactivo (Consola)**
+- **Opción A: Dashboard Web 100% Python (Dash + Bootstrap - Recomendado)**
+  ```bash
+  python main.py --dash
+  # O bien directamente:
+  python gui/dash_app.py
+  ```
+  *Abre tu navegador en: `http://127.0.0.1:8050/`*
+
+- **Opción B: Modo Menú Interactivo (Consola)**
   ```bash
   python main.py
   ```
 
-- **Opción B: Lanzador Automático en Windows**
+- **Opción C: Lanzador Automático en Windows**
   Hacer doble clic en `ejecutar_extractor.bat` o ejecutarlo desde la terminal:
   ```cmd
   ejecutar_extractor.bat
@@ -252,9 +262,9 @@ python src/create_assets.py
 
 ## 🚀 Guía de Uso
 
-El proyecto puede ejecutarse de manera **interactiva** o mediante **comandos directos por consola (CLI)**.
+El proyecto puede ejecutarse de manera **web interactiva**, **menú de consola** o **comandos directos CLI**.
 
-### 1. Menú Interactivo (Recomendado para usuarios)
+### 1. Menú Interactivo (Recomendado)
 
 Simplemente ejecuta `main.py` sin argumentos:
 
@@ -262,21 +272,23 @@ Simplemente ejecuta `main.py` sin argumentos:
 python main.py
 ```
 
-Aparecerá el menú interactivo en consola:
+Aparecerá el menú interactivo en consola con la opción del Dashboard Web y selección por Sala (0-7) y Mes (0-12):
 
 ```text
-===========================================================================
-       BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA
-  Escaneo Global (2019-2026) a SQLite DB Local + Matriz Excel (.xlsx)
-===========================================================================
+==============================================================================
+  [ TSJ CYBER FORENSICS LAB ] DEPARTMENT OF DEFENSE CYBER CRIME CENTER STYLE
+     BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA (2019 - 2026)
+  Generación de BD SQLite + Matriz Excel (.xlsx) Dedicadas por Fórmula
+==============================================================================
 
 Seleccione la opción deseada:
-  [1] Escaneo Global de Todas las Páginas del TSJ (2019 a 2026) -> SQLite + Excel
-  [2] Actualizar Base de Datos SQLite y Excel (Últimas Jurisprudencias)
-  [3] Búsqueda Personalizada por Palabra Clave, Materia o Expediente (SQLite + Excel)
-  [4] Ver Estadísticas y Registros de la Base de Datos SQLite Local
+  [1] Escaneo Global / Específico de Páginas del TSJ ➔ Escaneo_<Sala>_<Mes>.db + .xlsx
+  [2] Actualizar Base de Datos de Últimas Jurisprudencias ➔ Actualizacion.db + .xlsx
+  [3] Búsqueda por Fórmula / Palabra Clave / Expediente ➔ Genera BD SQLite + Excel Dedicados
+  [4] Inspeccionar Estadísticas de Todas las Bases de Datos SQLite Generadas
   [5] Extracción Guiada Paso a Paso (Ventana Emergente e Impresión PDF)
-  [6] Salir
+  [6] INICIAR DASHBOARD WEB 100% PYTHON (http://127.0.0.1:8050/ - Dash + Bootstrap)
+  [7] Salir
 ```
 
 ### 2. Argumentos por Línea de Comandos (CLI)
