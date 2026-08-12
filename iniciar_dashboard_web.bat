@@ -1,0 +1,30 @@
+@echo off
+chcp 65001 > nul
+title TSJ Cyber Forensics Lab - Dashboard Web (100%% Python)
+
+REM Activar entorno virtual si existe
+if exist venv\Scripts\activate.bat (
+    call venv\Scripts\activate.bat
+)
+
+REM Verificar instalacion de Python
+where python >nul 2>nul
+if %errorlevel% neq 0 (
+    echo [ERROR] Python no esta instalado o no se encuentra en el PATH.
+    pause
+    exit /b 1
+)
+
+cls
+echo ===============================================================================
+echo   [ TSJ CYBER FORENSICS LAB ] INICIANDO DASHBOARD WEB 100%% PYTHON (DASH)
+echo   Iniciando entorno local y abriendo interfaz web en navegador...
+echo ===============================================================================
+echo.
+echo  Abriendo: http://127.0.0.1:8050/
+echo.
+
+start http://127.0.0.1:8050/
+python main.py --dash
+
+pause

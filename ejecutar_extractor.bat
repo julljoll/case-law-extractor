@@ -2,6 +2,11 @@
 chcp 65001 > nul
 title Extractor de Jurisprudencias TSJ Venezuela - DC3 Cyber Lab
 
+REM Activar entorno virtual si existe
+if exist venv\Scripts\activate.bat (
+    call venv\Scripts\activate.bat
+)
+
 REM Verificar instalacion de Python
 where python >nul 2>nul
 if %errorlevel% neq 0 (
@@ -31,12 +36,12 @@ echo.
 :MENU
 echo Seleccione la opcion deseada:
 echo.
-echo   [1] Escaneo Global Completo de Todas las Paginas del TSJ (2019 a 2026) (SQLite + Excel)
+echo   [1] Escaneo Global Completo por Sala y Mes (2019 a 2026) (SQLite + Excel)
 echo   [2] Actualizar Base de Datos SQLite y Excel (Ultimas Jurisprudencias)
 echo   [3] Busqueda Personalizada por Palabra Clave, Materia o Expediente (SQLite + Excel)
 echo   [4] Ver Estadisticas y Registros de la Base de Datos SQLite Local
 echo   [5] Extraccion Guiada Paso a Paso (Ventana Emergente e Impresion PDF)
-echo   [6] INICIAR DASHBOARD WEB 100%% PYTHON (http://127.0.0.1:8050/ - Dash + Bootstrap)
+echo   [6] Iniciar Dashboard Web 100%% Python (http://127.0.0.1:8050/)
 echo   [7] Ejecutar Pruebas del Sistema (Unit Tests)
 echo   [8] Salir
 echo.

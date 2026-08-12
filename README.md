@@ -300,10 +300,11 @@ Seleccione la opción deseada:
 | `-p` / `--paso-a-paso` | Ejecuta el extractor en modo paso a paso con impresión en PDF. | `python main.py -p` |
 | `<archivo_config.json>` | Ejecuta el extractor utilizando un archivo JSON personalizado. | `python main.py config.json` |
 
-### 3. Ejecución Directa en Windows
+### 3. Ejecución Directa en Windows (Archivos `.bat` Dedicados)
 
-Puedes hacer doble clic sobre el archivo ejecutable único:
-- **`ejecutar_extractor.bat`**: Lanzador interactivo principal (ofrece menú táctico, Dashboard Web, escaneos y pruebas).
+El proyecto cuenta con dos accesos directos en archivos batch:
+- **`iniciar_dashboard_web.bat`**: Activa el entorno virtual y arranca directamente la interfaz web en tu navegador (`http://127.0.0.1:8050/`).
+- **`ejecutar_extractor.bat`**: Gestor táctico de consola para administrar búsquedas, escaneos masivos por Sala y Mes, estadísticas SQLite y suite de pruebas unitarias.
 
 ---
 

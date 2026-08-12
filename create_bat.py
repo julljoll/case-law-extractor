@@ -1,8 +1,53 @@
-"""Script to generate Windows batch files with CRLF line endings."""
+"""
+Script to generate the two dedicated Windows batch (.bat) files with CRLF line endings:
+1. iniciar_dashboard_web.bat -> Directly launches the 100% Python Web Dashboard UI in browser.
+2. ejecutar_extractor.bat     -> Interactive CLI menu for managing searches, scans, DBs and unit tests.
+"""
 
-bat_content = """@echo off
+import os
+
+# --- BAT 1: Lanzador Directo del Dashboard Web ---
+dashboard_bat_content = """@echo off
+chcp 65001 > nul
+title TSJ Cyber Forensics Lab - Dashboard Web (100%% Python)
+
+REM Activar entorno virtual si existe
+if exist venv\\Scripts\\activate.bat (
+    call venv\\Scripts\\activate.bat
+)
+
+REM Verificar instalacion de Python
+where python >nul 2>nul
+if %errorlevel% neq 0 (
+    echo [ERROR] Python no esta instalado o no se encuentra en el PATH.
+    pause
+    exit /b 1
+)
+
+cls
+echo ===============================================================================
+echo   [ TSJ CYBER FORENSICS LAB ] INICIANDO DASHBOARD WEB 100%% PYTHON (DASH)
+echo   Iniciando entorno local y abriendo interfaz web en navegador...
+echo ===============================================================================
+echo.
+echo  Abriendo: http://127.0.0.1:8050/
+echo.
+
+start http://127.0.0.1:8050/
+python main.py --dash
+
+pause
+"""
+
+# --- BAT 2: Gestor Interactivo CLI del Proyecto ---
+extractor_bat_content = """@echo off
 chcp 65001 > nul
 title Extractor de Jurisprudencias TSJ Venezuela - DC3 Cyber Lab
+
+REM Activar entorno virtual si existe
+if exist venv\\Scripts\\activate.bat (
+    call venv\\Scripts\\activate.bat
+)
 
 REM Verificar instalacion de Python
 where python >nul 2>nul
@@ -33,12 +78,12 @@ echo.
 :MENU
 echo Seleccione la opcion deseada:
 echo.
-echo   [1] Escaneo Global Completo de Todas las Paginas del TSJ (2019 a 2026) (SQLite + Excel)
+echo   [1] Escaneo Global Completo por Sala y Mes (2019 a 2026) (SQLite + Excel)
 echo   [2] Actualizar Base de Datos SQLite y Excel (Ultimas Jurisprudencias)
 echo   [3] Busqueda Personalizada por Palabra Clave, Materia o Expediente (SQLite + Excel)
 echo   [4] Ver Estadisticas y Registros de la Base de Datos SQLite Local
 echo   [5] Extraccion Guiada Paso a Paso (Ventana Emergente e Impresion PDF)
-echo   [6] INICIAR DASHBOARD WEB 100%% PYTHON (http://127.0.0.1:8050/ - Dash + Bootstrap)
+echo   [6] Iniciar Dashboard Web 100%% Python (http://127.0.0.1:8050/)
 echo   [7] Ejecutar Pruebas del Sistema (Unit Tests)
 echo   [8] Salir
 echo.
@@ -120,14 +165,19 @@ exit /b 0
 exit /b 0
 """
 
-# Standardize CRLF
-import os
+def generate_crlf(filename: str, content: str):
+    crlf_content = content.replace('\r\n', '\n').replace('\n', '\r\n')
+    with open(filename, 'wb') as f:
+        f.write(crlf_content.encode('utf-8'))
 
-crlf_content = bat_content.replace('\r\n', '\n').replace('\n', '\r\n')
-with open('ejecutar_extractor.bat', 'wb') as f:
-    f.write(crlf_content.encode('utf-8'))
+# Generate both .bat files
+generate_crlf('iniciar_dashboard_web.bat', dashboard_bat_content)
+generate_crlf('ejecutar_extractor.bat', extractor_bat_content)
 
+# Clean obsolete run.bat if exists
 if os.path.exists('run.bat'):
     os.remove('run.bat')
 
-print("Único archivo de ejecución 'ejecutar_extractor.bat' generado con éxito con codificación CRLF.")
+print("Archivos .bat del proyecto generados exitosamente con codificación CRLF:")
+print("  1. iniciar_dashboard_web.bat (Lanzador directo del Dashboard Web)")
+print("  2. ejecutar_extractor.bat (Gestor interactivo CLI)")
