@@ -1,4 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1350" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1350" width="100%" height="100%" role="img" aria-labelledby="pipeline-title pipeline-desc">
+  
+  <!-- SEO & Accessibility Metadata -->
+  <title id="pipeline-title">Pipeline de Arquitectura General - Extractor Jurisprudencias TSJ Venezuela</title>
+  <desc id="pipeline-desc">Diagrama vectorial Folio imprimible que ilustra las 5 etapas del pipeline de extracción, scraping HTTP, parsing DOM, inteligencia en evidencia digital, persistencia emparejada en SQLite y Excel, y maquetación de PDFs institucionales estilo DC3 Cyber Center.</desc>
+
+  <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:schema="http://schema.org/">
+      <rdf:Description>
+        <dc:title>Pipeline de Arquitectura General - Extractor Jurisprudencias TSJ</dc:title>
+        <dc:description>Diagrama de arquitectura técnica Folio imprimible con el flujo de datos emparejados SQLite DB y Excel .xlsx.</dc:description>
+        <dc:subject>LegalTech, Web Scraping, TSJ Venezuela, Evidencia Digital, SQLite, ReportLab, DC3 Cyber Center</dc:subject>
+        <dc:creator>Extractor Jurisprudencias TSJ Team</dc:creator>
+        <dc:publisher>Department of Defense Cyber Crime Center Style Architecture</dc:publisher>
+        <schema:license>MIT</schema:license>
+      </rdf:Description>
+    </rdf:RDF>
+  </metadata>
+
   <defs>
     <!-- DC3 Navy Background Gradient -->
     <linearGradient id="dc3-bg-grad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -37,7 +55,7 @@
 
     <!-- Drop Shadow Filter -->
     <filter id="dc3-shadow">
-      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000000" flood-opacity="0.6"/>
     </filter>
 
     <!-- Marker Arrow Down -->
@@ -53,13 +71,13 @@
   </defs>
 
   <style>
-    .title-dc3 { font-family: 'Times New Roman', Georgia, serif; font-size: 22px; font-weight: 800; fill: #FFFFFF; letter-spacing: 0.5px; }
-    .subtitle-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 500; fill: #94A3B8; }
-    .card-title-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; font-weight: 700; fill: #F8FAFC; }
-    .card-badge-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 800; fill: #061830; letter-spacing: 1px; }
-    .node-text-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; fill: #CBD5E1; }
-    .code-text-dc3 { font-family: 'Consolas', monospace; font-size: 11px; fill: #FFC809; }
-    .bold-dc3 { font-weight: 700; fill: #FFFFFF; }
+    .title-dc3 { font-family: 'Times New Roman', Georgia, serif; font-size: 18px; font-weight: 800; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .subtitle-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; font-weight: 500; fill: #94A3B8; }
+    .card-title-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14.5px; font-weight: 700; fill: #F8FAFC; }
+    .card-badge-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 10.5px; font-weight: 800; fill: #061830; letter-spacing: 0.8px; }
+    .node-text-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; fill: #CBD5E1; }
+    .code-text-dc3 { font-family: 'Consolas', monospace; font-size: 10.5px; fill: #FFC809; }
+    .bold-dc3 { font-weight: 700; fill: #FFFFFF; font-size: 11.5px; }
   </style>
 
   <!-- Background Layer -->
@@ -71,10 +89,10 @@
   <!-- Header Banner (DC3 Style Printable Header) -->
   <g transform="translate(45, 45)">
     <rect x="0" y="0" width="810" height="85" rx="14" fill="#0F2440" stroke="#0066CC" stroke-width="1.5" filter="url(#dc3-shadow)"/>
-    <text x="25" y="38" class="title-dc3">⚖️ PIPELINE DE ARQUITECTURA (DC3 CYBER CENTER STYLE)</text>
-    <text x="25" y="62" class="subtitle-dc3">Formato Folio Imprimible • Estándar Institucional Department of Defense Cyber Crime Center</text>
-    <rect x="610" y="25" width="175" height="35" rx="17" fill="url(#dc3-gold-grad)"/>
-    <text x="697" y="47" text-anchor="middle" class="card-badge-dc3">DC3 CYBER FORENSICS LAB</text>
+    <text x="25" y="36" class="title-dc3">⚖️ PIPELINE DE ARQUITECTURA (DC3 CYBER CENTER STYLE)</text>
+    <text x="25" y="60" class="subtitle-dc3">Formato Folio Imprimible • Estándar Institucional Department of Defense Cyber Crime Center</text>
+    <rect x="620" y="25" width="165" height="35" rx="17" fill="url(#dc3-gold-grad)"/>
+    <text x="702" y="47" text-anchor="middle" class="card-badge-dc3">DC3 CYBER LAB</text>
   </g>
 
   <!-- STEP 1: Configuración y Entradas -->
@@ -82,9 +100,9 @@
     <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
     <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-gold-grad)"/>
     
-    <rect x="35" y="15" width="100" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
-    <text x="85" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 1</text>
-    <text x="145" y="32" class="card-title-dc3">Configuración y Menú Táctico CLI (main.py / config.json)</text>
+    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
+    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 1</text>
+    <text x="140" y="32" class="card-title-dc3">Configuración y Menú Táctico CLI (main.py / config.json)</text>
 
     <!-- Subcards -->
     <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
@@ -100,7 +118,7 @@
     <text x="300" y="122" class="node-text-dc3">• modo_tecnologia: True</text>
 
     <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="555" y="70" class="bold-dc3">1.3 Fórmulas de Búsqueda</text>
+    <text x="555" y="70" class="bold-dc3">1.3 Fórmulas Búsqueda</text>
     <text x="555" y="88" class="node-text-dc3">• "Evidencia Digital"</text>
     <text x="555" y="105" class="node-text-dc3">• "Delito Informático"</text>
     <text x="555" y="122" class="node-text-dc3">• Expedientes (ej. C25-664)</text>
@@ -114,9 +132,9 @@
     <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
     <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-cyan-grad)"/>
     
-    <rect x="35" y="15" width="100" height="22" rx="11" fill="url(#dc3-cyan-grad)"/>
-    <text x="85" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 2</text>
-    <text x="145" y="32" class="card-title-dc3">Scraping HTTP y Peticiones CiberTácticas al TSJ</text>
+    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-cyan-grad)"/>
+    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 2</text>
+    <text x="140" y="32" class="card-title-dc3">Scraping HTTP y Peticiones CiberTácticas al TSJ</text>
 
     <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
     <text x="45" y="70" class="bold-dc3">2.1 Cliente HTTP</text>
@@ -145,9 +163,9 @@
     <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
     <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-gold-grad)"/>
     
-    <rect x="35" y="15" width="100" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
-    <text x="85" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 3</text>
-    <text x="145" y="32" class="card-title-dc3">Parsing DOM HTML &amp; Inteligencia en Evidencia Digital DC3</text>
+    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
+    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 3</text>
+    <text x="140" y="32" class="card-title-dc3">Parsing DOM HTML &amp; Inteligencia en Evidencia Digital DC3</text>
 
     <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
     <text x="45" y="70" class="bold-dc3">3.1 BeautifulSoup Parser</text>
@@ -176,21 +194,21 @@
     <rect x="0" y="0" width="810" height="175" rx="14" fill="url(#dc3-card-grad)" stroke="#38F9D7" stroke-width="2" filter="url(#dc3-shadow)"/>
     <rect x="15" y="15" width="6" height="145" rx="3" fill="url(#dc3-green-grad)"/>
     
-    <rect x="35" y="15" width="100" height="22" rx="11" fill="url(#dc3-green-grad)"/>
-    <text x="85" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 4</text>
-    <text x="145" y="32" class="card-title-dc3">Persistencia Emparejada 1:1 (SQLite DB + Matriz Excel)</text>
+    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-green-grad)"/>
+    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 4</text>
+    <text x="140" y="32" class="card-title-dc3">Persistencia Emparejada 1:1 (SQLite DB + Matriz Excel)</text>
 
     <rect x="35" y="48" width="365" height="110" rx="8" fill="#061830" stroke="#38F9D7" stroke-width="1.5"/>
-    <text x="50" y="72" class="bold-dc3" fill="#38F9D7">🗄️ Base de Datos SQLite Dedicada</text>
-    <text x="50" y="92" class="node-text-dc3">• Ruta: data/Databases_SQLite/&lt;Busqueda_Formula&gt;.db</text>
-    <text x="50" y="110" class="node-text-dc3">• Inserción Atómica: ON CONFLICT(link_directo) DO UPDATE</text>
-    <text x="50" y="128" class="node-text-dc3">• Cero duplicados, almacenamiento relacional indexado por sala y año</text>
+    <text x="50" y="70" class="bold-dc3" fill="#38F9D7">🗄️ Base de Datos SQLite Dedicada</text>
+    <text x="50" y="88" class="node-text-dc3">• Ruta: data/Databases_SQLite/&lt;Busqueda_Formula&gt;.db</text>
+    <text x="50" y="105" class="node-text-dc3">• Inserción Atómica: ON CONFLICT(link_directo) DO UPDATE</text>
+    <text x="50" y="122" class="node-text-dc3">• Cero duplicados, almacenamiento relacional indexado</text>
 
     <rect x="420" y="48" width="370" height="110" rx="8" fill="#061830" stroke="#38F9D7" stroke-width="1.5"/>
-    <text x="435" y="72" class="bold-dc3" fill="#38F9D7">📊 Matriz Analítica Excel Emparejada</text>
-    <text x="435" y="92" class="node-text-dc3">• Ruta: data/Excel_Buscador/&lt;Busqueda_Formula&gt;.xlsx</text>
-    <text x="435" y="110" class="node-text-dc3">• 9 Columnas de Datos estructurados + Extracto de Pop-Up</text>
-    <text x="435" y="128" class="node-text-dc3">• Columna 9: Hipervínculo Azul Clicable de la URL que abrió Pop-Up</text>
+    <text x="435" y="70" class="bold-dc3" fill="#38F9D7">📊 Matriz Analítica Excel Emparejada</text>
+    <text x="435" y="88" class="node-text-dc3">• Ruta: data/Excel_Buscador/&lt;Busqueda_Formula&gt;.xlsx</text>
+    <text x="435" y="105" class="node-text-dc3">• 9 Columnas de Datos + Extracto completo de Pop-Up</text>
+    <text x="435" y="122" class="node-text-dc3">• Columna 9: Hipervínculo Azul Clicable de la URL Pop-Up</text>
   </g>
 
   <!-- Arrow Down 4 -> 5 -->
@@ -201,9 +219,9 @@
     <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
     <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-gold-grad)"/>
     
-    <rect x="35" y="15" width="100" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
-    <text x="85" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 5</text>
-    <text x="145" y="32" class="card-title-dc3">Exportación de Documentos y Salidas UX Estilo DC3</text>
+    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
+    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 5</text>
+    <text x="140" y="32" class="card-title-dc3">Exportación de Documentos y Salidas UX Estilo DC3</text>
 
     <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
     <text x="45" y="70" class="bold-dc3">5.1 PDF Oficial TSJ</text>
@@ -214,7 +232,7 @@
     <rect x="290" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
     <text x="300" y="70" class="bold-dc3">5.2 JSON / CSV Backups</text>
     <text x="300" y="88" class="node-text-dc3">• Resguardo de datos</text>
-    <text x="300" y="105" class="node-text-dc3">• Integración con RAG/LLM</text>
+    <text x="300" y="105" class="node-text-dc3">• Integración RAG / LLM</text>
     <text x="300" y="122" class="node-text-dc3">• Intercambio de APIs</text>
 
     <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#FFC809" stroke-width="1.5"/>
@@ -227,31 +245,31 @@
   <!-- Bottom Printable Summary Banner (DC3 Footer) -->
   <g transform="translate(45, 1125)">
     <rect x="0" y="0" width="810" height="175" rx="14" fill="#0F2440" stroke="#0066CC" stroke-width="1.5" filter="url(#dc3-shadow)"/>
-    <text x="30" y="35" class="title-dc3" fill="#FFFFFF">📜 GARANTÍAS DE IMPRESIÓN Y GOBERNANZA CYBER CENTER DC3</text>
+    <text x="30" y="33" class="title-dc3" fill="#FFFFFF">📜 GARANTÍAS DE IMPRESIÓN Y GOBERNANZA CYBER CENTER DC3</text>
 
-    <g transform="translate(30, 55)">
+    <g transform="translate(30, 52)">
       <circle cx="12" cy="12" r="12" fill="url(#dc3-gold-grad)"/>
       <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
-      <text x="32" y="16" font-family="Segoe UI" font-size="12px" font-weight="700" fill="#FFC809">Generación Emparejada 1:1:</text>
-      <text x="210" y="16" font-family="Segoe UI" font-size="12px" fill="#94A3B8">Cada término de búsqueda crea un archivo SQLite (.db) y un Excel (.xlsx) con nombres espejo.</text>
+      <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#FFC809">Generación Emparejada 1:1:</text>
+      <text x="210" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Cada término de búsqueda crea un archivo SQLite (.db) y un Excel (.xlsx) con nombres espejo.</text>
     </g>
 
-    <g transform="translate(30, 85)">
+    <g transform="translate(30, 80)">
       <circle cx="12" cy="12" r="12" fill="url(#dc3-green-grad)"/>
       <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
-      <text x="32" y="16" font-family="Segoe UI" font-size="12px" font-weight="700" fill="#38F9D7">Verificación Pop-Up:</text>
-      <text x="210" y="16" font-family="Segoe UI" font-size="12px" fill="#94A3B8">Abre el link bajo 'Ver Extracto:', valida la ratio decidendi y guarda esa URL exacta como link_directo.</text>
+      <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#38F9D7">Verificación Pop-Up:</text>
+      <text x="210" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Abre el link bajo 'Ver Extracto:', valida la ratio decidendi y guarda esa URL exacta como link_directo.</text>
     </g>
 
-    <g transform="translate(30, 115)">
+    <g transform="translate(30, 108)">
       <circle cx="12" cy="12" r="12" fill="url(#dc3-cyan-grad)"/>
       <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
-      <text x="32" y="16" font-family="Segoe UI" font-size="12px" font-weight="700" fill="#00F2FE">Estándar Folio Vertical DC3:</text>
-      <text x="210" y="16" font-family="Segoe UI" font-size="12px" fill="#94A3B8">Proporción de página Folio/Legal (900x1350) optimizada para lectura en papel e informes gubernamentales.</text>
+      <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#00F2FE">Estándar Folio Vertical DC3:</text>
+      <text x="210" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Proporción de página Folio/Legal (900x1350) optimizada para lectura en papel e informes.</text>
     </g>
 
     <!-- Footer Code Line -->
-    <rect x="30" y="138" width="750" height="26" rx="6" fill="#061830"/>
-    <text x="45" y="155" class="code-text-dc3">DC3 Cyber Forensics Laboratory Style • Extractor TSJ Venezuela • GitHub: julljoll/case-law-extractor</text>
+    <rect x="30" y="136" width="750" height="26" rx="6" fill="#061830"/>
+    <text x="45" y="153" class="code-text-dc3">DC3 Cyber Forensics Laboratory Style • Extractor TSJ Venezuela • GitHub: julljoll/case-law-extractor</text>
   </g>
 </svg>

@@ -73,10 +73,11 @@ Este documento establece la guía directiva oficial de nivel canónico para el d
     - **Bordes & Selecciones:** Azul Acero Ciber (`#0066CC` / `#1E88E5`).
     - **Contenedores & Tarjetas:** Tarjetas Blancas/Flotantes (`#FFFFFF` con bordes `#E2E8F0` y sombras) o tarjetas de consola nítidas.
     - **Badges Capsulares:** Cápsulas ovaladas con texto dorado (`[ DC3 CYBER FORENSICS LAB ]`).
-    - **Tipografía:** Encabezados institucionales con remate serif en títulos principales y cuerpo nítido en sans-serif.
+    - **Diagramación SVG Imprimible & SEO (Formato Folio Vertical):** Todos los diagramas `.svg` generados deben construirse estrictamente en **orientación vertical (portrait)** con proporciones de **Hoja Folio / Legal (`viewBox="0 0 900 1350"`)**, ajustando minuciosamente los tamaños de texto (`font-size`, `letter-spacing`, márgenes internos) para **evitar cualquier desbordamiento** fuera de las tarjetas o del lienzo.
+    - **Optimización SEO & Accesibilidad Estándar:** Cada gráfico SVG e interfaz web debe incluir metadatos semánticos SEO completos (`role="img"`, `aria-labelledby`, etiquetas `<title>`, `<desc>` y bloque `<metadata>` con Schema.org/Dublin Core), garantizando la indexabilidad por motores de búsqueda y la accesibilidad para lectores de pantalla.
 - **Directivas Técnicas:**
   - Evitar interfaces genéricas o desordenadas; priorizar la estética visual oficial de **DC3 Federal Cyber Center**.
-  - Los archivos PDF, interfaces de terminal CLI, ejecutables `.bat` y GUIs deben aplicar rigurosamente la paleta y componentes de DC3.
+  - Los archivos PDF, interfaces de terminal CLI, ejecutables `.bat`, GUIs y diagramas SVG deben aplicar rigurosamente la paleta de DC3, límites sin desbordamiento de texto y metadatos SEO.
 
 ---
 
