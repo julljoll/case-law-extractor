@@ -70,7 +70,7 @@ color 0A
 echo ===============================================================================
 echo   Case Law Extractor powered by sha256.us
 echo      Dashboard en Tiempo Real TSJ Venezuela
-echo   Generacion de BD SQLite + Matriz Excel (.xlsx) Dedicadas por Formula
+echo   Generacion Canonica de BD SQLite (sala_<nombre>.db) + Excel (.xlsx) Por Sala
 echo ===============================================================================
 echo.
 

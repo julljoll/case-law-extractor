@@ -261,38 +261,25 @@ class BuscadorTSJExcel:
 
     def actualizar_ultimas_jurisprudencias(self, palabra_clave: str = "", ano_inicio: int = 2019, ano_fin: int = 2026, sala_info: Optional[Dict[str, str]] = None, mes_info: Optional[Dict[str, str]] = None) -> str:
         """
-        Scans and saves search results into a dedicated SQLite DB (data/Databases_SQLite/<Formula>.db)
-        and matching Excel file (data/Excel_Buscador/<Formula>.xlsx), with optional Sala and Month filtering.
+        Scans and saves search results into a canonical per-Sala SQLite DB (data/Databases_SQLite/sala_<nombre>.db)
+        and matching per-Sala Excel file (data/Excel_Buscador/sala_<nombre>.xlsx).
         """
-        sala_label = sala_info.get("nombre", "Todas") if sala_info else "Todas"
-        mes_label = mes_info.get("nombre", "TodoElAno") if mes_info else "TodoElAno"
+        sala_key = sala_info.get("key", "todas") if sala_info else "todas"
+        sala_label = sala_info.get("nombre", "Todas las Salas") if sala_info else "Todas las Salas"
+        mes_label = mes_info.get("nombre", "Todo el Año") if mes_info else "Todo el Año"
 
-        prefix_parts = []
-        if sala_info and sala_info.get("key") != "todas":
-            prefix_parts.append(sala_info.get("code", "sala").upper())
-        if mes_info and mes_info.get("key") != "todo_el_ano":
-            prefix_parts.append(mes_info.get("code", "mes").capitalize())
-
-        prefix_str = "_".join(prefix_parts) if prefix_parts else ""
-
-        if palabra_clave.strip():
-            full_search = f"{prefix_str}_{palabra_clave}" if prefix_str else palabra_clave
-            base_name = sanitize_search_name(full_search, prefix="Busqueda")
-        else:
-            base_name = f"Jurisprudencia_TSJ_{prefix_str + '_' if prefix_str else ''}Actualizacion_{ano_inicio}_{ano_fin}"
-
-        db_path = os.path.join("data/Databases_SQLite", f"{base_name}.db")
+        db_path, filepath, clean_name = get_canonical_filenames(sala_key)
         target_db = TSJDatabaseManager(db_path=db_path)
 
         print(f"\n{Fore.CYAN}===========================================================================")
-        print(f"{Fore.CYAN}  BUSCADOR DE JURISPRUDENCIA TSJ - BASE DE DATOS Y EXCEL DEDICADOS")
+        print(f"{Fore.CYAN}  BUSCADOR DE JURISPRUDENCIA TSJ - BASE DE DATOS Y EXCEL CANÓNICOS POR SALA")
         print(f"{Fore.CYAN}==========================================================================={Style.RESET_ALL}\n")
 
         self.print_log(f"Fórmula / Término: '{palabra_clave or 'Todas'}'")
         self.print_log(f"Sala Seleccionada: {sala_label}")
         self.print_log(f"Mes / Período: {mes_label}")
-        self.print_log(f"Base de Datos SQLite Dedicada: {db_path}")
-        time.sleep(0.5)
+        self.print_log(f"Base de Datos SQLite Canónica: {db_path}")
+        time.sleep(0.3)
 
         db_records = self.get_real_tsj_database()
 
@@ -305,10 +292,10 @@ class BuscadorTSJExcel:
             target_mes = mes_info.get("nombre", "").lower()
             db_records = [r for r in db_records if target_mes in r.get("fecha", "").lower()]
 
-        # Save batch into dedicated SQLite DB
-        self.print_log(f"Sincronizando registros en la Base de Datos SQLite: {db_path}...")
+        # Save batch into canonical per-Sala SQLite DB
+        self.print_log(f"Sincronizando registros en la Base de Datos SQLite Canónica: {db_path}...")
         guardados = target_db.guardar_lote(db_records)
-        self.print_log(f"Se registraron {guardados} decisiones en la Base de Datos SQLite.", "success")
+        self.print_log(f"Se registraron {guardados} decisiones en la Base de Datos SQLite Canónica.", "success")
 
         # Query records for Excel generation
         if palabra_clave.strip():
@@ -320,23 +307,19 @@ class BuscadorTSJExcel:
             self.print_log(f"   [{d['sala']}] Sent. {d['numero_sentencia']} | Exp. {d['expediente']} -> {d['link_directo']}", "highlight")
 
         # Export to professional Excel
-        excel_filename = f"{base_name}.xlsx"
-        filepath = os.path.join(self.output_dir, excel_filename)
-
-        self.print_log(f"Generando documento Excel estructurado: {excel_filename}...")
+        self.print_log(f"Generando documento Excel Canónico: {os.path.basename(filepath)}...")
         export_tsj_to_excel_profesional(
             decisiones_filtradas,
             filepath,
-            title=f"MATRIZ TSJ - SALA: '{sala_label.upper()}' | MES: '{mes_label.upper()}' | BÚSQUEDA: '{palabra_clave or 'GENERAL'}'"
+            title=f"MATRIZ TSJ CANÓNICA - SALA: '{sala_label.upper()}' | MES: '{mes_label.upper()}'"
         )
-        self.print_log(f"Documento Excel guardado con éxito en: {filepath}", "success")
+        self.print_log(f"Documento Excel Canónico guardado con éxito en: {filepath}", "success")
 
         stats = target_db.obtener_estadisticas()
         print(f"\n{Fore.GREEN}===========================================================================")
         print(f"{Fore.GREEN} [OK] BÚSQUEDA Y PROCESAMIENTO FINALIZADOS CON ÉXITO")
         print(f"{Fore.GREEN} Sala: {sala_label} | Mes: {mes_label}")
-        print(f"{Fore.GREEN} Fórmula de Búsqueda: {palabra_clave or 'Escaneo General'}")
-        print(f"{Fore.GREEN} Total en BD SQLite Dedicada: {stats['total_registros']} sentencias")
+        print(f"{Fore.GREEN} Total en BD SQLite Canónica: {stats['total_registros']} sentencias")
         print(f"{Fore.GREEN} Archivo Base de Datos SQLite: {os.path.abspath(db_path)}")
         print(f"{Fore.GREEN} Archivo Matriz Excel Generado: {os.path.abspath(filepath)}")
         print(f"{Fore.GREEN}==========================================================================={Style.RESET_ALL}\n")
@@ -348,14 +331,11 @@ class BuscadorTSJExcel:
         Executes global scanner with optional Sala and Month filtering,
         creating a dedicated SQLite .db and matching .xlsx.
         """
-        sala_label = sala_info.get("nombre", "Todas_las_Salas") if sala_info else "Todas_las_Salas"
-        mes_label = mes_info.get("nombre", "Todo_el_Ano") if mes_info else "Todo_el_Ano"
+        sala_key = sala_info.get("key", "todas") if sala_info else "todas"
+        sala_label = sala_info.get("nombre", "Todas las Salas") if sala_info else "Todas las Salas"
+        mes_label = mes_info.get("nombre", "Todo el Año") if mes_info else "Todo el Año"
 
-        sala_clean = sala_info.get("code", "todas").upper() if sala_info else "TODAS"
-        mes_clean = mes_info.get("code", "ano_completo").capitalize() if mes_info else "AnoCompleto"
-
-        base_name = f"Escaneo_{sala_clean}_{mes_clean}_{ano_inicio}_{ano_fin}"
-        db_path = os.path.join("data/Databases_SQLite", f"{base_name}.db")
+        db_path, filepath, clean_name = get_canonical_filenames(sala_key)
         target_db = TSJDatabaseManager(db_path=db_path)
 
         print(f"\n{Fore.CYAN}===========================================================================")

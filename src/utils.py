@@ -131,6 +131,27 @@ def prompt_select_mes() -> Dict[str, str]:
     return MESES_CHOICES.get(opc, MESES_CHOICES["0"])
 
 
+def get_canonical_filenames(sala_key: str = "todas") -> Tuple[str, str, str]:
+    """
+    Returns canonical SQLite DB path, Excel path, and clean name for a given Sala.
+    Standardized format: sala_<nombre_limpio>.db and sala_<nombre_limpio>.xlsx
+    """
+    sala_clean_map = {
+        "todas": "tsj_todas_las_salas",
+        "constitucional": "sala_constitucional",
+        "politico_administrativa": "sala_politico_administrativa",
+        "casacion_civil": "sala_casacion_civil",
+        "casacion_penal": "sala_casacion_penal",
+        "casacion_social": "sala_casacion_social",
+        "electoral": "sala_electoral",
+        "plena": "sala_plena"
+    }
+    clean_name = sala_clean_map.get(sala_key, "tsj_todas_las_salas")
+    db_path = os.path.join("data/Databases_SQLite", f"{clean_name}.db")
+    excel_path = os.path.join("data/Excel_Buscador", f"{clean_name}.xlsx")
+    return db_path, excel_path, clean_name
+
+
 # Keywords specifically for digital evidence, computer crimes, and technology
 TECH_KEYWORDS = [
     "prueba digital", "evidencia digital", "delito informático", "delitos informáticos",

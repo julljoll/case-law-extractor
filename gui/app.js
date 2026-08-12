@@ -6,10 +6,41 @@
 let decisionesCache = [];
 let extractoModal = null;
 
+let searchTimeout = null;
+
 document.addEventListener("DOMContentLoaded", function () {
   extractoModal = new bootstrap.Modal(document.getElementById("modalExtracto"));
+  
+  const inputSearch = document.getElementById("inputSearch");
+  if (inputSearch) {
+    inputSearch.addEventListener("input", function() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(function() {
+        filtrarLocalOCargar();
+      }, 250);
+    });
+  }
+  
   cargarDecisiones();
 });
+
+function filtrarLocalOCargar() {
+  const query = document.getElementById("inputSearch").value.toLowerCase().trim();
+  if (decisionesCache && decisionesCache.length > 0 && query !== "") {
+    const filtrados = decisionesCache.filter(dec => {
+      return (dec.tema && dec.tema.toLowerCase().includes(query)) ||
+             (dec.materia && dec.materia.toLowerCase().includes(query)) ||
+             (dec.asunto && dec.asunto.toLowerCase().includes(query)) ||
+             (dec.expediente && dec.expediente.toLowerCase().includes(query)) ||
+             (dec.numero_sentencia && dec.numero_sentencia.toLowerCase().includes(query)) ||
+             (dec.extracto && dec.extracto.toLowerCase().includes(query));
+    });
+    renderizarTarjetas(filtrados);
+    document.getElementById("counterTotal").innerText = filtrados.length;
+  } else {
+    cargarDecisiones();
+  }
+}
 
 function cargarDecisiones() {
   const sala = document.getElementById("selectSala").value;

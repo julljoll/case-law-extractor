@@ -102,7 +102,7 @@ app.layout = dbc.Container([
                     
                     dbc.Col([
                         html.Label([html.I(className="fa-solid fa-magnifying-glass text-warning me-1"), " Buscar Término / Expediente:"], className="text-light fw-bold small mb-1"),
-                        dbc.Input(id="input-search", placeholder="ej. Evidencia Digital, C25-664...", type="text", className="bg-dark text-light border-secondary")
+                        dbc.Input(id="input-search", placeholder="ej. Evidencia Digital, C25-664...", type="text", debounce=True, className="bg-dark text-light border-secondary")
                     ], md=4),
                 ], className="g-3 mt-1")
             ], className="p-3 mt-3 rounded-3", style={"backgroundColor": "#0B2240", "border": f"1.5px solid {DC3_BLUE}"})
