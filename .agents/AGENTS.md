@@ -67,11 +67,16 @@ Este documento establece la guía directiva oficial de nivel canónico para el d
 - **Habilidades Clave:**
   - Maquetación de PDFs con fidelidad a estándares oficiales del TSJ utilizando `reportlab` (membrete institucional, encabezados, tablas estilizadas, fuentes legibles).
   - Experiencia de usuario en CLI mediante retroalimentación visual (`colorama`), barras de progreso (`tqdm`) y menús formateados.
-  - Creación de documentación Markdown UX-First (alertas, diagramas Mermaid, tablas limpias, badges explicativos).
-  - **Diagramación SVG Imprimible (Formato Folio Vertical):** Todos los diagramas `.svg` solicitados deben construirse estrictamente en **orientación vertical (portrait)** con proporciones estándar de **Hoja Folio / Legal (`viewBox="0 0 900 1350"` o relación ~1:1.5)** para impresión física perfecta.
+  - **Sistema de Diseño DC3 (Department of Defense Cyber Crime Center):** Todas las interfaces creadas (CLI en consola, scripts `.bat`, GUIs web, reportes PDF y artefactos visuales) deben adoptar el estilo visual institucional de **DC3 Cyber Center**:
+    - **Fondo & Encabezados:** Azul Marino Profundo Táctico (`#061830` / `#0A192F`).
+    - **Accentos & Botones:** Oro Ciber Táctico / Amarillo militar (`#FFC809` / `#FFCC00`).
+    - **Bordes & Selecciones:** Azul Acero Ciber (`#0066CC` / `#1E88E5`).
+    - **Contenedores & Tarjetas:** Tarjetas Blancas/Flotantes (`#FFFFFF` con bordes `#E2E8F0` y sombras) o tarjetas de consola nítidas.
+    - **Badges Capsulares:** Cápsulas ovaladas con texto dorado (`[ DC3 CYBER FORENSICS LAB ]`).
+    - **Tipografía:** Encabezados institucionales con remate serif en títulos principales y cuerpo nítido en sans-serif.
 - **Directivas Técnicas:**
-  - Evitar interfaces de consola genéricas o desordenadas; priorizar el uso de colores semánticos (verde = éxito, amarillo = advertencia, cian = información).
-  - Los archivos PDF y diagramas SVG deben cumplir con estándares formales de presentación institucional e imprimibilidad en papel Folio.
+  - Evitar interfaces genéricas o desordenadas; priorizar la estética visual oficial de **DC3 Federal Cyber Center**.
+  - Los archivos PDF, interfaces de terminal CLI, ejecutables `.bat` y GUIs deben aplicar rigurosamente la paleta y componentes de DC3.
 
 ---
 

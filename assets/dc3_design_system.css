@@ -1,0 +1,160 @@
+/* ==========================================================================
+   DC3 DESIGN SYSTEM - DEPARTMENT OF DEFENSE CYBER CRIME CENTER
+   Official Theme Guidelines for Web App, GUI, Console & Document Styling
+   ========================================================================== */
+
+:root {
+  /* Brand Core Colors */
+  --dc3-navy-dark: #061830;
+  --dc3-navy-primary: #0A192F;
+  --dc3-navy-light: #1E293B;
+  --dc3-gold-accent: #FFC809;
+  --dc3-gold-hover: #E6B400;
+  --dc3-blue-tactical: #0066CC;
+  --dc3-blue-light: #3B82F6;
+  
+  /* Neutral Palette */
+  --dc3-bg-light: #F8FAFC;
+  --dc3-card-bg: #FFFFFF;
+  --dc3-border-light: #E2E8F0;
+  --dc3-border-dark: #334155;
+  --dc3-text-dark: #0F172A;
+  --dc3-text-muted: #64748B;
+  --dc3-text-light: #F8FAFC;
+
+  /* Typography */
+  --dc3-font-heading: 'Times New Roman', Georgia, serif;
+  --dc3-font-body: 'Segoe UI', Inter, system-ui, -apple-system, sans-serif;
+  --dc3-font-mono: 'Consolas', 'Courier New', monospace;
+
+  /* Shadows & Radius */
+  --dc3-radius-sm: 6px;
+  --dc3-radius-md: 10px;
+  --dc3-radius-lg: 16px;
+  --dc3-radius-pill: 9999px;
+  --dc3-shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+/* Base Body Setup */
+body {
+  font-family: var(--dc3-font-body);
+  background-color: var(--dc3-bg-light);
+  color: var(--dc3-text-dark);
+  margin: 0;
+  padding: 0;
+}
+
+/* Institutional Header Banner */
+.dc3-header-banner {
+  background-color: var(--dc3-navy-dark);
+  background-image: radial-gradient(circle at 50% 0%, #112A46 0%, #061830 100%);
+  color: var(--dc3-text-light);
+  padding: 2.5rem 2rem;
+  border-bottom: 4px solid var(--dc3-gold-accent);
+}
+
+.dc3-header-title {
+  font-family: var(--dc3-font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+  margin: 0 0 0.5rem 0;
+}
+
+.dc3-header-subtitle {
+  font-size: 1rem;
+  color: #94A3B8;
+  max-width: 800px;
+  margin: 0;
+}
+
+/* DC3 Mission Capsule Pill Badge */
+.dc3-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 1rem;
+  border-radius: var(--dc3-radius-pill);
+  background-color: rgba(255, 200, 9, 0.15);
+  border: 1.5px solid var(--dc3-gold-accent);
+  color: var(--dc3-gold-accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* Tactical Buttons */
+.dc3-btn-gold {
+  background-color: var(--dc3-gold-accent);
+  color: var(--dc3-navy-dark);
+  font-weight: 700;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--dc3-radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 200, 9, 0.3);
+}
+
+.dc3-btn-gold:hover {
+  background-color: var(--dc3-gold-hover);
+  transform: translateY(-1px);
+}
+
+.dc3-btn-outline {
+  background-color: transparent;
+  color: #FFFFFF;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--dc3-radius-sm);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dc3-btn-outline:hover {
+  border-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Floating White Card Grid */
+.dc3-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: -2.5rem auto 3rem auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.dc3-card {
+  background: var(--dc3-card-bg);
+  border: 1px solid var(--dc3-border-light);
+  border-radius: var(--dc3-radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--dc3-shadow-card);
+  transition: transform 0.2s ease;
+}
+
+.dc3-card:hover {
+  transform: translateY(-3px);
+  border-color: #CBD5E1;
+}
+
+.dc3-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--dc3-text-dark);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.dc3-card-text {
+  font-size: 0.9rem;
+  color: var(--dc3-text-muted);
+  line-height: 1.5;
+}

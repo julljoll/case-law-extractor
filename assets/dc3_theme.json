@@ -1,0 +1,27 @@
+{
+  "theme_name": "DC3 Federal Cyber Center Theme",
+  "organization": "Department of Defense Cyber Crime Center (DC3)",
+  "colors": {
+    "primary_navy": "#061830",
+    "secondary_navy": "#0A192F",
+    "cyber_gold": "#FFC809",
+    "tactical_blue": "#0066CC",
+    "accent_cyan": "#00F2FE",
+    "card_background": "#FFFFFF",
+    "border_light": "#E2E8F0",
+    "text_dark": "#0F172A",
+    "text_muted": "#64748B"
+  },
+  "cli_ansi_palette": {
+    "banner_bg": "BLACK",
+    "header_navy": "BLUE",
+    "accent_gold": "YELLOW",
+    "highlight_cyan": "CYAN",
+    "success_green": "GREEN"
+  },
+  "fonts": {
+    "heading": "Times New Roman, Georgia, serif",
+    "body": "Segoe UI, Inter, sans-serif",
+    "monospace": "Consolas, monospace"
+  }
+}

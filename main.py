@@ -13,19 +13,20 @@ from src.utils import load_config
 init(autoreset=True)
 
 def print_banner():
-    print(f"{Fore.CYAN}{'='*75}")
-    print(f"{Fore.CYAN}       BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA")
-    print(f"{Fore.CYAN}    Generación de BD SQLite + Excel Dedicados por Fórmula de Búsqueda")
-    print(f"{Fore.CYAN}{'='*75}{Style.RESET_ALL}\n")
+    print(f"{Fore.BLUE}{'='*78}")
+    print(f"{Fore.YELLOW}  [ TSJ CYBER FORENSICS LAB ] {Fore.CYAN}DEPARTMENT OF DEFENSE CYBER CRIME CENTER STYLE")
+    print(f"{Fore.WHITE}       BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA")
+    print(f"{Fore.YELLOW}    Generación de BD SQLite + Excel Dedicados por Fórmula de Búsqueda")
+    print(f"{Fore.BLUE}{'='*78}{Style.RESET_ALL}\n")
 
 def show_menu():
-    print(f"{Fore.YELLOW}Seleccione la opción deseada:{Style.RESET_ALL}")
-    print(f"  {Fore.GREEN}[1]{Style.RESET_ALL} Escaneo Global de Todas las Páginas del TSJ (2019 a 2026) -> Escaneo_Global.db + .xlsx")
-    print(f"  {Fore.GREEN}[2]{Style.RESET_ALL} Actualizar Base de Datos de Últimas Jurisprudencias -> Actualizacion.db + .xlsx")
-    print(f"  {Fore.GREEN}[3]{Style.RESET_ALL} Búsqueda por Fórmula / Palabra Clave / Expediente -> Genera BD SQLite + Excel Dedicados")
-    print(f"  {Fore.GREEN}[4]{Style.RESET_ALL} Inspeccionar Estadísticas de Todas las Bases de Datos SQLite Generadas")
-    print(f"  {Fore.GREEN}[5]{Style.RESET_ALL} Extracción Guiada Paso a Paso (Ventana Emergente e Impresión PDF)")
-    print(f"  {Fore.GREEN}[6]{Style.RESET_ALL} Salir\n")
+    print(f"{Fore.YELLOW}▸ SELECCIONE LA OPCIÓN DE OPERACIÓN (DC3 SYSTEM TACTICAL MENU):{Style.RESET_ALL}")
+    print(f"  {Fore.YELLOW}[1]{Style.RESET_ALL} Escaneo Global de Todas las Páginas del TSJ (2019 a 2026) ➔ Escaneo_Global.db + .xlsx")
+    print(f"  {Fore.YELLOW}[2]{Style.RESET_ALL} Actualizar Base de Datos de Últimas Jurisprudencias ➔ Actualizacion.db + .xlsx")
+    print(f"  {Fore.YELLOW}[3]{Style.RESET_ALL} Búsqueda por Fórmula / Palabra Clave / Expediente ➔ Genera BD SQLite + Excel Dedicados")
+    print(f"  {Fore.YELLOW}[4]{Style.RESET_ALL} Inspeccionar Estadísticas de Todas las Bases de Datos SQLite Generadas")
+    print(f"  {Fore.YELLOW}[5]{Style.RESET_ALL} Extracción Guiada Paso a Paso (Ventana Emergente e Impresión PDF)")
+    print(f"  {Fore.YELLOW}[6]{Style.RESET_ALL} Salir\n")
 
 def main():
     print_banner()
