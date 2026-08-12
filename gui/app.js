@@ -181,8 +181,19 @@ function verBasesDatosSQLite() {
     });
 }
 
+function borrarCacheYCookies() {
+  localStorage.clear();
+  sessionStorage.clear();
+  document.cookie.split(";").forEach(function(c) {
+    document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+  });
+  alert("Caché local, datos de sesión y cookies eliminados con éxito.");
+  location.reload();
+}
+
 function truncateText(str, maxLen) {
   if (!str) return "";
   if (str.length <= maxLen) return str;
   return str.substring(0, maxLen) + "...";
 }
+

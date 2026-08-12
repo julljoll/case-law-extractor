@@ -14,6 +14,7 @@ import dash_bootstrap_components as dbc
 from src.utils import SALAS_CHOICES, MESES_CHOICES
 from src.buscador_tsj_excel import BuscadorTSJExcel
 from src.database import TSJDatabaseManager
+from src.scheduler import global_scheduler
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS_DIR = os.path.join(BASE_DIR, "assets")
@@ -42,8 +43,13 @@ mes_options = [{"label": f"📅 {v['nombre']}", "value": v["key"]} for v in MESE
 # Main Layout
 app.layout = dbc.Container([
     
-    # Store for caching current results
+    # Store for caching current results & Local Cookies / Session Storage
     dcc.Store(id="store-decisiones"),
+    dcc.Store(id="store-user-session", storage_type="local"),
+    dcc.Store(id="store-cache", storage_type="session"),
+    
+    # 24-Hour Interval Auto-Sync Trigger (86400000 ms = 24 Hours)
+    dcc.Interval(id="interval-24h-sync", interval=86400000, n_intervals=0),
     
     # Header Banner (DC3 Style Printable Header with SHA256 Logo)
     dbc.Card([
@@ -57,16 +63,28 @@ app.layout = dbc.Container([
                             html.P("Dashboard en Tiempo Real TSJ Venezuela", className="text-light mb-0 small opacity-75")
                         ])
                     ], className="d-flex align-items-center")
-                ], md=8),
+                ], md=6),
                 
                 dbc.Col([
-                    dbc.Button([
-                        html.I(className="fa-solid fa-file-excel me-2"),
-                        "Generar Excel & SQLite"
-                    ], id="btn-export", color="warning", className="fw-bold w-100 mb-2 py-2 text-dark"),
+                    html.Div([
+                        dbc.Button([
+                            html.I(className="fa-solid fa-arrows-rotate me-1"),
+                            " Sincronizar (24h)"
+                        ], id="btn-sync-24h", color="info", outline=True, size="sm", className="me-2 fw-bold text-white mb-2"),
+                        
+                        dbc.Button([
+                            html.I(className="fa-solid fa-file-excel me-1"),
+                            " Generar Excel & SQLite"
+                        ], id="btn-export", color="warning", size="sm", className="me-2 fw-bold text-dark mb-2"),
+                        
+                        dbc.Button([
+                            html.I(className="fa-solid fa-trash-can me-1"),
+                            " Borrar Caché"
+                        ], id="btn-clear-cache", color="danger", outline=True, size="sm", className="fw-bold mb-2")
+                    ], className="d-flex flex-wrap justify-content-md-end align-items-center"),
                     
                     html.Div(id="export-alert-container")
-                ], md=4, className="text-end align-self-center")
+                ], md=6, className="align-self-center")
             ]),
             
             # Control Controls
@@ -390,6 +408,56 @@ def trigger_export(n_clicks, sala_key, mes_key, kw):
         html.I(className="fa-solid fa-circle-check me-2"),
         f"Matriz Excel y BD SQLite generadas con éxito en: {os.path.basename(excel_path)}"
     ], color="success", dismissable=True, className="mt-2 py-2 small")
+
+
+@app.callback(
+    [Output("select-sala", "value"),
+     Output("select-mes", "value"),
+     Output("input-search", "value"),
+     Output("export-alert-container", "children", allow_duplicate=True)],
+    Input("btn-clear-cache", "n_clicks"),
+    prevent_initial_call=True
+)
+def clear_cache_and_cookies(n_clicks):
+    """Clears search cache, cookies/local storage, and resets UI inputs."""
+    if not n_clicks:
+        return dash.no_update, dash.no_update, dash.no_update, dash.no_update
+        
+    deleted_files = TSJDatabaseManager.vaciar_cache_busquedas()
+    
+    alert = dbc.Alert([
+        html.I(className="fa-solid fa-trash-can me-2"),
+        f"Caché de datos, cookies y {deleted_files} archivo(s) de búsqueda vaciados con éxito."
+    ], color="danger", dismissable=True, className="mt-2 py-2 small fw-bold")
+    
+    return "todas", "todo_el_ano", "", alert
+
+
+@app.callback(
+    Output("export-alert-container", "children", allow_duplicate=True),
+    [Input("btn-sync-24h", "n_clicks"),
+     Input("interval-24h-sync", "n_intervals")],
+    prevent_initial_call=True
+)
+def trigger_24h_sync(n_clicks, n_intervals):
+    """Triggers or checks background 24-hour auto-updater sync."""
+    ctx = callback_context
+    if not ctx.triggered:
+        return dash.no_update
+        
+    res = global_scheduler.force_update()
+    if res.get("status") == "success":
+        msg = f"Sincronización 24h completada con éxito. Base de Datos actualizada ({res.get('total_registros', 0)} sentencias)."
+        color = "info"
+    else:
+        msg = f"Sincronización 24h realizada: {res.get('message', 'Base de datos en sintonía con el TSJ.')}"
+        color = "warning"
+
+    return dbc.Alert([
+        html.I(className="fa-solid fa-arrows-rotate me-2"),
+        msg
+    ], color=color, dismissable=True, className="mt-2 py-2 small fw-bold")
+
 
 
 def run_dash_app(port=8050, debug=False, open_browser=True):

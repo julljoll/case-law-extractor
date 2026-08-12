@@ -165,8 +165,33 @@ class TSJDatabaseManager:
                 mgr = TSJDatabaseManager(db_path=full_path)
                 stats = mgr.obtener_estadisticas()
                 stats["filename"] = db_file
-                res.append(stats)
-            except Exception as e:
-                res.append({"filename": db_file, "error": str(e), "total_registros": 0})
         return res
+
+    @staticmethod
+    def vaciar_cache_busquedas(base_dir: str = "data/Databases_SQLite", temp_dir: str = "data/test_output") -> int:
+        """Safely removes temporary search databases and cache files. Returns count of deleted files."""
+        deleted_count = 0
+        
+        # Clean temporary DB files if any
+        if os.path.exists(base_dir):
+            for f in os.listdir(base_dir):
+                if f.startswith("Busqueda_") or f.startswith("Temp_"):
+                    try:
+                        os.remove(os.path.join(base_dir, f))
+                        deleted_count += 1
+                    except Exception:
+                        pass
+
+        # Clean temporary export files if any
+        if os.path.exists(temp_dir):
+            for f in os.listdir(temp_dir):
+                if f.endswith(".tmp") or f.startswith("cache_"):
+                    try:
+                        os.remove(os.path.join(temp_dir, f))
+                        deleted_count += 1
+                    except Exception:
+                        pass
+
+        return deleted_count
+
 
