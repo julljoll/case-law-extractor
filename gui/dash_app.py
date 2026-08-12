@@ -207,7 +207,7 @@ app.layout = dbc.Container([
                         html.Li([html.I(className="fa-solid fa-lock text-success me-2"), "Evasión Resiliente SSL/TLS Handshake"], className="mb-2 text-light small"),
                         html.Li([html.I(className="fa-solid fa-bolt text-success me-2"), "Filtrado NER en Evidencia Digital"], className="mb-2 text-light small"),
                         html.Li([html.I(className="fa-solid fa-magnifying-glass text-success me-2"), "Pop-Up Preview & Ratio Decidendi"], className="mb-2 text-light small"),
-                        html.Li([html.I(className="fa-solid fa-code text-success me-2"), "Dashboard 100% Python (Dash + Bootstrap)"], className="mb-2 text-light small")
+                        html.Li([html.I(className="fa-solid fa-code text-success me-2"), "Dashboard 100% Python"], className="mb-2 text-light small")
                     ], className="list-unstyled mb-0")
                 ], md=4)
             ], className="py-4"),
