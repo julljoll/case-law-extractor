@@ -131,78 +131,78 @@ app.layout = dbc.Container([
     dcc.Interval(id="interval-24h-sync", interval=86400000, n_intervals=0),
     dcc.Interval(id="sync-progress-interval", interval=400, disabled=True),
     
-    # Header Banner (DC3 Style Printable Header with SHA256 Logo)
+    # Ultra-Minimalist Top Header / Menu Banner (50px Height)
+    html.Header([
+        dbc.Container([
+            html.Div([
+                # Left: Brand Identity
+                html.Div([
+                    html.Img(src="/assets/logo_sha256.svg", style={"height": "24px", "width": "24px"}, className="me-2"),
+                    html.Span("Case Law Extractor", className="fw-bold text-white fs-6 me-1"),
+                    html.Span("powered by sha256.us", className="text-warning fw-bold small me-3 d-none d-md-inline"),
+                    html.Span("• TSJ Venezuela", className="text-light small opacity-50 d-none d-lg-inline")
+                ], className="d-flex align-items-center"),
+                
+                # Right: Action Buttons
+                html.Div([
+                    dbc.Button([
+                        html.I(className="fa-solid fa-arrows-rotate me-1"),
+                        " Sincronizar (24h)"
+                    ], id="btn-sync-24h", color="info", outline=True, size="sm", className="me-2 fw-bold text-white px-2 py-1"),
+                    
+                    dbc.Button([
+                        html.I(className="fa-solid fa-file-excel me-1"),
+                        " Generar Excel & SQLite"
+                    ], id="btn-export", color="warning", size="sm", className="me-2 fw-bold text-dark px-2 py-1"),
+                    
+                    dbc.Button([
+                        html.I(className="fa-solid fa-trash-can me-1"),
+                        " Borrar Caché"
+                    ], id="btn-clear-cache", color="danger", outline=True, size="sm", className="fw-bold px-2 py-1")
+                ], className="d-flex align-items-center")
+            ], className="d-flex justify-content-between align-items-center h-100")
+        ], fluid=True, className="px-4 h-100")
+    ], className="mb-3 border-bottom border-warning shadow-sm", style={"backgroundColor": DC3_NAVY, "height": "50px", "minHeight": "50px", "maxHeight": "50px", "overflow": "hidden"}),
+
+    # Export Alert Container
+    html.Div(id="export-alert-container", className="px-1"),
+
+    # Filter Toolbar & Controls Card
     dbc.Card([
         dbc.CardBody([
             dbc.Row([
                 dbc.Col([
-                    html.Div([
-                        html.Img(src="/assets/logo_sha256.svg", style={"height": "65px", "width": "65px"}, className="me-3"),
-                        html.Div([
-                            html.H2("Case Law Extractor powered by sha256.us", className="text-white fw-bold mb-1"),
-                            html.P("Dashboard en Tiempo Real TSJ Venezuela", className="text-light mb-0 small opacity-75")
-                        ])
-                    ], className="d-flex align-items-center")
-                ], md=6),
+                    html.Label([html.I(className="fa-solid fa-building-columns text-warning me-1"), " Sala o Juzgado TSJ:"], className="text-light fw-bold small mb-1"),
+                    dbc.Select(id="select-sala", options=sala_options, value="todas", className="bg-dark text-light border-secondary")
+                ], md=4),
                 
                 dbc.Col([
-                    html.Div([
-                        dbc.Button([
-                            html.I(className="fa-solid fa-arrows-rotate me-1"),
-                            " Sincronizar (24h)"
-                        ], id="btn-sync-24h", color="info", outline=True, size="sm", className="me-2 fw-bold text-white mb-2"),
-                        
-                        dbc.Button([
-                            html.I(className="fa-solid fa-file-excel me-1"),
-                            " Generar Excel & SQLite"
-                        ], id="btn-export", color="warning", size="sm", className="me-2 fw-bold text-dark mb-2"),
-                        
-                        dbc.Button([
-                            html.I(className="fa-solid fa-trash-can me-1"),
-                            " Borrar Caché"
-                        ], id="btn-clear-cache", color="danger", outline=True, size="sm", className="fw-bold mb-2")
-                    ], className="d-flex flex-wrap justify-content-md-end align-items-center"),
-                    
-                    html.Div(id="export-alert-container")
-                ], md=6, className="align-self-center")
-            ]),
-            
-            # Control Controls
-            html.Div([
-                dbc.Row([
-                    dbc.Col([
-                        html.Label([html.I(className="fa-solid fa-building-columns text-warning me-1"), " Sala o Juzgado TSJ:"], className="text-light fw-bold small mb-1"),
-                        dbc.Select(id="select-sala", options=sala_options, value="todas", className="bg-dark text-light border-secondary")
-                    ], md=4),
-                    
-                    dbc.Col([
-                        html.Label([html.I(className="fa-regular fa-calendar-days text-warning me-1"), " Período / Mes:"], className="text-light fw-bold small mb-1"),
-                        dbc.Select(id="select-mes", options=mes_options, value="todo_el_ano", className="bg-dark text-light border-secondary")
-                    ], md=4),
-                    
-                    dbc.Col([
-                        html.Label([html.I(className="fa-solid fa-magnifying-glass text-warning me-1"), " Buscar Término / Expediente:"], className="text-light fw-bold small mb-1"),
-                        dbc.Input(id="input-search", placeholder="ej. Evidencia Digital, C25-664...", type="text", debounce=True, className="bg-dark text-light border-secondary")
-                    ], md=4),
-                ], className="g-3 mt-1"),
+                    html.Label([html.I(className="fa-regular fa-calendar-days text-warning me-1"), " Período / Mes:"], className="text-light fw-bold small mb-1"),
+                    dbc.Select(id="select-mes", options=mes_options, value="todo_el_ano", className="bg-dark text-light border-secondary")
+                ], md=4),
                 
-                # Animated Sync Progress Bar Container (DC3 Style)
-                html.Div([
-                    dbc.Progress(
-                        id="sync-progress-bar",
-                        value=0,
-                        label="0%",
-                        striped=True,
-                        animated=True,
-                        color="warning",
-                        className="mb-2 shadow-sm rounded-pill",
-                        style={"height": "22px", "fontSize": "12px", "fontWeight": "bold"}
-                    ),
-                    html.Div("Iniciando escaneo multisala...", id="sync-progress-text", className="text-warning small text-center fw-bold")
-                ], id="sync-progress-box", className="mt-3 p-3 rounded-3 border border-warning", style={"backgroundColor": "#071B33", "display": "none"})
-            ], className="p-3 mt-3 rounded-3", style={"backgroundColor": "#0B2240", "border": f"1.5px solid {DC3_BLUE}"})
-        ])
-    ], className="mb-4 shadow-lg border-0", style={"backgroundColor": DC3_NAVY, "borderBottom": f"4px solid {DC3_GOLD}"}),
+                dbc.Col([
+                    html.Label([html.I(className="fa-solid fa-magnifying-glass text-warning me-1"), " Buscar Término / Expediente:"], className="text-light fw-bold small mb-1"),
+                    dbc.Input(id="input-search", placeholder="ej. Evidencia Digital, C25-664...", type="text", debounce=True, className="bg-dark text-light border-secondary")
+                ], md=4),
+            ], className="g-3"),
+            
+            # Animated Sync Progress Bar Container (DC3 Style)
+            html.Div([
+                dbc.Progress(
+                    id="sync-progress-bar",
+                    value=0,
+                    label="0%",
+                    striped=True,
+                    animated=True,
+                    color="warning",
+                    className="mb-2 shadow-sm rounded-pill",
+                    style={"height": "22px", "fontSize": "12px", "fontWeight": "bold"}
+                ),
+                html.Div("Iniciando escaneo multisala...", id="sync-progress-text", className="text-warning small text-center fw-bold")
+            ], id="sync-progress-box", className="mt-3 p-3 rounded-3 border border-warning", style={"backgroundColor": "#071B33", "display": "none"})
+        ], className="p-3")
+    ], className="mb-4 shadow-sm border-0", style={"backgroundColor": "#0B2240", "borderLeft": f"4px solid {DC3_BLUE}"}),
     
     # Counter Bar
     dbc.Card([
@@ -262,72 +262,27 @@ app.layout = dbc.Container([
         ], className="bg-light")
     ], id="modal-popup", size="lg", centered=True, is_open=False),
     
-    # Elaborate Dashboard Footer (DC3 Cyber Center Style)
+    # Ultra-Minimalist Dashboard Footer (50px Height)
     html.Footer([
         dbc.Container([
-            dbc.Row([
-                # Col 1: Brand & Identity
-                dbc.Col([
-                    html.Div([
-                        html.Img(src="/assets/logo_sha256.svg", style={"height": "42px", "width": "42px"}, className="me-2"),
-                        html.Span("Case Law Extractor", className="fw-bold text-white fs-5")
-                    ], className="d-flex align-items-center mb-1"),
-                    html.P("powered by sha256.us", className="text-warning fw-bold small mb-2 ms-1"),
-                    html.P(
-                        "Plataforma inteligente de escaneo, indexación y analítica jurídica automatizada "
-                        "del Tribunal Supremo de Justicia (TSJ) de Venezuela. Diseñada bajo estándares tácticos de ciberseguridad.",
-                        className="text-light small opacity-75 mb-3", style={"fontSize": "0.83rem", "lineHeight": "1.4"}
-                    ),
-                    html.Div([
-                        html.Span("● Sistema Operativo", className="badge bg-success text-white me-2 px-2 py-1 small"),
-                        html.Span("SQLite + Excel 1:1", className="badge bg-dark text-warning border border-warning px-2 py-1 small")
-                    ], className="d-flex align-items-center")
-                ], md=4, className="mb-4 mb-md-0"),
-
-                # Col 2: System Capabilities & Architecture
-                dbc.Col([
-                    html.H6([html.I(className="fa-solid fa-cubes text-warning me-2"), "Arquitectura & Módulos"], className="text-white fw-bold mb-3 border-bottom border-secondary pb-2"),
-                    html.Ul([
-                        html.Li([html.I(className="fa-solid fa-building-columns text-info me-2"), "Escaneo Multi-Sala TSJ (7 Salas Orgánicas)"], className="mb-2 text-light small"),
-                        html.Li([html.I(className="fa-solid fa-database text-info me-2"), "Indexación Relacional SQLite Idempotente"], className="mb-2 text-light small"),
-                        html.Li([html.I(className="fa-solid fa-file-excel text-info me-2"), "Generación Matriz Analítica Excel (.xlsx)"], className="mb-2 text-light small"),
-                        html.Li([html.I(className="fa-solid fa-file-pdf text-info me-2"), "Impresión PDF Folio Vertical Oficial"], className="mb-2 text-light small")
-                    ], className="list-unstyled mb-0")
-                ], md=4, className="mb-4 mb-md-0"),
-
-                # Col 3: LegalTech & Standards
-                dbc.Col([
-                    html.H6([html.I(className="fa-solid fa-shield-halved text-warning me-2"), "Seguridad & Estándares"], className="text-white fw-bold mb-3 border-bottom border-secondary pb-2"),
-                    html.Ul([
-                        html.Li([html.I(className="fa-solid fa-lock text-success me-2"), "Evasión Resiliente SSL/TLS Handshake"], className="mb-2 text-light small"),
-                        html.Li([html.I(className="fa-solid fa-bolt text-success me-2"), "Filtrado NER en Evidencia Digital"], className="mb-2 text-light small"),
-                        html.Li([html.I(className="fa-solid fa-magnifying-glass text-success me-2"), "Pop-Up Preview & Ratio Decidendi"], className="mb-2 text-light small"),
-                        html.Li([html.I(className="fa-solid fa-code text-success me-2"), "Dashboard 100% Python"], className="mb-2 text-light small")
-                    ], className="list-unstyled mb-0")
-                ], md=4)
-            ], className="py-4"),
-
-            # Bottom Bar (Copyright & Repository Link)
             html.Div([
-                dbc.Row([
-                    dbc.Col([
-                        html.Span("© 2026 Case Law Extractor powered by sha256.us • Todos los derechos reservados.", className="text-light small opacity-75")
-                    ], md=8, className="text-center text-md-start mb-2 mb-md-0"),
-                    dbc.Col([
-                        html.A([
-                            html.I(className="fa-brands fa-github me-1"),
-                            " Repositorio GitHub"
-                        ], href="https://github.com/julljoll/case-law-extractor", target="_blank", className="text-warning text-decoration-none small me-3 fw-bold"),
-                        html.A([
-                            html.I(className="fa-solid fa-globe me-1"),
-                            " sha256.us"
-                        ], href="https://sha256.us", target="_blank", className="text-light text-decoration-none small opacity-75")
-                    ], md=4, className="text-center text-md-end")
-                ], className="align-items-center")
-            ], className="border-top border-secondary pt-3 mt-2")
-
-        ], fluid=True, className="px-4")
-    ], className="mt-auto py-4 border-top border-warning", style={"backgroundColor": "#061830"})
+                html.Div([
+                    html.Img(src="/assets/logo_sha256.svg", style={"height": "22px", "width": "22px"}, className="me-2"),
+                    html.Span("Case Law Extractor", className="fw-bold text-white small me-1"),
+                    html.Span("powered by sha256.us", className="text-warning fw-bold small me-3"),
+                    html.Span("• TSJ Venezuela 2019-2026", className="text-light small opacity-50 d-none d-md-inline")
+                ], className="d-flex align-items-center"),
+                html.Div([
+                    html.Span("Dashboard 100% Python", className="badge bg-dark text-warning border border-warning me-3 small px-2 py-1"),
+                    html.A([
+                        html.I(className="fa-brands fa-github me-1"),
+                        "GitHub"
+                    ], href="https://github.com/julljoll/case-law-extractor", target="_blank", className="text-warning text-decoration-none small me-3 fw-bold"),
+                    html.A("sha256.us", href="https://sha256.us", target="_blank", className="text-light text-decoration-none small opacity-75")
+                ], className="d-flex align-items-center")
+            ], className="d-flex justify-content-between align-items-center h-100")
+        ], fluid=True, className="px-4 h-100")
+    ], className="mt-auto border-top border-warning shadow-sm", style={"backgroundColor": "#061830", "height": "50px", "minHeight": "50px", "maxHeight": "50px", "overflow": "hidden"})
 
 ], fluid=True, className="px-4 py-3 min-vh-100 d-flex flex-column", style={"backgroundColor": "#F8FAFC"})
 

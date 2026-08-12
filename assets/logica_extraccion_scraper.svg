@@ -18,275 +18,256 @@
   </metadata>
 
   <defs>
-    <linearGradient id="bg-sc2" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#061830"/>
-      <stop offset="50%" stop-color="#0A192F"/>
-      <stop offset="100%" stop-color="#061830"/>
-    </linearGradient>
-    <linearGradient id="card-sc2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F2440"/>
-      <stop offset="100%" stop-color="#0A192F"/>
-    </linearGradient>
-    <linearGradient id="gold-sc2" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="gold-header" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#FFC809"/>
-      <stop offset="100%" stop-color="#FFCC00"/>
+      <stop offset="100%" stop-color="#FF9900"/>
     </linearGradient>
-    <linearGradient id="cyan-sc2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00D2FF"/>
-      <stop offset="100%" stop-color="#4FACFE"/>
+    <linearGradient id="blue-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="100%" stop-color="#004499"/>
     </linearGradient>
-    <linearGradient id="green-sc2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38F9D7"/>
-      <stop offset="100%" stop-color="#43E97B"/>
+    <linearGradient id="green-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#047857"/>
     </linearGradient>
-    <linearGradient id="purple-sc2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#a855f7"/>
-      <stop offset="100%" stop-color="#7c3aed"/>
+    <linearGradient id="purple-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
     </linearGradient>
-    <linearGradient id="orange-sc2" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f97316"/>
-      <stop offset="100%" stop-color="#ea580c"/>
+    <linearGradient id="orange-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EA580C"/>
+      <stop offset="100%" stop-color="#C2410C"/>
     </linearGradient>
-    <filter id="shadow-sc2" x="-5%" y="-5%" width="110%" height="110%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+
+    <filter id="card-shadow" x="-3%" y="-3%" width="106%" height="108%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0F172A" flood-opacity="0.08"/>
     </filter>
-    <filter id="glow-sc2">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+    
+    <marker id="arr-gold" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#D97706"/>
+    </marker>
+    <marker id="arr-cyan" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#0066CC"/>
+    </marker>
+    <marker id="arr-purple" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#7C3AED"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#059669"/>
+    </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="900" height="1350" fill="url(#bg-sc2)"/>
-  <!-- Grid lines subtle -->
-  <g stroke="#0066CC" stroke-opacity="0.07" stroke-width="1">
+  <!-- Canvas Background (White per Canonical Rule 8) -->
+  <rect width="900" height="1350" fill="#FFFFFF"/>
+
+  <!-- Subtle Architectural Grid Lines -->
+  <g stroke="#0066CC" stroke-opacity="0.06" stroke-width="1">
     <line x1="0" y1="135" x2="900" y2="135"/>
     <line x1="0" y1="270" x2="900" y2="270"/>
     <line x1="0" y1="540" x2="900" y2="540"/>
     <line x1="0" y1="810" x2="900" y2="810"/>
     <line x1="0" y1="1080" x2="900" y2="1080"/>
+    <line x1="450" y1="135" x2="450" y2="1220"/>
   </g>
 
-  <!-- ── HEADER ── -->
-  <rect x="0" y="0" width="900" height="118" fill="url(#card-sc2)" filter="url(#shadow-sc2)"/>
-  <rect x="0" y="114" width="900" height="4" fill="url(#gold-sc2)"/>
-  <!-- Badge -->
-  <rect x="30" y="16" width="260" height="26" rx="13" fill="none" stroke="url(#gold-sc2)" stroke-width="1.5"/>
-  <text x="160" y="33" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#FFC809" letter-spacing="2">[ DC3 CYBER FORENSICS LAB ]</text>
-  <!-- Title -->
-  <text x="450" y="65" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" filter="url(#glow-sc2)">Lógica de Extracción — Playwright</text>
-  <text x="450" y="88" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#FFC809" font-weight="bold">Case Law Extractor powered by sha256.us</text>
-  <text x="450" y="106" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8899AA">TSJ Venezuela • Chromium Headless • XHR Intercept • Liferay Portal</text>
+  <!-- ── MINIMALIST HEADER (50px Height) ── -->
+  <rect x="0" y="0" width="900" height="50" fill="#061830"/>
+  <rect x="0" y="48" width="900" height="2" fill="url(#gold-header)"/>
+  <rect x="20" y="13" width="220" height="24" rx="12" fill="#0A192F" stroke="#FFC809" stroke-width="1.5"/>
+  <text x="130" y="29" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#FFC809" font-weight="bold" letter-spacing="1.5">[ DC3 CYBER LAB ]</text>
+  <text x="450" y="31" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF">Lógica de Extracción — Playwright</text>
+  <text x="880" y="31" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#FFC809" font-weight="bold">sha256.us</text>
 
   <!-- ── STEP 1: TRIGGER ── -->
-  <rect x="30" y="135" width="840" height="145" rx="12" fill="url(#card-sc2)" stroke="url(#gold-sc2)" stroke-width="1.5" filter="url(#shadow-sc2)"/>
-  <rect x="30" y="135" width="6" height="145" rx="3" fill="url(#gold-sc2)"/>
+  <rect x="30" y="135" width="840" height="145" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow)"/>
+  <rect x="30" y="135" width="6" height="145" rx="3" fill="#D97706"/>
   <!-- Step badge -->
-  <rect x="50" y="148" width="68" height="22" rx="11" fill="url(#gold-sc2)"/>
+  <rect x="50" y="148" width="68" height="22" rx="11" fill="#FFC809"/>
   <text x="84" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#061830">PASO 1</text>
-  <text x="450" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Trigger — Botón Sincronizar (24h)</text>
+  <text x="450" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0F172A">Trigger — Botón Sincronizar (24h)</text>
   <!-- Boxes row -->
-  <rect x="50" y="182" width="240" height="84" rx="8" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
-  <text x="170" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4FACFE">Dashboard Dash</text>
-  <text x="170" y="217" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#AABBCC">Usuario presiona</text>
-  <text x="170" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#FFC809" font-weight="bold">"Sincronizar (24h)"</text>
-  <text x="170" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">gui/dash_app.py</text>
+  <rect x="50" y="182" width="240" height="84" rx="8" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
+  <text x="170" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0066CC">Dashboard Dash</text>
+  <text x="170" y="217" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#334155">Usuario presiona</text>
+  <text x="170" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#D97706" font-weight="bold">"Sincronizar (24h)"</text>
+  <text x="170" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748B">gui/dash_app.py</text>
 
-  <text x="320" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#FFC809">→</text>
+  <text x="320" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#D97706">→</text>
 
-  <rect x="340" y="182" width="240" height="84" rx="8" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
-  <text x="460" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4FACFE">Worker Thread</text>
-  <text x="460" y="217" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#AABBCC">worker_multisala_scraper()</text>
-  <text x="460" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#AABBCC">threading.Thread(daemon=True)</text>
-  <text x="460" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">progress_callback → barra %</text>
+  <rect x="340" y="182" width="240" height="84" rx="8" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
+  <text x="460" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0066CC">Worker Thread</text>
+  <text x="460" y="217" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#334155">worker_multisala_scraper()</text>
+  <text x="460" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#334155">threading.Thread(daemon=True)</text>
+  <text x="460" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748B">progress_callback → barra %</text>
 
-  <text x="610" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#FFC809">→</text>
+  <text x="610" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#D97706">→</text>
 
-  <rect x="630" y="182" width="222" height="84" rx="8" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
-  <text x="741" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4FACFE">BuscadorTSJExcel</text>
-  <text x="741" y="217" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#AABBCC">actualizar_ultimas_</text>
-  <text x="741" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#AABBCC">jurisprudencias()</text>
-  <text x="741" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">src/buscador_tsj_excel.py</text>
+  <rect x="630" y="182" width="222" height="84" rx="8" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
+  <text x="741" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0066CC">BuscadorTSJExcel</text>
+  <text x="741" y="217" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#334155">actualizar_ultimas_</text>
+  <text x="741" y="231" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#334155">jurisprudencias()</text>
+  <text x="741" y="247" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748B">src/buscador_tsj_excel.py</text>
 
   <!-- Arrow down -->
-  <line x1="450" y1="280" x2="450" y2="305" stroke="url(#gold-sc2)" stroke-width="2" marker-end="url(#arr-gold)"/>
-  <defs>
-    <marker id="arr-gold" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <polygon points="0,0 8,4 0,8" fill="#FFC809"/>
-    </marker>
-    <marker id="arr-cyan" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <polygon points="0,0 8,4 0,8" fill="#4FACFE"/>
-    </marker>
-    <marker id="arr-green" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <polygon points="0,0 8,4 0,8" fill="#43E97B"/>
-    </marker>
-  </defs>
+  <line x1="450" y1="280" x2="450" y2="305" stroke="#D97706" stroke-width="2" marker-end="url(#arr-gold)"/>
 
   <!-- ── STEP 2: PLAYWRIGHT LAUNCH ── -->
-  <rect x="30" y="305" width="840" height="165" rx="12" fill="url(#card-sc2)" stroke="url(#cyan-sc2)" stroke-width="1.5" filter="url(#shadow-sc2)"/>
-  <rect x="30" y="305" width="6" height="165" rx="3" fill="url(#cyan-sc2)"/>
-  <rect x="50" y="318" width="68" height="22" rx="11" fill="url(#cyan-sc2)"/>
-  <text x="84" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#061830">PASO 2</text>
-  <text x="450" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Playwright Chromium Headless — Inicio</text>
+  <rect x="30" y="305" width="840" height="165" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow)"/>
+  <rect x="30" y="305" width="6" height="165" rx="3" fill="#0066CC"/>
+  <rect x="50" y="318" width="68" height="22" rx="11" fill="#0066CC"/>
+  <text x="84" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">PASO 2</text>
+  <text x="450" y="333" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0F172A">Playwright Chromium Headless — Inicio</text>
 
   <!-- Chromium icon area -->
-  <circle cx="100" cy="400" r="36" fill="#1a3a5c" stroke="url(#cyan-sc2)" stroke-width="2"/>
-  <text x="100" y="394" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#4FACFE">⚙</text>
-  <text x="100" y="414" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC" font-weight="bold">CHROMIUM</text>
+  <circle cx="100" cy="400" r="36" fill="#EFF6FF" stroke="#0066CC" stroke-width="2"/>
+  <text x="100" y="394" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#0066CC">⚙</text>
+  <text x="100" y="414" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#1E293B" font-weight="bold">CHROMIUM</text>
 
-  <text x="148" y="390" font-family="'Courier New', monospace" font-size="9.5" fill="#38F9D7">playwright.chromium.launch(</text>
-  <text x="148" y="405" font-family="'Courier New', monospace" font-size="9.5" fill="#AABBCC">  headless=True,</text>
-  <text x="148" y="420" font-family="'Courier New', monospace" font-size="9.5" fill="#AABBCC">  args=["--no-sandbox", "--ignore-certificate-errors"]</text>
-  <text x="148" y="435" font-family="'Courier New', monospace" font-size="9.5" fill="#38F9D7">)</text>
-  <text x="148" y="455" font-family="'Courier New', monospace" font-size="9.5" fill="#FFC809">page.on("response", _on_response)  # XHR interceptor</text>
+  <text x="148" y="390" font-family="'Courier New', monospace" font-size="9.5" fill="#059669" font-weight="bold">playwright.chromium.launch(</text>
+  <text x="148" y="405" font-family="'Courier New', monospace" font-size="9.5" fill="#334155">  headless=True,</text>
+  <text x="148" y="420" font-family="'Courier New', monospace" font-size="9.5" fill="#334155">  args=["--no-sandbox", "--ignore-certificate-errors"]</text>
+  <text x="148" y="435" font-family="'Courier New', monospace" font-size="9.5" fill="#059669" font-weight="bold">)</text>
+  <text x="148" y="455" font-family="'Courier New', monospace" font-size="9.5" fill="#D97706" font-weight="bold">page.on("response", _on_response)  # XHR interceptor</text>
 
   <!-- URL label -->
-  <rect x="490" y="358" width="358" height="100" rx="8" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
-  <text x="669" y="376" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#4FACFE">Destino de Navegación</text>
-  <text x="500" y="396" font-family="'Courier New', monospace" font-size="8.5" fill="#FFC809">https://www.tsj.gob.ve/</text>
-  <text x="500" y="411" font-family="'Courier New', monospace" font-size="8.5" fill="#FFC809">  es/web/tsj/juriprudencias</text>
-  <text x="500" y="432" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">wait_until = "networkidle"</text>
-  <text x="500" y="447" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">timeout = 45,000 ms</text>
+  <rect x="490" y="358" width="358" height="100" rx="8" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
+  <text x="669" y="376" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0066CC">Destino de Navegación</text>
+  <text x="500" y="396" font-family="'Courier New', monospace" font-size="8.5" fill="#D97706" font-weight="bold">https://www.tsj.gob.ve/</text>
+  <text x="500" y="411" font-family="'Courier New', monospace" font-size="8.5" fill="#D97706" font-weight="bold">  es/web/tsj/juriprudencias</text>
+  <text x="500" y="432" font-family="Arial, sans-serif" font-size="9" fill="#334155">wait_until = "networkidle"</text>
+  <text x="500" y="447" font-family="Arial, sans-serif" font-size="9" fill="#334155">timeout = 45,000 ms</text>
 
-  <line x1="450" y1="470" x2="450" y2="495" stroke="url(#cyan-sc2)" stroke-width="2" marker-end="url(#arr-cyan)"/>
+  <line x1="450" y1="470" x2="450" y2="495" stroke="#0066CC" stroke-width="2" marker-end="url(#arr-cyan)"/>
 
   <!-- ── STEP 3: SALA + AÑO CLICK ── -->
-  <rect x="30" y="495" width="840" height="170" rx="12" fill="url(#card-sc2)" stroke="url(#purple-sc2)" stroke-width="1.5" filter="url(#shadow-sc2)"/>
-  <rect x="30" y="495" width="6" height="170" rx="3" fill="url(#purple-sc2)"/>
-  <rect x="50" y="508" width="68" height="22" rx="11" fill="url(#purple-sc2)"/>
+  <rect x="30" y="495" width="840" height="170" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow)"/>
+  <rect x="30" y="495" width="6" height="170" rx="3" fill="#7C3AED"/>
+  <rect x="50" y="508" width="68" height="22" rx="11" fill="#7C3AED"/>
   <text x="84" y="523" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">PASO 3</text>
-  <text x="450" y="523" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Navegación Interactiva — Sala → Año → Sentencias</text>
+  <text x="450" y="523" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0F172A">Navegación Interactiva — Sala → Año → Sentencias</text>
 
   <!-- 3 columns -->
-  <rect x="50" y="538" width="255" height="112" rx="8" fill="#071D38" stroke="url(#purple-sc2)" stroke-width="1"/>
-  <text x="177" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">① Seleccionar Sala</text>
-  <text x="177" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Selector: li.nombre-sala</text>
-  <text x="177" y="586" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">#betico li:has-text('Penal')</text>
-  <text x="177" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Fallback: Liferay.fire(</text>
-  <text x="177" y="614" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">'showNews', {codigo:id})</text>
-  <text x="177" y="634" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">7 Salas × IDs 1-7</text>
+  <rect x="50" y="538" width="255" height="112" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="177" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">① Seleccionar Sala</text>
+  <text x="177" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">Selector: li.nombre-sala</text>
+  <text x="177" y="586" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">#betico li:has-text('Penal')</text>
+  <text x="177" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">Fallback: Liferay.fire(</text>
+  <text x="177" y="614" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">'showNews', {codigo:id})</text>
+  <text x="177" y="634" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">7 Salas × IDs 1-7</text>
 
-  <text x="328" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#a855f7">→</text>
+  <text x="328" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#7C3AED">→</text>
 
-  <rect x="345" y="538" width="255" height="112" rx="8" fill="#071D38" stroke="url(#purple-sc2)" stroke-width="1"/>
-  <text x="472" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">② Seleccionar Año</text>
-  <text x="472" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Selector: #years input[value]</text>
-  <text x="472" y="586" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">#years a:has-text('2026')</text>
-  <text x="472" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Fallback: Liferay.fire(</text>
-  <text x="472" y="614" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">'showNews_di_jur', {ano})</text>
-  <text x="472" y="634" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Años 2019 – 2026</text>
+  <rect x="345" y="538" width="255" height="112" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="472" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">② Seleccionar Año</text>
+  <text x="472" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">Selector: #years input[value]</text>
+  <text x="472" y="586" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">#years a:has-text('2026')</text>
+  <text x="472" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">Fallback: Liferay.fire(</text>
+  <text x="472" y="614" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">'showNews_di_jur', {ano})</text>
+  <text x="472" y="634" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Años 2019 – 2026</text>
 
-  <text x="623" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#a855f7">→</text>
+  <text x="623" y="600" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#7C3AED">→</text>
 
-  <rect x="640" y="538" width="212" height="112" rx="8" fill="#071D38" stroke="url(#purple-sc2)" stroke-width="1"/>
-  <text x="746" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">③ Esperar Carga</text>
-  <text x="746" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">page.wait_for_timeout</text>
-  <text x="746" y="587" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">4,000 ms (networkidle)</text>
-  <text x="746" y="607" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">XHR responses captured</text>
-  <text x="746" y="621" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">by response interceptor</text>
-  <text x="746" y="638" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">p_p_lifecycle=2 filter</text>
+  <rect x="640" y="538" width="212" height="112" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="746" y="556" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">③ Esperar Carga</text>
+  <text x="746" y="572" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">page.wait_for_timeout</text>
+  <text x="746" y="587" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">4,000 ms (networkidle)</text>
+  <text x="746" y="607" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">XHR responses captured</text>
+  <text x="746" y="621" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">by response interceptor</text>
+  <text x="746" y="638" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">p_p_lifecycle=2 filter</text>
 
-  <line x1="450" y1="665" x2="450" y2="692" stroke="url(#purple-sc2)" stroke-width="2" marker-end="url(#arr-green)"/>
+  <line x1="450" y1="665" x2="450" y2="692" stroke="#7C3AED" stroke-width="2" marker-end="url(#arr-purple)"/>
 
   <!-- ── STEP 4: PARSING PIPELINE ── -->
-  <rect x="30" y="692" width="840" height="175" rx="12" fill="url(#card-sc2)" stroke="url(#green-sc2)" stroke-width="1.5" filter="url(#shadow-sc2)"/>
-  <rect x="30" y="692" width="6" height="175" rx="3" fill="url(#green-sc2)"/>
-  <rect x="50" y="705" width="68" height="22" rx="11" fill="url(#green-sc2)"/>
-  <text x="84" y="720" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#061830">PASO 4</text>
-  <text x="450" y="720" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Pipeline de Parsing Tri-Modal</text>
+  <rect x="30" y="692" width="840" height="175" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow)"/>
+  <rect x="30" y="692" width="6" height="175" rx="3" fill="#059669"/>
+  <rect x="50" y="705" width="68" height="22" rx="11" fill="#059669"/>
+  <text x="84" y="720" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">PASO 4</text>
+  <text x="450" y="720" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0F172A">Pipeline de Parsing Tri-Modal</text>
 
   <!-- 3 parsers -->
-  <rect x="50" y="734" width="248" height="118" rx="8" fill="#071D38" stroke="#38F9D7" stroke-width="1"/>
-  <text x="174" y="752" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#38F9D7">Parser A — JSON (XHR)</text>
-  <text x="174" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">_parse_captured_responses()</text>
-  <text x="174" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Liferay WS JSON body</text>
-  <text x="174" y="797" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">SNUMEROSENTENCIA</text>
-  <text x="174" y="811" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">SNUMEROEXPEDIENTE</text>
-  <text x="174" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">SLINKDIRECTO, STEMA</text>
-  <text x="174" y="842" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Prioridad 1 (más exacto)</text>
+  <rect x="50" y="734" width="248" height="118" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+  <text x="174" y="752" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669">Parser A — JSON (XHR)</text>
+  <text x="174" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">_parse_captured_responses()</text>
+  <text x="174" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">Liferay WS JSON body</text>
+  <text x="174" y="797" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">SNUMEROSENTENCIA</text>
+  <text x="174" y="811" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">SNUMEROEXPEDIENTE</text>
+  <text x="174" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">SLINKDIRECTO, STEMA</text>
+  <text x="174" y="842" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Prioridad 1 (más exacto)</text>
 
-  <text x="320" y="828" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#38F9D7">|</text>
+  <text x="320" y="828" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#059669">|</text>
 
-  <rect x="330" y="734" width="248" height="118" rx="8" fill="#071D38" stroke="#38F9D7" stroke-width="1"/>
-  <text x="454" y="752" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#38F9D7">Parser B — HTML Frag.</text>
-  <text x="454" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">_parse_html_fragment()</text>
-  <text x="454" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">BeautifulSoup4 + lxml</text>
-  <text x="454" y="797" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Tabla &lt;tr&gt;&lt;td&gt; rows</text>
-  <text x="454" y="811" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Links href historico.tsj</text>
-  <text x="454" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">URL regex: /decisiones/scp/</text>
-  <text x="454" y="842" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Prioridad 2 (portlet HTML)</text>
+  <rect x="330" y="734" width="248" height="118" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+  <text x="454" y="752" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669">Parser B — HTML Frag.</text>
+  <text x="454" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">_parse_html_fragment()</text>
+  <text x="454" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">BeautifulSoup4 + lxml</text>
+  <text x="454" y="797" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">Tabla &lt;tr&gt;&lt;td&gt; rows</text>
+  <text x="454" y="811" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">Links href historico.tsj</text>
+  <text x="454" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">URL regex: /decisiones/scp/</text>
+  <text x="454" y="842" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Prioridad 2 (portlet HTML)</text>
 
-  <text x="600" y="828" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#38F9D7">|</text>
+  <text x="600" y="828" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#059669">|</text>
 
-  <rect x="610" y="734" width="242" height="118" rx="8" fill="#071D38" stroke="#38F9D7" stroke-width="1"/>
-  <text x="731" y="752" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#38F9D7">Parser C — DOM Full</text>
-  <text x="731" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">_parse_dom_decisions()</text>
-  <text x="731" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">page.content() → BS4</text>
-  <text x="731" y="797" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Todos los &lt;a href&gt;</text>
-  <text x="731" y="811" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">con historico.tsj en URL</text>
-  <text x="731" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Regex: sentencia-exp-año</text>
-  <text x="731" y="842" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Prioridad 3 (fallback DOM)</text>
+  <rect x="610" y="734" width="242" height="118" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+  <text x="731" y="752" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669">Parser C — DOM Full</text>
+  <text x="731" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">_parse_dom_decisions()</text>
+  <text x="731" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">page.content() → BS4</text>
+  <text x="731" y="797" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">Todos los &lt;a href&gt;</text>
+  <text x="731" y="811" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">con historico.tsj en URL</text>
+  <text x="731" y="825" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">Regex: sentencia-exp-año</text>
+  <text x="731" y="842" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Prioridad 3 (fallback DOM)</text>
 
-  <line x1="450" y1="867" x2="450" y2="894" stroke="#43E97B" stroke-width="2" marker-end="url(#arr-green)"/>
+  <line x1="450" y1="867" x2="450" y2="894" stroke="#059669" stroke-width="2" marker-end="url(#arr-green)"/>
 
   <!-- ── STEP 5: FALLBACK ── -->
-  <rect x="30" y="894" width="840" height="110" rx="12" fill="url(#card-sc2)" stroke="url(#orange-sc2)" stroke-width="1.5" filter="url(#shadow-sc2)"/>
-  <rect x="30" y="894" width="6" height="110" rx="3" fill="url(#orange-sc2)"/>
-  <rect x="50" y="907" width="68" height="22" rx="11" fill="url(#orange-sc2)"/>
+  <rect x="30" y="894" width="840" height="110" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow)"/>
+  <rect x="30" y="894" width="6" height="110" rx="3" fill="#EA580C"/>
+  <rect x="50" y="907" width="68" height="22" rx="11" fill="#EA580C"/>
   <text x="84" y="922" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">PASO 5</text>
-  <text x="450" y="922" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Fallback — Local SQLite si Portal No Responde</text>
+  <text x="450" y="922" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0F172A">Fallback — Local SQLite si Portal No Responde</text>
 
-  <rect x="50" y="934" width="380" height="55" rx="8" fill="#071D38" stroke="url(#orange-sc2)" stroke-width="1"/>
-  <text x="240" y="952" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#f97316">Sin respuesta del TSJ / 0 registros capturados</text>
-  <text x="240" y="967" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">target_db.obtener_todas() → registros locales</text>
-  <text x="240" y="981" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">Nunca lanza excepción al usuario</text>
+  <rect x="50" y="934" width="380" height="55" rx="8" fill="#FFFFFF" stroke="#EA580C" stroke-width="1"/>
+  <text x="240" y="952" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#EA580C">Sin respuesta del TSJ / 0 registros capturados</text>
+  <text x="240" y="967" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">target_db.obtener_todas() → registros locales</text>
+  <text x="240" y="981" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748B">Nunca lanza excepción al usuario</text>
 
-  <rect x="460" y="934" width="390" height="55" rx="8" fill="#071D38" stroke="#43E97B" stroke-width="1"/>
-  <text x="655" y="952" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#38F9D7">Datos reales del portal capturados</text>
-  <text x="655" y="967" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Lista de Dict[str,Any] con campos canónicos</text>
-  <text x="655" y="981" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">sala, expediente, fecha, link_directo, extracto</text>
+  <rect x="460" y="934" width="390" height="55" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+  <text x="655" y="952" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669">Datos reales del portal capturados</text>
+  <text x="655" y="967" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">Lista de Dict[str,Any] con campos canónicos</text>
+  <text x="655" y="981" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#64748B">sala, expediente, fecha, link_directo, extracto</text>
 
-  <line x1="450" y1="1004" x2="450" y2="1030" stroke="#43E97B" stroke-width="2" marker-end="url(#arr-green)"/>
+  <line x1="450" y1="1004" x2="450" y2="1030" stroke="#059669" stroke-width="2" marker-end="url(#arr-green)"/>
 
   <!-- ── STEP 6: PERSIST ── -->
-  <rect x="30" y="1030" width="840" height="175" rx="12" fill="url(#card-sc2)" stroke="url(#green-sc2)" stroke-width="2" filter="url(#shadow-sc2)"/>
-  <rect x="30" y="1030" width="6" height="175" rx="3" fill="url(#green-sc2)"/>
-  <rect x="50" y="1043" width="68" height="22" rx="11" fill="url(#green-sc2)"/>
-  <text x="84" y="1058" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#061830">PASO 6</text>
-  <text x="450" y="1058" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Persistencia Canónica 1:1 — SQLite + Excel por Sala</text>
+  <rect x="30" y="1030" width="840" height="175" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow)"/>
+  <rect x="30" y="1030" width="6" height="175" rx="3" fill="#059669"/>
+  <rect x="50" y="1043" width="68" height="22" rx="11" fill="#059669"/>
+  <text x="84" y="1058" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">PASO 6</text>
+  <text x="450" y="1058" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0F172A">Persistencia Canónica 1:1 — SQLite + Excel por Sala</text>
 
   <!-- SQLite -->
-  <rect x="50" y="1074" width="375" height="116" rx="8" fill="#071D38" stroke="#0066CC" stroke-width="1.5"/>
-  <text x="237" y="1092" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4FACFE">🗄 SQLite Canónico por Sala</text>
-  <text x="237" y="1108" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">data/Databases_SQLite/sala_penal.db</text>
-  <text x="237" y="1122" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">TSJDatabaseManager.guardar_lote()</text>
-  <text x="237" y="1137" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">ON CONFLICT(link_directo) DO UPDATE</text>
-  <text x="237" y="1151" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">idx: link_directo, sala, expediente, ano</text>
-  <text x="237" y="1166" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Idempotente — cero duplicados garantizados</text>
-  <text x="237" y="1180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">src/database.py</text>
+  <rect x="50" y="1074" width="375" height="116" rx="8" fill="#FFFFFF" stroke="#0066CC" stroke-width="1.5"/>
+  <text x="237" y="1092" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0066CC">🗄 SQLite Canónico por Sala</text>
+  <text x="237" y="1108" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">data/Databases_SQLite/sala_penal.db</text>
+  <text x="237" y="1122" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">TSJDatabaseManager.guardar_lote()</text>
+  <text x="237" y="1137" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">ON CONFLICT(link_directo) DO UPDATE</text>
+  <text x="237" y="1151" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">idx: link_directo, sala, expediente, ano</text>
+  <text x="237" y="1166" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Idempotente — cero duplicados garantizados</text>
+  <text x="237" y="1180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">src/database.py</text>
 
   <!-- Excel -->
-  <rect x="455" y="1074" width="375" height="116" rx="8" fill="#071D38" stroke="#43E97B" stroke-width="1.5"/>
-  <text x="642" y="1092" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#38F9D7">📊 Excel Canónico por Sala</text>
-  <text x="642" y="1108" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">data/Excel_Buscador/sala_penal.xlsx</text>
-  <text x="642" y="1122" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">export_tsj_to_excel_profesional()</text>
-  <text x="642" y="1137" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">openpyxl + pandas DataFrame</text>
-  <text x="642" y="1151" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Hipervínculos activos al TSJ</text>
-  <text x="642" y="1166" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Encabezados DC3 estilizados</text>
-  <text x="642" y="1180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">src/utils.py</text>
+  <rect x="455" y="1074" width="375" height="116" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1.5"/>
+  <text x="642" y="1092" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#059669">📊 Excel Canónico por Sala</text>
+  <text x="642" y="1108" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">data/Excel_Buscador/sala_penal.xlsx</text>
+  <text x="642" y="1122" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">export_tsj_to_excel_profesional()</text>
+  <text x="642" y="1137" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">openpyxl + pandas DataFrame</text>
+  <text x="642" y="1151" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Hipervínculos activos al TSJ</text>
+  <text x="642" y="1166" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Encabezados DC3 estilizados</text>
+  <text x="642" y="1180" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">src/utils.py</text>
 
-  <!-- ── FOOTER ── -->
-  <rect x="0" y="1230" width="900" height="120" fill="#040D1A"/>
-  <rect x="0" y="1230" width="900" height="2" fill="url(#gold-sc2)"/>
-
-  <text x="450" y="1258" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">Case Law Extractor powered by sha256.us</text>
-  <text x="450" y="1277" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#AABBCC">Motor: Playwright Chromium 151 • Python 3.11 • Dash + Bootstrap • DC3 Cyber Forensics Design</text>
-
-  <rect x="155" y="1292" width="590" height="1" fill="#0066CC" fill-opacity="0.4"/>
-
-  <text x="215" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">7 Salas TSJ Venezuela</text>
-  <text x="450" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">Escáner 2019–2026</text>
-  <text x="685" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">Podman / Docker Ready</text>
-
-  <text x="450" y="1340" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#44556677">© 2026 Case Law Extractor • sha256.us • MIT License</text>
+  <!-- ── MINIMALIST FOOTER (50px Height) ── -->
+  <rect x="0" y="1300" width="900" height="50" fill="#061830"/>
+  <rect x="0" y="1300" width="900" height="2" fill="url(#gold-header)"/>
+  <text x="30" y="1330" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">Case Law Extractor <tspan fill="#FFC809">powered by sha256.us</tspan></text>
+  <text x="450" y="1330" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#CBD5E1">Playwright Chromium • Python 3.11 • Dash + Bootstrap • DC3 Design</text>
+  <text x="870" y="1330" text-anchor="end" font-family="Arial, sans-serif" font-size="9" fill="#94A3B8">© 2026 sha256.us</text>
 </svg>

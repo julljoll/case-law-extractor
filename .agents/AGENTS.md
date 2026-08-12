@@ -161,6 +161,12 @@ flowchart LR
 > [!NOTE]  
 > **7. Containerización Obligatoria (Podman):** El proyecto debe mantenerse siempre deployable vía `podman build` + `podman run`. El `Containerfile` debe instalar Chromium headless con `playwright install chromium --with-deps`. Los datos (SQLite + Excel) deben persistir en un volumen montado `./data:/app/data`.
 
+> [!NOTE]  
+> **8. Fondo Blanco Obligatorio en Diagramas SVG Formato Folio:** Al crear o actualizar archivos gráficos vectoriales `.svg` en orientación vertical u Hoja Folio / Legal (`viewBox="0 0 900 1350"`), el fondo del lienzo debe ser estrictamente blanco (`<rect width="100%" height="100%" fill="#FFFFFF"/>`), ajustando minuciosamente la tipografía, tarjetas, bordes y conectores para preservar la paleta y contraste institucional del DC3 Cyber Center (`#061830`, `#0066CC`, `#FFC809`).
+
+> [!NOTE]  
+> **9. Layout Ultra-Minimalista de 50px en Encabezados y Pies de Página (UI Web & SVG):** Todas las barras superiores de navegación/encabezados (Top Menu / Header Navbar) y los pies de página (Footer), tanto en la interfaz de usuario web (`gui/dash_app.py`) como en la diagramación gráfica vectorial (`assets/*.svg`), deben construirse con un diseño ultra-minimalista de **exactamente 50px de alto** (`height: 50px`). Esto evita el consumo excesivo de espacio vertical, optimizando la visibilidad del contenido principal.
+
 ---
 
 <div align="center">

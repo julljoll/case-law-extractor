@@ -18,47 +18,29 @@
   </metadata>
 
   <defs>
-    <linearGradient id="bg-pp" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#061830"/><stop offset="50%" stop-color="#0A192F"/><stop offset="100%" stop-color="#061830"/>
+    <linearGradient id="gold-header-pp" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFC809"/><stop offset="100%" stop-color="#FF9900"/>
     </linearGradient>
-    <linearGradient id="card-pp" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F2440"/><stop offset="100%" stop-color="#0A192F"/>
-    </linearGradient>
-    <linearGradient id="gold-pp" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FFC809"/><stop offset="100%" stop-color="#FFCC00"/>
-    </linearGradient>
-    <linearGradient id="cyan-pp" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00D2FF"/><stop offset="100%" stop-color="#4FACFE"/>
-    </linearGradient>
-    <linearGradient id="green-pp" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38F9D7"/><stop offset="100%" stop-color="#43E97B"/>
-    </linearGradient>
-    <linearGradient id="purple-pp" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#7c3aed"/>
-    </linearGradient>
-    <linearGradient id="red-pp" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#e11d48"/>
-    </linearGradient>
-    <filter id="shadow-pp">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+
+    <filter id="card-shadow-pp" x="-3%" y="-3%" width="106%" height="108%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0F172A" flood-opacity="0.08"/>
     </filter>
-    <filter id="glow-pp">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
+
     <marker id="arr-pp-gold" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <polygon points="0,0 8,4 0,8" fill="#FFC809"/>
+      <polygon points="0,0 8,4 0,8" fill="#D97706"/>
     </marker>
     <marker id="arr-pp-green" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <polygon points="0,0 8,4 0,8" fill="#43E97B"/>
+      <polygon points="0,0 8,4 0,8" fill="#059669"/>
     </marker>
     <marker id="arr-pp-cyan" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <polygon points="0,0 8,4 0,8" fill="#4FACFE"/>
+      <polygon points="0,0 8,4 0,8" fill="#0066CC"/>
     </marker>
   </defs>
 
-  <!-- Background -->
-  <rect width="900" height="1350" fill="url(#bg-pp)"/>
+  <!-- Canvas Background (White per Canonical Rule 8) -->
+  <rect width="900" height="1350" fill="#FFFFFF"/>
+
+  <!-- Subtle Architectural Grid Lines -->
   <g stroke="#0066CC" stroke-opacity="0.06" stroke-width="1">
     <line x1="0" y1="150" x2="900" y2="150"/>
     <line x1="0" y1="400" x2="900" y2="400"/>
@@ -68,225 +50,220 @@
     <line x1="450" y1="130" x2="450" y2="1220"/>
   </g>
 
-  <!-- ── HEADER ── -->
-  <rect x="0" y="0" width="900" height="118" fill="url(#card-pp)" filter="url(#shadow-pp)"/>
-  <rect x="0" y="114" width="900" height="4" fill="url(#gold-pp)"/>
-  <rect x="30" y="16" width="260" height="26" rx="13" fill="none" stroke="url(#gold-pp)" stroke-width="1.5"/>
-  <text x="160" y="33" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#FFC809" letter-spacing="2">[ DC3 CYBER FORENSICS LAB ]</text>
-  <text x="450" y="63" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" filter="url(#glow-pp)">Pipeline de Arquitectura General</text>
-  <text x="450" y="86" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#FFC809" font-weight="bold">Case Law Extractor powered by sha256.us</text>
-  <text x="450" y="106" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8899AA">TSJ Venezuela • Playwright + Dash + SQLite + Excel • Podman Ready</text>
+  <!-- ── MINIMALIST HEADER (50px Height) ── -->
+  <rect x="0" y="0" width="900" height="50" fill="#061830"/>
+  <rect x="0" y="48" width="900" height="2" fill="url(#gold-header-pp)"/>
+  <rect x="20" y="13" width="220" height="24" rx="12" fill="#0A192F" stroke="#FFC809" stroke-width="1.5"/>
+  <text x="130" y="29" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#FFC809" font-weight="bold" letter-spacing="1.5">[ DC3 CYBER LAB ]</text>
+  <text x="450" y="31" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF">Pipeline de Arquitectura General</text>
+  <text x="880" y="31" text-anchor="end" font-family="Arial, sans-serif" font-size="10" fill="#FFC809" font-weight="bold">sha256.us</text>
 
   <!-- ── LAYER 1: USER INTERFACE ── -->
-  <rect x="30" y="132" width="840" height="130" rx="12" fill="url(#card-pp)" stroke="url(#gold-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
-  <rect x="30" y="132" width="6" height="130" rx="3" fill="url(#gold-pp)"/>
-  <text x="55" y="155" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFC809" letter-spacing="1">CAPA 1 — INTERFAZ DE USUARIO</text>
+  <rect x="30" y="132" width="840" height="130" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow-pp)"/>
+  <rect x="30" y="132" width="6" height="130" rx="3" fill="#D97706"/>
+  <text x="55" y="155" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#D97706" letter-spacing="1">CAPA 1 — INTERFAZ DE USUARIO</text>
   <!-- 3 UI modules -->
-  <rect x="50" y="162" width="242" height="84" rx="8" fill="#071D38" stroke="url(#gold-pp)" stroke-width="1"/>
-  <text x="171" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFC809">Dashboard Dash</text>
-  <text x="171" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">gui/dash_app.py</text>
-  <text x="171" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Selección Sala (7) + Mes (12)</text>
-  <text x="171" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Búsqueda + Barra Progreso</text>
-  <text x="171" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Dash + Bootstrap 5 + DC3</text>
+  <rect x="50" y="162" width="242" height="84" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1"/>
+  <text x="171" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#D97706">Dashboard Dash</text>
+  <text x="171" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">gui/dash_app.py</text>
+  <text x="171" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Selección Sala (7) + Mes (12)</text>
+  <text x="171" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Búsqueda + Barra Progreso</text>
+  <text x="171" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Dash + Bootstrap 5 + DC3</text>
 
-  <rect x="315" y="162" width="242" height="84" rx="8" fill="#071D38" stroke="url(#gold-pp)" stroke-width="1"/>
-  <text x="436" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFC809">Modal Pop-Up</text>
-  <text x="436" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Ver Extracto Completo</text>
-  <text x="436" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Ratio Decidendi Preview</text>
-  <text x="436" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Link Directo → TSJ</text>
-  <text x="436" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">dbc.Modal + dbc.Card</text>
+  <rect x="315" y="162" width="242" height="84" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1"/>
+  <text x="436" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#D97706">Modal Pop-Up</text>
+  <text x="436" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">Ver Extracto Completo</text>
+  <text x="436" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Ratio Decidendi Preview</text>
+  <text x="436" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Link Directo → TSJ</text>
+  <text x="436" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">dbc.Modal + dbc.Card</text>
 
-  <rect x="580" y="162" width="272" height="84" rx="8" fill="#071D38" stroke="url(#gold-pp)" stroke-width="1"/>
-  <text x="716" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFC809">Controles Globales</text>
-  <text x="716" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Sync (24h) → Playwright</text>
-  <text x="716" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Generar Excel &amp; SQLite</text>
-  <text x="716" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Borrar Caché / Cookies</text>
-  <text x="716" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">dcc.Interval 86,400,000ms</text>
+  <rect x="580" y="162" width="272" height="84" rx="8" fill="#FFFFFF" stroke="#D97706" stroke-width="1"/>
+  <text x="716" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#D97706">Controles Globales</text>
+  <text x="716" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">Sync (24h) → Playwright</text>
+  <text x="716" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Generar Excel &amp; SQLite</text>
+  <text x="716" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Borrar Caché / Cookies</text>
+  <text x="716" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">dcc.Interval 86,400,000ms</text>
 
-  <line x1="450" y1="262" x2="450" y2="288" stroke="url(#gold-pp)" stroke-width="2" marker-end="url(#arr-pp-gold)"/>
+  <line x1="450" y1="262" x2="450" y2="288" stroke="#D97706" stroke-width="2" marker-end="url(#arr-pp-gold)"/>
 
   <!-- ── LAYER 2: SCRAPER ENGINE ── -->
-  <rect x="30" y="288" width="840" height="180" rx="12" fill="url(#card-pp)" stroke="url(#cyan-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
-  <rect x="30" y="288" width="6" height="180" rx="3" fill="url(#cyan-pp)"/>
-  <text x="55" y="311" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#4FACFE" letter-spacing="1">CAPA 2 — MOTOR DE SCRAPING (PLAYWRIGHT CHROMIUM HEADLESS)</text>
+  <rect x="30" y="288" width="840" height="180" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow-pp)"/>
+  <rect x="30" y="288" width="6" height="180" rx="3" fill="#0066CC"/>
+  <text x="55" y="311" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0066CC" letter-spacing="1">CAPA 2 — MOTOR DE SCRAPING (PLAYWRIGHT CHROMIUM HEADLESS)</text>
 
   <!-- Playwright central box -->
-  <rect x="290" y="320" width="320" height="130" rx="10" fill="#040D1A" stroke="url(#cyan-pp)" stroke-width="2"/>
-  <text x="450" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FACFE">⚙ Playwright Chromium 151</text>
-  <text x="450" y="359" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">playwright.chromium.launch(headless=True)</text>
-  <text x="450" y="374" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">ignore_https_errors=True • locale="es-ES"</text>
-  <text x="450" y="389" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FFC809">page.on("response", _on_response)</text>
-  <text x="450" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Navega tsj.gob.ve/juriprudencias</text>
-  <text x="450" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Click Sala → Año → wait 4,000ms</text>
-  <text x="450" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#38F9D7">src/buscador_tsj_excel.py</text>
+  <rect x="290" y="320" width="320" height="130" rx="10" fill="#FFFFFF" stroke="#0066CC" stroke-width="2"/>
+  <text x="450" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#0066CC">⚙ Playwright Chromium 151</text>
+  <text x="450" y="359" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">playwright.chromium.launch(headless=True)</text>
+  <text x="450" y="374" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">ignore_https_errors=True • locale="es-ES"</text>
+  <text x="450" y="389" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#D97706" font-weight="bold">page.on("response", _on_response)</text>
+  <text x="450" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Navega tsj.gob.ve/juriprudencias</text>
+  <text x="450" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Click Sala → Año → wait 4,000ms</text>
+  <text x="450" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#059669" font-weight="bold">src/buscador_tsj_excel.py</text>
 
   <!-- Left side: TSJ Portal -->
-  <rect x="50" y="326" width="218" height="118" rx="8" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
-  <text x="159" y="344" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#4FACFE">Portal TSJ Venezuela</text>
-  <text x="159" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Liferay Portal (Java)</text>
-  <text x="159" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">portlets: senderJurisprudencia</text>
-  <text x="159" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">receiverJurispruedencia</text>
-  <text x="159" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">p_p_lifecycle=2 (AJAX)</text>
-  <text x="159" y="422" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">SSL verify=False</text>
-  <text x="159" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">JSESSIONID session cookie</text>
+  <rect x="50" y="326" width="218" height="118" rx="8" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
+  <text x="159" y="344" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0066CC">Portal TSJ Venezuela</text>
+  <text x="159" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">Liferay Portal (Java)</text>
+  <text x="159" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">portlets: senderJurisprudencia</text>
+  <text x="159" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">receiverJurispruedencia</text>
+  <text x="159" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">p_p_lifecycle=2 (AJAX)</text>
+  <text x="159" y="422" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">SSL verify=False</text>
+  <text x="159" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">JSESSIONID session cookie</text>
   <line x1="268" y1="385" x2="290" y2="385" stroke="#0066CC" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-pp-cyan)"/>
 
   <!-- Right side: XHR Interceptor -->
-  <rect x="632" y="326" width="218" height="118" rx="8" fill="#071D38" stroke="#43E97B" stroke-width="1"/>
-  <text x="741" y="344" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#38F9D7">XHR Interceptor</text>
-  <text x="741" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">_parse_captured_responses()</text>
-  <text x="741" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">JSON → dict canónico</text>
-  <text x="741" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">HTML frag → BS4 parse</text>
-  <text x="741" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">DOM fallback → regex href</text>
-  <text x="741" y="422" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#FFC809">Tri-Modal Parser</text>
-  <text x="741" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">JSON &gt; HTML &gt; DOM</text>
-  <line x1="610" y1="385" x2="632" y2="385" stroke="#43E97B" stroke-width="1.5" marker-end="url(#arr-pp-green)"/>
+  <rect x="632" y="326" width="218" height="118" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+  <text x="741" y="344" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669">XHR Interceptor</text>
+  <text x="741" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">_parse_captured_responses()</text>
+  <text x="741" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">JSON → dict canónico</text>
+  <text x="741" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">HTML frag → BS4 parse</text>
+  <text x="741" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">DOM fallback → regex href</text>
+  <text x="741" y="422" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#D97706" font-weight="bold">Tri-Modal Parser</text>
+  <text x="741" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">JSON &gt; HTML &gt; DOM</text>
+  <line x1="610" y1="385" x2="632" y2="385" stroke="#059669" stroke-width="1.5" marker-end="url(#arr-pp-green)"/>
 
-  <line x1="450" y1="468" x2="450" y2="494" stroke="url(#cyan-pp)" stroke-width="2" marker-end="url(#arr-pp-cyan)"/>
+  <line x1="450" y1="468" x2="450" y2="494" stroke="#0066CC" stroke-width="2" marker-end="url(#arr-pp-cyan)"/>
 
   <!-- ── LAYER 3: PERSISTENCE ── -->
-  <rect x="30" y="494" width="840" height="168" rx="12" fill="url(#card-pp)" stroke="url(#green-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
-  <rect x="30" y="494" width="6" height="168" rx="3" fill="url(#green-pp)"/>
-  <text x="55" y="517" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#38F9D7" letter-spacing="1">CAPA 3 — PERSISTENCIA CANÓNICA 1:1 POR SALA</text>
+  <rect x="30" y="494" width="840" height="168" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow-pp)"/>
+  <rect x="30" y="494" width="6" height="168" rx="3" fill="#059669"/>
+  <text x="55" y="517" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#059669" letter-spacing="1">CAPA 3 — PERSISTENCIA CANÓNICA 1:1 POR SALA</text>
 
   <!-- 7 salas chips -->
-  <g font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC" text-anchor="middle">
-    <rect x="50" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+  <g font-family="Arial, sans-serif" font-size="8.5" fill="#1E293B" text-anchor="middle">
+    <rect x="50" y="526" width="106" height="22" rx="11" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
     <text x="103" y="541">Constitucional</text>
-    <rect x="166" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <rect x="166" y="526" width="106" height="22" rx="11" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
     <text x="219" y="541">Pol.Administrativa</text>
-    <rect x="282" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <rect x="282" y="526" width="106" height="22" rx="11" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
     <text x="335" y="541">Casación Civil</text>
-    <rect x="398" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <rect x="398" y="526" width="106" height="22" rx="11" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
     <text x="451" y="541">Casación Penal</text>
-    <rect x="514" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <rect x="514" y="526" width="106" height="22" rx="11" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
     <text x="567" y="541">Casación Social</text>
-    <rect x="630" y="526" width="80" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <rect x="630" y="526" width="80" height="22" rx="11" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
     <text x="670" y="541">Electoral</text>
-    <rect x="720" y="526" width="130" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <rect x="720" y="526" width="130" height="22" rx="11" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
     <text x="785" y="541">Sala Plena</text>
   </g>
-  <text x="450" y="566" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#778899">sala_constitucional.db / .xlsx   sala_casacion_penal.db / .xlsx   …   (7 pares canónicos)</text>
+  <text x="450" y="566" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#64748B">sala_constitucional.db / .xlsx   sala_casacion_penal.db / .xlsx   …   (7 pares canónicos)</text>
 
   <!-- SQLite box -->
-  <rect x="50" y="576" width="370" height="70" rx="8" fill="#071D38" stroke="#4FACFE" stroke-width="1.5"/>
-  <text x="235" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4FACFE">🗄 SQLite Relacional Idempotente</text>
-  <text x="235" y="612" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">TSJDatabaseManager.guardar_lote() → INSERT OR UPDATE</text>
-  <text x="235" y="627" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">ON CONFLICT(link_directo) DO UPDATE SET</text>
-  <text x="235" y="641" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Índices: link_directo • sala • expediente • ano</text>
+  <rect x="50" y="576" width="370" height="70" rx="8" fill="#FFFFFF" stroke="#0066CC" stroke-width="1.5"/>
+  <text x="235" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0066CC">🗄 SQLite Relacional Idempotente</text>
+  <text x="235" y="612" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">TSJDatabaseManager.guardar_lote() → INSERT OR UPDATE</text>
+  <text x="235" y="627" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">ON CONFLICT(link_directo) DO UPDATE SET</text>
+  <text x="235" y="641" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Índices: link_directo • sala • expediente • ano</text>
 
   <!-- Excel box -->
-  <rect x="440" y="576" width="390" height="70" rx="8" fill="#071D38" stroke="#43E97B" stroke-width="1.5"/>
-  <text x="635" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#38F9D7">📊 Excel Analítico Profesional</text>
-  <text x="635" y="612" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">export_tsj_to_excel_profesional() → openpyxl</text>
-  <text x="635" y="627" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Hipervínculos TSJ • Cabeceras DC3 • Cols Auto-width</text>
-  <text x="635" y="641" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">pandas DataFrame → .xlsx con formato institucional</text>
+  <rect x="440" y="576" width="390" height="70" rx="8" fill="#FFFFFF" stroke="#059669" stroke-width="1.5"/>
+  <text x="635" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#059669">📊 Excel Analítico Profesional</text>
+  <text x="635" y="612" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">export_tsj_to_excel_profesional() → openpyxl</text>
+  <text x="635" y="627" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">Hipervínculos TSJ • Cabeceras DC3 • Cols Auto-width</text>
+  <text x="635" y="641" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">pandas DataFrame → .xlsx con formato institucional</text>
 
-  <line x1="450" y1="662" x2="450" y2="688" stroke="url(#green-pp)" stroke-width="2" marker-end="url(#arr-pp-green)"/>
+  <line x1="450" y1="662" x2="450" y2="688" stroke="#059669" stroke-width="2" marker-end="url(#arr-pp-green)"/>
 
   <!-- ── LAYER 4: OUTPUTS ── -->
-  <rect x="30" y="688" width="840" height="158" rx="12" fill="url(#card-pp)" stroke="url(#purple-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
-  <rect x="30" y="688" width="6" height="158" rx="3" fill="url(#purple-pp)"/>
-  <text x="55" y="711" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7" letter-spacing="1">CAPA 4 — SALIDAS Y REPORTES</text>
+  <rect x="30" y="688" width="840" height="158" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow-pp)"/>
+  <rect x="30" y="688" width="6" height="158" rx="3" fill="#7C3AED"/>
+  <text x="55" y="711" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED" letter-spacing="1">CAPA 4 — SALIDAS Y REPORTES</text>
 
-  <rect x="50" y="720" width="196" height="110" rx="8" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
-  <text x="148" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">Dashboard Real-Time</text>
-  <text x="148" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Cards por sentencia</text>
-  <text x="148" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Filtros: Sala, Mes, Keyword</text>
-  <text x="148" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Barra de progreso XHR</text>
-  <text x="148" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">http://127.0.0.1:8050</text>
-  <text x="148" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Dash + Bootstrap 5</text>
+  <rect x="50" y="720" width="196" height="110" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="148" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">Dashboard Real-Time</text>
+  <text x="148" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Cards por sentencia</text>
+  <text x="148" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Filtros: Sala, Mes, Keyword</text>
+  <text x="148" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Barra de progreso XHR</text>
+  <text x="148" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">http://127.0.0.1:8050</text>
+  <text x="148" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Dash + Bootstrap 5</text>
 
-  <rect x="262" y="720" width="196" height="110" rx="8" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
-  <text x="360" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">SQLite por Sala</text>
-  <text x="360" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">7 archivos .db</text>
-  <text x="360" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">data/Databases_SQLite/</text>
-  <text x="360" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">sala_&lt;nombre&gt;.db</text>
-  <text x="360" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Tabla: decisiones</text>
-  <text x="360" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">sqlite3 + WAL mode</text>
+  <rect x="262" y="720" width="196" height="110" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="360" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">SQLite por Sala</text>
+  <text x="360" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">7 archivos .db</text>
+  <text x="360" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">data/Databases_SQLite/</text>
+  <text x="360" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">sala_&lt;nombre&gt;.db</text>
+  <text x="360" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Tabla: decisiones</text>
+  <text x="360" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">sqlite3 + WAL mode</text>
 
-  <rect x="474" y="720" width="196" height="110" rx="8" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
-  <text x="572" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">Excel por Sala</text>
-  <text x="572" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">7 archivos .xlsx</text>
-  <text x="572" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">data/Excel_Buscador/</text>
-  <text x="572" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">sala_&lt;nombre&gt;.xlsx</text>
-  <text x="572" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Hipervínculos activos</text>
-  <text x="572" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">pandas + openpyxl</text>
+  <rect x="474" y="720" width="196" height="110" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="572" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">Excel por Sala</text>
+  <text x="572" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">7 archivos .xlsx</text>
+  <text x="572" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">data/Excel_Buscador/</text>
+  <text x="572" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">sala_&lt;nombre&gt;.xlsx</text>
+  <text x="572" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Hipervínculos activos</text>
+  <text x="572" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">pandas + openpyxl</text>
 
-  <rect x="686" y="720" width="196" height="110" rx="8" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
-  <text x="784" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">PDF Oficial TSJ</text>
-  <text x="784" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Maquetación ReportLab</text>
-  <text x="784" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Membrete institucional</text>
-  <text x="784" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Folio Vertical Oficial</text>
-  <text x="784" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">data/PDFs/</text>
-  <text x="784" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">reportlab + pillow</text>
+  <rect x="686" y="720" width="196" height="110" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+  <text x="784" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#7C3AED">PDF Oficial TSJ</text>
+  <text x="784" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Maquetación ReportLab</text>
+  <text x="784" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Membrete institucional</text>
+  <text x="784" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#D97706" font-weight="bold">Folio Vertical Oficial</text>
+  <text x="784" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">data/PDFs/</text>
+  <text x="784" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">reportlab + pillow</text>
 
-  <line x1="450" y1="846" x2="450" y2="872" stroke="url(#purple-pp)" stroke-width="2" marker-end="url(#arr-pp-gold)"/>
+  <line x1="450" y1="846" x2="450" y2="872" stroke="#7C3AED" stroke-width="2" marker-end="url(#arr-pp-gold)"/>
 
   <!-- ── LAYER 5: INFRASTRUCTURE ── -->
-  <rect x="30" y="872" width="840" height="198" rx="12" fill="url(#card-pp)" stroke="url(#red-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
-  <rect x="30" y="872" width="6" height="198" rx="3" fill="url(#red-pp)"/>
-  <text x="55" y="895" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#f43f5e" letter-spacing="1">CAPA 5 — INFRAESTRUCTURA &amp; DESPLIEGUE (PODMAN)</text>
+  <rect x="30" y="872" width="840" height="198" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" filter="url(#card-shadow-pp)"/>
+  <rect x="30" y="872" width="6" height="198" rx="3" fill="#DC2626"/>
+  <text x="55" y="895" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#DC2626" letter-spacing="1">CAPA 5 — INFRAESTRUCTURA &amp; DESPLIEGUE (PODMAN)</text>
 
   <!-- Podman box -->
-  <rect x="50" y="906" width="380" height="148" rx="8" fill="#071D38" stroke="url(#red-pp)" stroke-width="1.5"/>
-  <text x="240" y="924" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f43f5e">🐳 Containerfile + podman-compose.yml</text>
-  <text x="240" y="942" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">FROM python:3.11-slim</text>
-  <text x="240" y="957" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">RUN playwright install chromium --with-deps</text>
-  <text x="240" y="972" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FFC809">EXPOSE 8050</text>
-  <text x="240" y="988" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">CMD ["python", "main.py", "--dashboard"]</text>
-  <text x="240" y="1006" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Volume: ./data:/app/data (SQLite + Excel persist)</text>
-  <text x="240" y="1022" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Health: curl -f http://localhost:8050/</text>
-  <text x="240" y="1040" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">podman build -t case-law-extractor . &amp;&amp; podman run -p 8050:8050 .</text>
+  <rect x="50" y="906" width="380" height="148" rx="8" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.5"/>
+  <text x="240" y="924" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#DC2626">🐳 Containerfile + podman-compose.yml</text>
+  <text x="240" y="942" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">FROM python:3.11-slim</text>
+  <text x="240" y="957" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">RUN playwright install chromium --with-deps</text>
+  <text x="240" y="972" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#D97706" font-weight="bold">EXPOSE 8050</text>
+  <text x="240" y="988" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">CMD ["python", "main.py", "--dashboard"]</text>
+  <text x="240" y="1006" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Volume: ./data:/app/data (SQLite + Excel persist)</text>
+  <text x="240" y="1022" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Health: curl -f http://localhost:8050/</text>
+  <text x="240" y="1040" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">podman build -t case-law-extractor . &amp;&amp; podman run -p 8050:8050 .</text>
 
   <!-- Scheduler box -->
-  <rect x="460" y="906" width="390" height="148" rx="8" fill="#071D38" stroke="#4FACFE" stroke-width="1.5"/>
-  <text x="655" y="924" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4FACFE">⏱ Auto-Sync 24h Scheduler</text>
-  <text x="655" y="942" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">src/scheduler.py — global_scheduler</text>
-  <text x="655" y="957" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">dcc.Interval id="interval-24h-sync"</text>
-  <text x="655" y="972" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FFC809">interval=86,400,000 ms (24 horas)</text>
-  <text x="655" y="988" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Dispara worker_multisala_scraper()</text>
-  <text x="655" y="1003" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">threading.Thread(daemon=True)</text>
-  <text x="655" y="1019" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">progress_callback → sync_progress dict</text>
-  <text x="655" y="1036" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Intervalo 400ms → polling progress bar</text>
-  <text x="655" y="1054" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">O presionar "Sincronizar" manualmente</text>
+  <rect x="460" y="906" width="390" height="148" rx="8" fill="#FFFFFF" stroke="#0066CC" stroke-width="1.5"/>
+  <text x="655" y="924" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#0066CC">⏱ Auto-Sync 24h Scheduler</text>
+  <text x="655" y="942" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">src/scheduler.py — global_scheduler</text>
+  <text x="655" y="957" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#334155">dcc.Interval id="interval-24h-sync"</text>
+  <text x="655" y="972" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#D97706" font-weight="bold">interval=86,400,000 ms (24 horas)</text>
+  <text x="655" y="988" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Dispara worker_multisala_scraper()</text>
+  <text x="655" y="1003" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">threading.Thread(daemon=True)</text>
+  <text x="655" y="1019" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">progress_callback → sync_progress dict</text>
+  <text x="655" y="1036" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#334155">Intervalo 400ms → polling progress bar</text>
+  <text x="655" y="1054" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#64748B">O presionar "Sincronizar" manualmente</text>
 
   <!-- ── TECH STACK STRIP ── -->
-  <rect x="30" y="1085" width="840" height="90" rx="12" fill="#040D1A" stroke="#0066CC" stroke-width="1" filter="url(#shadow-pp)"/>
-  <text x="450" y="1105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#778899" letter-spacing="1">STACK TECNOLÓGICO</text>
+  <rect x="30" y="1085" width="840" height="90" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" filter="url(#card-shadow-pp)"/>
+  <text x="450" y="1105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#64748B" letter-spacing="1">STACK TECNOLÓGICO</text>
   <!-- tech pills row 1 -->
   <g font-family="Arial, sans-serif" font-size="9" text-anchor="middle">
-    <rect x="50" y="1112" width="90" height="20" rx="10" fill="#071D38" stroke="#4FACFE" stroke-width="1"/>
-    <text x="95" y="1126" fill="#4FACFE">Python 3.11</text>
-    <rect x="152" y="1112" width="82" height="20" rx="10" fill="#071D38" stroke="#4FACFE" stroke-width="1"/>
-    <text x="193" y="1126" fill="#4FACFE">Playwright</text>
-    <rect x="246" y="1112" width="62" height="20" rx="10" fill="#071D38" stroke="#38F9D7" stroke-width="1"/>
-    <text x="277" y="1126" fill="#38F9D7">SQLite3</text>
-    <rect x="320" y="1112" width="80" height="20" rx="10" fill="#071D38" stroke="#38F9D7" stroke-width="1"/>
-    <text x="360" y="1126" fill="#38F9D7">openpyxl</text>
-    <rect x="412" y="1112" width="56" height="20" rx="10" fill="#071D38" stroke="#FFC809" stroke-width="1"/>
-    <text x="440" y="1126" fill="#FFC809">Dash</text>
-    <rect x="480" y="1112" width="56" height="20" rx="10" fill="#071D38" stroke="#FFC809" stroke-width="1"/>
-    <text x="508" y="1126" fill="#FFC809">DBC</text>
-    <rect x="548" y="1112" width="80" height="20" rx="10" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
-    <text x="588" y="1126" fill="#a855f7">ReportLab</text>
-    <rect x="640" y="1112" width="56" height="20" rx="10" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
-    <text x="668" y="1126" fill="#a855f7">pandas</text>
-    <rect x="708" y="1112" width="70" height="20" rx="10" fill="#071D38" stroke="#f43f5e" stroke-width="1"/>
-    <text x="743" y="1126" fill="#f43f5e">Podman</text>
-    <rect x="790" y="1112" width="62" height="20" rx="10" fill="#071D38" stroke="#f43f5e" stroke-width="1"/>
-    <text x="821" y="1126" fill="#f43f5e">gunicorn</text>
+    <rect x="50" y="1112" width="90" height="20" rx="10" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
+    <text x="95" y="1126" fill="#0066CC" font-weight="bold">Python 3.11</text>
+    <rect x="152" y="1112" width="82" height="20" rx="10" fill="#FFFFFF" stroke="#0066CC" stroke-width="1"/>
+    <text x="193" y="1126" fill="#0066CC" font-weight="bold">Playwright</text>
+    <rect x="246" y="1112" width="62" height="20" rx="10" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+    <text x="277" y="1126" fill="#059669" font-weight="bold">SQLite3</text>
+    <rect x="320" y="1112" width="80" height="20" rx="10" fill="#FFFFFF" stroke="#059669" stroke-width="1"/>
+    <text x="360" y="1126" fill="#059669" font-weight="bold">openpyxl</text>
+    <rect x="412" y="1112" width="56" height="20" rx="10" fill="#FFFFFF" stroke="#D97706" stroke-width="1"/>
+    <text x="440" y="1126" fill="#D97706" font-weight="bold">Dash</text>
+    <rect x="480" y="1112" width="56" height="20" rx="10" fill="#FFFFFF" stroke="#D97706" stroke-width="1"/>
+    <text x="508" y="1126" fill="#D97706" font-weight="bold">DBC</text>
+    <rect x="548" y="1112" width="80" height="20" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+    <text x="588" y="1126" fill="#7C3AED" font-weight="bold">ReportLab</text>
+    <rect x="640" y="1112" width="56" height="20" rx="10" fill="#FFFFFF" stroke="#7C3AED" stroke-width="1"/>
+    <text x="668" y="1126" fill="#7C3AED" font-weight="bold">pandas</text>
+    <rect x="708" y="1112" width="70" height="20" rx="10" fill="#FFFFFF" stroke="#DC2626" stroke-width="1"/>
+    <text x="743" y="1126" fill="#DC2626" font-weight="bold">Podman</text>
+    <rect x="790" y="1112" width="62" height="20" rx="10" fill="#FFFFFF" stroke="#DC2626" stroke-width="1"/>
+    <text x="821" y="1126" fill="#DC2626" font-weight="bold">gunicorn</text>
   </g>
-  <text x="450" y="1163" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#556677">BeautifulSoup4 • lxml • requests • urllib3 • colorama • tqdm • pillow • threading</text>
+  <text x="450" y="1163" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#64748B">BeautifulSoup4 • lxml • requests • urllib3 • colorama • tqdm • pillow • threading</text>
 
-  <!-- ── FOOTER ── -->
-  <rect x="0" y="1230" width="900" height="120" fill="#040D1A"/>
-  <rect x="0" y="1230" width="900" height="2" fill="url(#gold-pp)"/>
-  <text x="450" y="1258" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">Case Law Extractor powered by sha256.us</text>
-  <text x="450" y="1277" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#AABBCC">Arquitectura LegalTech v2.0 • TSJ Venezuela 2019–2026 • DC3 Cyber Forensics Design System</text>
-  <rect x="155" y="1293" width="590" height="1" fill="#0066CC" fill-opacity="0.4"/>
-  <text x="215" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">7 Salas Orgánicas</text>
-  <text x="450" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">Chromium Headless Real</text>
-  <text x="685" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">Windows / Linux / Podman</text>
-  <text x="450" y="1340" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#44556677">© 2026 Case Law Extractor • sha256.us • MIT License</text>
+  <!-- ── MINIMALIST FOOTER (50px Height) ── -->
+  <rect x="0" y="1300" width="900" height="50" fill="#061830"/>
+  <rect x="0" y="1300" width="900" height="2" fill="url(#gold-header-pp)"/>
+  <text x="30" y="1330" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">Case Law Extractor <tspan fill="#FFC809">powered by sha256.us</tspan></text>
+  <text x="450" y="1330" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#CBD5E1">Arquitectura LegalTech v2.0 • Playwright + Dash + SQLite + Excel • Podman Ready</text>
+  <text x="870" y="1330" text-anchor="end" font-family="Arial, sans-serif" font-size="9" fill="#94A3B8">© 2026 sha256.us</text>
 </svg>
