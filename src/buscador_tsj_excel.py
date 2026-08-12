@@ -363,8 +363,7 @@ class BuscadorTSJExcel:
         self.print_log(f"Sincronización completada: {guardados} decisiones resguardadas en {db_path}.", "success")
 
         # Export to professional Excel
-        excel_filename = f"{base_name}.xlsx"
-        filepath = os.path.join(self.output_dir, excel_filename)
+        excel_filename = os.path.basename(filepath)
 
         todas_db = target_db.obtener_todas()
         self.print_log(f"Generando informe de Escaneo en Excel: {excel_filename}...")
