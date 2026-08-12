@@ -41,7 +41,7 @@ SALAS_MAP = {
     "politico_administrativa": {
         "nombre": "Sala Político-Administrativa",
         "code": "spa",
-        "alias": ["politico_administrativa", "spa", "politico", "politica"]
+        "alias": ["politico_administrativa", "spa", "politico", "politica", "politico administrativa"]
     },
     "casacion_civil": {
         "nombre": "Sala de Casación Civil",
@@ -69,6 +69,32 @@ SALAS_MAP = {
         "alias": ["plena", "sala plena"]
     }
 }
+
+
+def normalize_text(text: str) -> str:
+    """Removes accents, diacritics and converts text to lowercase for resilient matching."""
+    if not text:
+        return ""
+    text = unicodedata.normalize('NFD', text)
+    text = re.sub(r'[\u0300-\u036f]', '', text)
+    return text.lower().strip()
+
+
+def matches_sala(record_sala: str, target_key: str) -> bool:
+    """Checks if a record's Sala matches target_key resiliently across accents and aliases."""
+    if not target_key or target_key == "todas":
+        return True
+    
+    rec_norm = normalize_text(record_sala)
+    sala_info = SALAS_MAP.get(target_key)
+    if not sala_info:
+        return True
+        
+    aliases = sala_info.get("alias", []) + [sala_info.get("nombre", "")]
+    for a in aliases:
+        if normalize_text(a) in rec_norm:
+            return True
+    return False
 
 # Choices for interactive TSJ Chamber and Month selection
 SALAS_CHOICES = {

@@ -246,38 +246,56 @@ app.layout = dbc.Container([
      Output("store-decisiones", "data")],
     [Input("select-sala", "value"),
      Input("select-mes", "value"),
-     Input("input-search", "value")]
+     Input("input-search", "value"),
+     Input("btn-sync-24h", "n_clicks"),
+     Input("interval-24h-sync", "n_intervals")]
 )
-def update_dashboard(sala_key, mes_key, search_query):
+def update_dashboard(sala_key, mes_key, search_query, n_sync, n_interval):
     """Fetches real-time decisions and updates the grid reactively."""
-    buscador = BuscadorTSJExcel()
-    records = buscador.get_real_tsj_database()
+    ctx = callback_context
+    triggered_id = ctx.triggered_id if ctx.triggered else None
 
-    # Resolve labels
+    buscador = BuscadorTSJExcel()
+
+    # Execute live scraper scan across all Salas when Sync button is clicked
+    if triggered_id == "btn-sync-24h":
+        buscador.actualizar_ultimas_jurisprudencias(sala_info=SALAS_CHOICES["0"])
+
+    # Resolve labels & canonical SQLite DB
     sala_choice = next((v for v in SALAS_CHOICES.values() if v["key"] == sala_key), SALAS_CHOICES["0"])
     mes_choice = next((v for v in MESES_CHOICES.values() if v["key"] == mes_key), MESES_CHOICES["0"])
 
-    # Filter by Sala
+    db_path, filepath, clean_name = get_canonical_filenames(sala_choice["key"])
+    db_mgr = TSJDatabaseManager(db_path=db_path)
+    records = db_mgr.obtener_todas()
+
+    if not records:
+        # Fallback to general database or seed dataset if empty
+        db_mgr_gen = TSJDatabaseManager(db_path="data/Databases_SQLite/tsj_todas_las_salas.db")
+        records = db_mgr_gen.obtener_todas()
+        if not records:
+            records = buscador.get_real_tsj_database()
+
+    # Resilient Sala filtering using matches_sala (fixes Sala Penal accent issue)
     if sala_choice["key"] != "todas":
-        target_sala = sala_choice["nombre"].lower()
-        records = [r for r in records if target_sala in r.get("sala", "").lower()]
+        records = [r for r in records if matches_sala(r.get("sala", ""), sala_choice["key"])]
 
-    # Filter by Month
+    # Resilient Month filtering
     if mes_choice["key"] != "todo_el_ano":
-        target_mes = mes_choice["nombre"].lower()
-        records = [r for r in records if target_mes in r.get("fecha", "").lower()]
+        target_mes = normalize_text(mes_choice["nombre"])
+        records = [r for r in records if target_mes in normalize_text(r.get("fecha", ""))]
 
-    # Filter by search keyword
+    # Keyword search filtering
     if search_query and search_query.strip():
-        q = search_query.lower()
+        q = normalize_text(search_query)
         records = [
             r for r in records
-            if q in r.get("tema", "").lower()
-            or q in r.get("materia", "").lower()
-            or q in r.get("asunto", "").lower()
-            or q in r.get("extracto", "").lower()
-            or q in r.get("expediente", "").lower()
-            or q in r.get("numero_sentencia", "").lower()
+            if q in normalize_text(r.get("tema", ""))
+            or q in normalize_text(r.get("materia", ""))
+            or q in normalize_text(r.get("asunto", ""))
+            or q in normalize_text(r.get("extracto", ""))
+            or q in normalize_text(r.get("expediente", ""))
+            or q in normalize_text(r.get("numero_sentencia", ""))
         ]
 
     # Build Card Components Grid
