@@ -21,10 +21,9 @@ echo   case-law-extractor powered by sha256.us
 echo   Iniciando entorno local y abriendo interfaz web en navegador...
 echo ===============================================================================
 echo.
-echo  Abriendo: http://127.0.0.1:8050/
+echo  Servidor Web 100%% Python activo en: http://127.0.0.1:8050/
 echo.
 
-start http://127.0.0.1:8050/
 python main.py --dash
 
 pause

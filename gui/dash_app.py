@@ -5,6 +5,8 @@ Built with Dash & Dash Bootstrap Components using DC3 Cyber Forensics Design Sys
 
 import os
 import json
+import webbrowser
+import threading
 import dash
 from dash import dcc, html, Input, Output, State, callback_context
 import dash_bootstrap_components as dbc
@@ -13,14 +15,18 @@ from src.utils import SALAS_CHOICES, MESES_CHOICES
 from src.buscador_tsj_excel import BuscadorTSJExcel
 from src.database import TSJDatabaseManager
 
-# Initialize Dash App with Bootstrap Theme
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ASSETS_DIR = os.path.join(BASE_DIR, "assets")
+
+# Initialize Dash App with Bootstrap Theme and Root Assets Folder
 app = dash.Dash(
     __name__,
+    assets_folder=ASSETS_DIR,
     external_stylesheets=[
         dbc.themes.BOOTSTRAP,
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     ],
-    title="TSJ Cyber Forensics Lab - Dashboard Web Python"
+    title="case-law-extractor powered by sha256.us - Dashboard Web Python"
 )
 server = app.server
 
@@ -329,12 +335,17 @@ def trigger_export(n_clicks, sala_key, mes_key, kw):
     ], color="success", dismissable=True, className="mt-2 py-2 small")
 
 
-def run_dash_app(port=8050, debug=False):
-    """Runs the 100% Python Dash Dashboard App."""
+def run_dash_app(port=8050, debug=False, open_browser=True):
+    """Runs the 100% Python Dash Dashboard App and automatically opens browser."""
+    url = f"http://127.0.0.1:{port}/"
     print(f"\n===============================================================================")
-    print(f"  [ TSJ CYBER FORENSICS LAB ] INICIANDO DASHBOARD WEB 100% PYTHON (DASH)")
-    print(f"  Servidor Dash Activo en: http://127.0.0.1:{port}/")
+    print(f"  [ TSJ CYBER FORENSICS LAB ] case-law-extractor powered by sha256.us")
+    print(f"  Servidor Dash Web Activo en: {url}")
     print(f"===============================================================================\n")
+    
+    if open_browser:
+        threading.Timer(1.2, lambda: webbrowser.open_new(url)).start()
+
     app.run_server(host="127.0.0.1", port=port, debug=debug)
 
 
