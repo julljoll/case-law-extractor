@@ -14,7 +14,7 @@ init(autoreset=True)
 
 def print_banner():
     print(f"{Fore.BLUE}{'='*78}")
-    print(f"{Fore.YELLOW}  [ TSJ CYBER FORENSICS LAB ] {Fore.CYAN}DEPARTMENT OF DEFENSE CYBER CRIME CENTER STYLE")
+    print(f"{Fore.YELLOW}  [ TSJ CYBER FORENSICS LAB ] {Fore.CYAN}case-law-extractor powered by sha256.us")
     print(f"{Fore.WHITE}       BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA")
     print(f"{Fore.YELLOW}    Generación de BD SQLite + Excel Dedicados por Fórmula de Búsqueda")
     print(f"{Fore.BLUE}{'='*78}{Style.RESET_ALL}\n")

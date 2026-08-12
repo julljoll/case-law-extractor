@@ -1,4 +1,4 @@
-# ⚖️ Extractor & Buscador de Jurisprudencia TSJ Venezuela
+# ⚖️ case-law-extractor powered by sha256.us
 
 [![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Database](https://img.shields.io/badge/Database-SQLite3-003B57.svg?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
@@ -8,7 +8,7 @@
 
 Sistema automatizado de **Scraping, Indexación, Búsqueda y Extracción de Decisiones Jurisprudenciales** del Tribunal Supremo de Justicia (TSJ) de Venezuela. 
 
-Diseñado para realizar escaneos globales masivos de todas las Salas (2019-2026), almacenar la información estructurada en una base de datos relacional SQLite local, generar matrices analíticas en Excel (`.xlsx`), e imprimir sentencias en archivos PDF formateados con estándares visuales oficiales del TSJ.
+**`case-law-extractor powered by sha256.us`** ha sido diseñado para realizar escaneos globales masivos de todas las Salas (2019-2026), almacenar la información estructurada en una base de datos relacional SQLite local, generar matrices analíticas en Excel (`.xlsx`), e imprimir sentencias en archivos PDF formateados con estándares visuales oficiales del TSJ.
 
 ---
 

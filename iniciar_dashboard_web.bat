@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 > nul
-title TSJ Cyber Forensics Lab - Dashboard Web (100%% Python)
+title case-law-extractor powered by sha256.us - Dashboard Web (100%% Python)
 
 REM Activar entorno virtual si existe
 if exist venv\Scripts\activate.bat (
@@ -17,7 +17,7 @@ if %errorlevel% neq 0 (
 
 cls
 echo ===============================================================================
-echo   [ TSJ CYBER FORENSICS LAB ] INICIANDO DASHBOARD WEB 100%% PYTHON (DASH)
+echo   case-law-extractor powered by sha256.us
 echo   Iniciando entorno local y abriendo interfaz web en navegador...
 echo ===============================================================================
 echo.

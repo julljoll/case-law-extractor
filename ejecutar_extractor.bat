@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 > nul
-title Extractor de Jurisprudencias TSJ Venezuela - DC3 Cyber Lab
+title case-law-extractor powered by sha256.us - Gestor CLI
 
 REM Activar entorno virtual si existe
 if exist venv\Scripts\activate.bat (
@@ -27,7 +27,7 @@ if "%~1"=="8" goto SALIR
 cls
 color 0A
 echo ===============================================================================
-echo   [ TSJ CYBER FORENSICS LAB ] DEPARTMENT OF DEFENSE CYBER CRIME CENTER STYLE
+echo   case-law-extractor powered by sha256.us
 echo      BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA (2019 - 2026)
 echo   Generacion de BD SQLite + Matriz Excel (.xlsx) Dedicadas por Formula
 echo ===============================================================================

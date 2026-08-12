@@ -9,7 +9,7 @@ import os
 # --- BAT 1: Lanzador Directo del Dashboard Web ---
 dashboard_bat_content = """@echo off
 chcp 65001 > nul
-title TSJ Cyber Forensics Lab - Dashboard Web (100%% Python)
+title case-law-extractor powered by sha256.us - Dashboard Web (100%% Python)
 
 REM Activar entorno virtual si existe
 if exist venv\\Scripts\\activate.bat (
@@ -26,7 +26,7 @@ if %errorlevel% neq 0 (
 
 cls
 echo ===============================================================================
-echo   [ TSJ CYBER FORENSICS LAB ] INICIANDO DASHBOARD WEB 100%% PYTHON (DASH)
+echo   case-law-extractor powered by sha256.us
 echo   Iniciando entorno local y abriendo interfaz web en navegador...
 echo ===============================================================================
 echo.
@@ -42,7 +42,7 @@ pause
 # --- BAT 2: Gestor Interactivo CLI del Proyecto ---
 extractor_bat_content = """@echo off
 chcp 65001 > nul
-title Extractor de Jurisprudencias TSJ Venezuela - DC3 Cyber Lab
+title case-law-extractor powered by sha256.us - Gestor CLI
 
 REM Activar entorno virtual si existe
 if exist venv\\Scripts\\activate.bat (
@@ -69,7 +69,7 @@ if "%~1"=="8" goto SALIR
 cls
 color 0A
 echo ===============================================================================
-echo   [ TSJ CYBER FORENSICS LAB ] DEPARTMENT OF DEFENSE CYBER CRIME CENTER STYLE
+echo   case-law-extractor powered by sha256.us
 echo      BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA (2019 - 2026)
 echo   Generacion de BD SQLite + Matriz Excel (.xlsx) Dedicadas por Formula
 echo ===============================================================================

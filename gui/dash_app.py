@@ -39,17 +39,22 @@ app.layout = dbc.Container([
     # Store for caching current results
     dcc.Store(id="store-decisiones"),
     
-    # Header Banner (DC3 Style Printable Header)
+    # Header Banner (DC3 Style Printable Header with SHA256 Logo)
     dbc.Card([
         dbc.CardBody([
             dbc.Row([
                 dbc.Col([
-                    html.Span([
-                        html.I(className="fa-solid fa-shield-halved me-2"),
-                        "TSJ CYBER FORENSICS LAB • DC3 STYLE (100% PYTHON)"
-                    ], className="badge bg-warning text-dark mb-2 px-3 py-2 fw-bold rounded-pill"),
-                    html.H2("Buscador y Dashboard en Tiempo Real TSJ", className="text-white fw-bold mb-1"),
-                    html.P("Conexión en tiempo real con el portal oficial del Tribunal Supremo de Justicia de Venezuela (2019 - 2026). Generación emparejada de Bases de Datos SQLite (.db) y matrices Excel (.xlsx) en 100% Python.", className="text-light mb-0 small opacity-75")
+                    html.Div([
+                        html.Img(src="/assets/logo_sha256.svg", style={"height": "65px", "width": "65px"}, className="me-3"),
+                        html.Div([
+                            html.Span([
+                                html.I(className="fa-solid fa-shield-halved me-2"),
+                                "CASE-LAW-EXTRACTOR • POWERED BY SHA256.US"
+                            ], className="badge bg-warning text-dark mb-2 px-3 py-2 fw-bold rounded-pill"),
+                            html.H2("case-law-extractor powered by sha256.us", className="text-white fw-bold mb-1"),
+                            html.P("Buscador y Dashboard en Tiempo Real TSJ Venezuela (2019 - 2026). Generación emparejada de Bases de Datos SQLite (.db) y matrices Excel (.xlsx) en 100% Python.", className="text-light mb-0 small opacity-75")
+                        ])
+                    ], className="d-flex align-items-center")
                 ], md=8),
                 
                 dbc.Col([
@@ -144,7 +149,7 @@ app.layout = dbc.Container([
     
     # Footer
     html.Footer([
-        html.P("Department of Defense Cyber Crime Center Style • Extractor TSJ Venezuela (100% Python)", className="mb-1 fw-bold text-warning"),
+        html.P("case-law-extractor powered by sha256.us • DC3 Cyber Forensics Style (100% Python)", className="mb-1 fw-bold text-warning"),
         html.P("Estándar Folio Vertical Imprimible • Base de Datos SQLite (.db) y Matriz Excel (.xlsx) Sincronizadas 1:1", className="small text-muted mb-0")
     ], className="bg-dark text-light py-4 border-top border-warning text-center mt-auto")
 
