@@ -1,0 +1,59 @@
+# ==============================================================================
+# Case Law Extractor powered by sha256.us
+# podman-compose.yml — Compatible también con docker-compose
+# ==============================================================================
+#
+# Uso:
+#   podman-compose up -d           # Iniciar en background
+#   podman-compose down            # Detener
+#   podman-compose logs -f         # Ver logs en tiempo real
+#   podman-compose build           # Rebuild imagen
+#
+# Acceso:
+#   http://localhost:8050          # Dashboard TSJ Venezuela
+#
+# ==============================================================================
+
+version: "3.8"
+
+services:
+  case-law-extractor:
+    build:
+      context: .
+      dockerfile: Containerfile
+    container_name: case_law_extractor
+    image: case-law-extractor:latest
+
+    ports:
+      - "8050:8050"
+
+    volumes:
+      # Persistencia de bases de datos SQLite y matrices Excel
+      - ./data:/app/data
+
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+      - DASH_HOST=0.0.0.0
+
+    restart: unless-stopped
+
+    # Recursos razonables para scraping + Chromium headless
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.0"
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8050/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

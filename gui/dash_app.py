@@ -33,49 +33,68 @@ sync_progress = {
 
 
 def worker_multisala_scraper():
-    """Background worker thread running live TSJ multi-sala scraping with progress updates."""
+    """
+    Background worker thread that runs a live Playwright-based multi-Sala
+    scraper against the TSJ Venezuela Liferay portal.
+    
+    Progress is tracked in the global sync_progress dict and polled by the
+    Dash interval callback every 400ms for real-time UI updates.
+    """
     global sync_progress
     sync_progress["running"] = True
     sync_progress["finished"] = False
-    sync_progress["percent"] = 5
-    sync_progress["status"] = "Conectando con el portal oficial TSJ de Venezuela..."
-    
+    sync_progress["percent"] = 3
+    sync_progress["status"] = "Iniciando Chromium headless — conectando con portal TSJ Venezuela..."
+
     salas_list = [
-        ("constitucional", "Sala Constitucional"),
-        ("politico_administrativa", "Sala Político-Administrativa"),
-        ("casacion_civil", "Sala de Casación Civil"),
-        ("casacion_penal", "Sala de Casación Penal"),
-        ("casacion_social", "Sala de Casación Social"),
-        ("electoral", "Sala Electoral"),
-        ("plena", "Sala Plena")
+        ("constitucional",          "Sala Constitucional"),
+        ("politico_administrativa",  "Sala Político-Administrativa"),
+        ("casacion_civil",           "Sala de Casación Civil"),
+        ("casacion_penal",           "Sala de Casación Penal"),
+        ("casacion_social",          "Sala de Casación Social"),
+        ("electoral",                "Sala Electoral"),
+        ("plena",                    "Sala Plena"),
     ]
-    
+
     buscador = BuscadorTSJExcel()
     total = len(salas_list)
-    
+
     for idx, (s_key, s_nombre) in enumerate(salas_list, start=1):
-        pct = int((idx / total) * 90)
-        sync_progress["percent"] = pct
+        base_pct = int(((idx - 1) / total) * 90)
+
         sync_progress["sala"] = s_nombre
-        sync_progress["status"] = f"[{idx}/{total}] Escaneando e indexando nuevas sentencias en {s_nombre}..."
-        
+        sync_progress["percent"] = max(base_pct, 5)
+        sync_progress["status"] = (
+            f"[{idx}/{total}] 🌐 Playwright → {s_nombre}: "
+            f"Cargando portal TSJ..."
+        )
+
+        # Real-time progress callback forwarded from Playwright scraper
+        def _progress(pct: int, msg: str, _base=base_pct, _total=total):
+            combined = _base + int(pct / _total)
+            sync_progress["percent"] = min(combined, 90)
+            sync_progress["status"] = f"[{idx}/{total}] {s_nombre}: {msg}"
+
         sala_choice = {"key": s_key, "nombre": s_nombre}
         try:
-            buscador.actualizar_ultimas_jurisprudencias(sala_info=sala_choice)
+            buscador.actualizar_ultimas_jurisprudencias(
+                sala_info=sala_choice,
+                progress_callback=_progress,
+            )
         except Exception as e:
-            print(f"Error escaneando {s_nombre}: {e}")
-        time.sleep(0.3)
-        
-    # Also update global database
-    try:
-        buscador.actualizar_ultimas_jurisprudencias(sala_info=SALAS_CHOICES["0"])
-    except Exception as e:
-        print(f"Error en escaneo global: {e}")
-    
+            print(f"[Sync Worker] Error escaneando {s_nombre}: {e}")
+            sync_progress["status"] = f"[{idx}/{total}] ⚠ {s_nombre}: Error — {str(e)[:80]}"
+
+        time.sleep(0.2)
+
     sync_progress["percent"] = 100
-    sync_progress["status"] = "¡Sincronización Multi-Sala 100% completada! Bases de Datos relacionales SQLite y Matrices Excel actualizadas."
+    sync_progress["status"] = (
+        "✅ Sincronización Multi-Sala 100% completada con Playwright. "
+        "Bases de Datos SQLite y Matrices Excel actualizadas por Sala."
+    )
     sync_progress["running"] = False
     sync_progress["finished"] = True
+
 
 
 # Initialize Dash App with Bootstrap Theme and Root Assets Folder

@@ -9,3 +9,5 @@ reportlab>=4.0.0
 pillow>=10.0.0
 dash>=2.14.0
 dash-bootstrap-components>=1.5.0
+playwright>=1.44.0
+gunicorn>=21.2.0

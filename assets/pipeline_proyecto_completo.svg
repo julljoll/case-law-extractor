@@ -1,269 +1,292 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1350" width="100%" height="100%" role="img" aria-labelledby="pipeline-title pipeline-desc">
-  
+
   <!-- SEO & Accessibility Metadata -->
-  <title id="pipeline-title">Pipeline de Arquitectura General - Extractor Jurisprudencias TSJ Venezuela</title>
-  <desc id="pipeline-desc">Diagrama vectorial Folio imprimible que ilustra la selección de Sala y Mes, scraping HTTP, parsing DOM, inteligencia en evidencia digital, persistencia emparejada en SQLite y Excel, y maquetación de PDFs institucionales estilo DC3 Cyber Center.</desc>
+  <title id="pipeline-title">Pipeline de Arquitectura General — Case Law Extractor powered by sha256.us</title>
+  <desc id="pipeline-desc">Diagrama vectorial Folio imprimible del pipeline completo: selección de Sala en Dashboard Dash, scraping con Playwright Chromium headless sobre Liferay TSJ, parsing JSON/HTML/DOM, persistencia emparejada SQLite+Excel por Sala, containerización Podman, y despliegue multi-plataforma.</desc>
 
   <metadata>
     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:schema="http://schema.org/">
       <rdf:Description>
-        <dc:title>Pipeline de Arquitectura General - Extractor Jurisprudencias TSJ</dc:title>
-        <dc:description>Diagrama de arquitectura técnica Folio imprimible con selección interactiva por Sala y Mes y flujo de datos emparejados SQLite DB y Excel .xlsx.</dc:description>
-        <dc:subject>LegalTech, Web Scraping, TSJ Venezuela, Selección Sala Mes, Evidencia Digital, SQLite, ReportLab, DC3 Cyber Center</dc:subject>
-        <dc:creator>Extractor Jurisprudencias TSJ Team</dc:creator>
-        <dc:publisher>Department of Defense Cyber Crime Center Style Architecture</dc:publisher>
+        <dc:title>Pipeline de Arquitectura General — Case Law Extractor powered by sha256.us</dc:title>
+        <dc:description>Pipeline completo de arquitectura LegalTech con Playwright headless, Dash + Bootstrap, SQLite canónico por Sala, Excel empárejado, Podman containerization y DC3 Cyber Center design.</dc:description>
+        <dc:subject>LegalTech, Playwright, Chromium headless, TSJ Venezuela, Liferay, SQLite, Excel, Podman, DC3 Cyber Center, sha256.us, Python 3.11</dc:subject>
+        <dc:creator>Case Law Extractor — sha256.us</dc:creator>
+        <dc:publisher>DC3 Cyber Forensics Lab Architecture</dc:publisher>
         <schema:license>MIT</schema:license>
       </rdf:Description>
     </rdf:RDF>
   </metadata>
 
   <defs>
-    <!-- DC3 Navy Background Gradient -->
-    <linearGradient id="dc3-bg-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#061830"/>
-      <stop offset="50%" stop-color="#0A192F"/>
-      <stop offset="100%" stop-color="#061830"/>
+    <linearGradient id="bg-pp" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#061830"/><stop offset="50%" stop-color="#0A192F"/><stop offset="100%" stop-color="#061830"/>
     </linearGradient>
-
-    <!-- DC3 Card Fill Gradient -->
-    <linearGradient id="dc3-card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F2440"/>
-      <stop offset="100%" stop-color="#0A192F"/>
+    <linearGradient id="card-pp" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2440"/><stop offset="100%" stop-color="#0A192F"/>
     </linearGradient>
-    
-    <!-- DC3 Gold Accent Gradient -->
-    <linearGradient id="dc3-gold-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FFC809"/>
-      <stop offset="100%" stop-color="#FFCC00"/>
+    <linearGradient id="gold-pp" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFC809"/><stop offset="100%" stop-color="#FFCC00"/>
     </linearGradient>
-
-    <linearGradient id="dc3-cyan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00F2FE"/>
-      <stop offset="100%" stop-color="#4FACFE"/>
+    <linearGradient id="cyan-pp" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00D2FF"/><stop offset="100%" stop-color="#4FACFE"/>
     </linearGradient>
-
-    <linearGradient id="dc3-green-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38F9D7"/>
-      <stop offset="100%" stop-color="#43E97B"/>
+    <linearGradient id="green-pp" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38F9D7"/><stop offset="100%" stop-color="#43E97B"/>
     </linearGradient>
-
-    <!-- Drop Shadow Filter -->
-    <filter id="dc3-shadow">
-      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#000000" flood-opacity="0.6"/>
+    <linearGradient id="purple-pp" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="red-pp" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f43f5e"/><stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <filter id="shadow-pp">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
     </filter>
-
-    <!-- Marker Arrow Down -->
-    <marker id="dc3-arrow-gold" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#FFC809" />
+    <filter id="glow-pp">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arr-pp-gold" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#FFC809"/>
     </marker>
-    <marker id="dc3-arrow-cyan" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#00F2FE" />
+    <marker id="arr-pp-green" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#43E97B"/>
     </marker>
-    <marker id="dc3-arrow-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 1 0 L 5 10 L 9 0 z" fill="#38F9D7" />
+    <marker id="arr-pp-cyan" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#4FACFE"/>
     </marker>
   </defs>
 
-  <style>
-    .title-dc3 { font-family: 'Times New Roman', Georgia, serif; font-size: 18px; font-weight: 800; fill: #FFFFFF; letter-spacing: 0.5px; }
-    .subtitle-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11.5px; font-weight: 500; fill: #94A3B8; }
-    .card-title-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14.5px; font-weight: 700; fill: #F8FAFC; }
-    .card-badge-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 10.5px; font-weight: 800; fill: #061830; letter-spacing: 0.8px; }
-    .node-text-dc3 { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; fill: #CBD5E1; }
-    .code-text-dc3 { font-family: 'Consolas', monospace; font-size: 10.5px; fill: #FFC809; }
-    .bold-dc3 { font-weight: 700; fill: #FFFFFF; font-size: 11.5px; }
-  </style>
-
-  <!-- Background Layer -->
-  <rect width="900" height="1350" fill="url(#dc3-bg-grad)"/>
-
-  <!-- Page Margin Indicator (Folio Print Border Guide) -->
-  <rect x="25" y="25" width="850" height="1300" rx="16" fill="none" stroke="#1E3A8A" stroke-width="1.5" stroke-dasharray="8,5"/>
-
-  <!-- Header Banner (DC3 Style Printable Header) -->
-  <g transform="translate(45, 45)">
-    <rect x="0" y="0" width="810" height="85" rx="14" fill="#0F2440" stroke="#0066CC" stroke-width="1.5" filter="url(#dc3-shadow)"/>
-    <text x="25" y="36" class="title-dc3">⚖️ PIPELINE DE ARQUITECTURA (DC3 CYBER CENTER STYLE)</text>
-    <text x="25" y="60" class="subtitle-dc3">Formato Folio Imprimible • Estándar Institucional Department of Defense Cyber Crime Center</text>
-    <rect x="620" y="25" width="165" height="35" rx="17" fill="url(#dc3-gold-grad)"/>
-    <text x="702" y="47" text-anchor="middle" class="card-badge-dc3">DC3 CYBER LAB</text>
+  <!-- Background -->
+  <rect width="900" height="1350" fill="url(#bg-pp)"/>
+  <g stroke="#0066CC" stroke-opacity="0.06" stroke-width="1">
+    <line x1="0" y1="150" x2="900" y2="150"/>
+    <line x1="0" y1="400" x2="900" y2="400"/>
+    <line x1="0" y1="660" x2="900" y2="660"/>
+    <line x1="0" y1="920" x2="900" y2="920"/>
+    <line x1="0" y1="1180" x2="900" y2="1180"/>
+    <line x1="450" y1="130" x2="450" y2="1220"/>
   </g>
 
-  <!-- STEP 1: Selección Interactiva de Sala y Mes -->
-  <g transform="translate(45, 150)">
-    <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
-    <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-gold-grad)"/>
-    
-    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
-    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 1</text>
-    <text x="140" y="32" class="card-title-dc3">Selección Interactiva de Sala (0-7) y Mes / Período (0-12)</text>
+  <!-- ── HEADER ── -->
+  <rect x="0" y="0" width="900" height="118" fill="url(#card-pp)" filter="url(#shadow-pp)"/>
+  <rect x="0" y="114" width="900" height="4" fill="url(#gold-pp)"/>
+  <rect x="30" y="16" width="260" height="26" rx="13" fill="none" stroke="url(#gold-pp)" stroke-width="1.5"/>
+  <text x="160" y="33" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#FFC809" letter-spacing="2">[ DC3 CYBER FORENSICS LAB ]</text>
+  <text x="450" y="63" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFFFFF" filter="url(#glow-pp)">Pipeline de Arquitectura General</text>
+  <text x="450" y="86" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#FFC809" font-weight="bold">Case Law Extractor powered by sha256.us</text>
+  <text x="450" y="106" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#8899AA">TSJ Venezuela • Playwright + Dash + SQLite + Excel • Podman Ready</text>
 
-    <!-- Subcards -->
-    <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#FFC809" stroke-width="1.5"/>
-    <text x="45" y="70" class="bold-dc3" fill="#FFC809">1.1 Menú Interactivo</text>
-    <text x="45" y="88" class="code-text-dc3">prompt_select_sala()</text>
-    <text x="45" y="105" class="code-text-dc3">prompt_select_mes()</text>
-    <text x="45" y="122" class="node-text-dc3">• ejecutable_extractor.bat</text>
+  <!-- ── LAYER 1: USER INTERFACE ── -->
+  <rect x="30" y="132" width="840" height="130" rx="12" fill="url(#card-pp)" stroke="url(#gold-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
+  <rect x="30" y="132" width="6" height="130" rx="3" fill="url(#gold-pp)"/>
+  <text x="55" y="155" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFC809" letter-spacing="1">CAPA 1 — INTERFAZ DE USUARIO</text>
+  <!-- 3 UI modules -->
+  <rect x="50" y="162" width="242" height="84" rx="8" fill="#071D38" stroke="url(#gold-pp)" stroke-width="1"/>
+  <text x="171" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFC809">Dashboard Dash</text>
+  <text x="171" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">gui/dash_app.py</text>
+  <text x="171" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Selección Sala (7) + Mes (12)</text>
+  <text x="171" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Búsqueda + Barra Progreso</text>
+  <text x="171" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Dash + Bootstrap 5 + DC3</text>
 
-    <rect x="290" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="300" y="70" class="bold-dc3">1.2 Selección de Sala</text>
-    <text x="300" y="88" class="node-text-dc3">• Plena, Constitucional (scon)</text>
-    <text x="300" y="105" class="node-text-dc3">• SPA, Electoral (se), Civil (scc)</text>
-    <text x="300" y="122" class="node-text-dc3">• Penal (scp), Social (scs) / TODAS</text>
+  <rect x="315" y="162" width="242" height="84" rx="8" fill="#071D38" stroke="url(#gold-pp)" stroke-width="1"/>
+  <text x="436" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFC809">Modal Pop-Up</text>
+  <text x="436" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Ver Extracto Completo</text>
+  <text x="436" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Ratio Decidendi Preview</text>
+  <text x="436" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Link Directo → TSJ</text>
+  <text x="436" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">dbc.Modal + dbc.Card</text>
 
-    <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="555" y="70" class="bold-dc3">1.3 Mes o Período</text>
-    <text x="555" y="88" class="node-text-dc3">• Enero - Diciembre (1-12)</text>
-    <text x="555" y="105" class="node-text-dc3">• Todo el Año en curso (0)</text>
-    <text x="555" y="122" class="node-text-dc3">• Filtro atómico en scraping</text>
+  <rect x="580" y="162" width="272" height="84" rx="8" fill="#071D38" stroke="url(#gold-pp)" stroke-width="1"/>
+  <text x="716" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFC809">Controles Globales</text>
+  <text x="716" y="196" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Sync (24h) → Playwright</text>
+  <text x="716" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Generar Excel &amp; SQLite</text>
+  <text x="716" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Borrar Caché / Cookies</text>
+  <text x="716" y="238" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">dcc.Interval 86,400,000ms</text>
+
+  <line x1="450" y1="262" x2="450" y2="288" stroke="url(#gold-pp)" stroke-width="2" marker-end="url(#arr-pp-gold)"/>
+
+  <!-- ── LAYER 2: SCRAPER ENGINE ── -->
+  <rect x="30" y="288" width="840" height="180" rx="12" fill="url(#card-pp)" stroke="url(#cyan-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
+  <rect x="30" y="288" width="6" height="180" rx="3" fill="url(#cyan-pp)"/>
+  <text x="55" y="311" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#4FACFE" letter-spacing="1">CAPA 2 — MOTOR DE SCRAPING (PLAYWRIGHT CHROMIUM HEADLESS)</text>
+
+  <!-- Playwright central box -->
+  <rect x="290" y="320" width="320" height="130" rx="10" fill="#040D1A" stroke="url(#cyan-pp)" stroke-width="2"/>
+  <text x="450" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#4FACFE">⚙ Playwright Chromium 151</text>
+  <text x="450" y="359" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">playwright.chromium.launch(headless=True)</text>
+  <text x="450" y="374" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">ignore_https_errors=True • locale="es-ES"</text>
+  <text x="450" y="389" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FFC809">page.on("response", _on_response)</text>
+  <text x="450" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Navega tsj.gob.ve/juriprudencias</text>
+  <text x="450" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Click Sala → Año → wait 4,000ms</text>
+  <text x="450" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#38F9D7">src/buscador_tsj_excel.py</text>
+
+  <!-- Left side: TSJ Portal -->
+  <rect x="50" y="326" width="218" height="118" rx="8" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+  <text x="159" y="344" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#4FACFE">Portal TSJ Venezuela</text>
+  <text x="159" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">Liferay Portal (Java)</text>
+  <text x="159" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">portlets: senderJurisprudencia</text>
+  <text x="159" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">receiverJurispruedencia</text>
+  <text x="159" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">p_p_lifecycle=2 (AJAX)</text>
+  <text x="159" y="422" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">SSL verify=False</text>
+  <text x="159" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">JSESSIONID session cookie</text>
+  <line x1="268" y1="385" x2="290" y2="385" stroke="#0066CC" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr-pp-cyan)"/>
+
+  <!-- Right side: XHR Interceptor -->
+  <rect x="632" y="326" width="218" height="118" rx="8" fill="#071D38" stroke="#43E97B" stroke-width="1"/>
+  <text x="741" y="344" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#38F9D7">XHR Interceptor</text>
+  <text x="741" y="360" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">_parse_captured_responses()</text>
+  <text x="741" y="375" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">JSON → dict canónico</text>
+  <text x="741" y="390" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">HTML frag → BS4 parse</text>
+  <text x="741" y="405" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">DOM fallback → regex href</text>
+  <text x="741" y="422" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#FFC809">Tri-Modal Parser</text>
+  <text x="741" y="436" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">JSON &gt; HTML &gt; DOM</text>
+  <line x1="610" y1="385" x2="632" y2="385" stroke="#43E97B" stroke-width="1.5" marker-end="url(#arr-pp-green)"/>
+
+  <line x1="450" y1="468" x2="450" y2="494" stroke="url(#cyan-pp)" stroke-width="2" marker-end="url(#arr-pp-cyan)"/>
+
+  <!-- ── LAYER 3: PERSISTENCE ── -->
+  <rect x="30" y="494" width="840" height="168" rx="12" fill="url(#card-pp)" stroke="url(#green-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
+  <rect x="30" y="494" width="6" height="168" rx="3" fill="url(#green-pp)"/>
+  <text x="55" y="517" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#38F9D7" letter-spacing="1">CAPA 3 — PERSISTENCIA CANÓNICA 1:1 POR SALA</text>
+
+  <!-- 7 salas chips -->
+  <g font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC" text-anchor="middle">
+    <rect x="50" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <text x="103" y="541">Constitucional</text>
+    <rect x="166" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <text x="219" y="541">Pol.Administrativa</text>
+    <rect x="282" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <text x="335" y="541">Casación Civil</text>
+    <rect x="398" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <text x="451" y="541">Casación Penal</text>
+    <rect x="514" y="526" width="106" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <text x="567" y="541">Casación Social</text>
+    <rect x="630" y="526" width="80" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <text x="670" y="541">Electoral</text>
+    <rect x="720" y="526" width="130" height="22" rx="11" fill="#071D38" stroke="#0066CC" stroke-width="1"/>
+    <text x="785" y="541">Sala Plena</text>
   </g>
+  <text x="450" y="566" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#778899">sala_constitucional.db / .xlsx   sala_casacion_penal.db / .xlsx   …   (7 pares canónicos)</text>
 
-  <!-- Arrow Down 1 -> 2 -->
-  <path d="M 450 310 L 450 340" stroke="#FFC809" stroke-width="3" fill="none" marker-end="url(#dc3-arrow-gold)"/>
+  <!-- SQLite box -->
+  <rect x="50" y="576" width="370" height="70" rx="8" fill="#071D38" stroke="#4FACFE" stroke-width="1.5"/>
+  <text x="235" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4FACFE">🗄 SQLite Relacional Idempotente</text>
+  <text x="235" y="612" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">TSJDatabaseManager.guardar_lote() → INSERT OR UPDATE</text>
+  <text x="235" y="627" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">ON CONFLICT(link_directo) DO UPDATE SET</text>
+  <text x="235" y="641" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Índices: link_directo • sala • expediente • ano</text>
 
-  <!-- STEP 2: Extracción HTTP & Conexión Portal TSJ -->
-  <g transform="translate(45, 345)">
-    <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
-    <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-cyan-grad)"/>
-    
-    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-cyan-grad)"/>
-    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 2</text>
-    <text x="140" y="32" class="card-title-dc3">Scraping HTTP y Peticiones CiberTácticas al TSJ</text>
+  <!-- Excel box -->
+  <rect x="440" y="576" width="390" height="70" rx="8" fill="#071D38" stroke="#43E97B" stroke-width="1.5"/>
+  <text x="635" y="595" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#38F9D7">📊 Excel Analítico Profesional</text>
+  <text x="635" y="612" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">export_tsj_to_excel_profesional() → openpyxl</text>
+  <text x="635" y="627" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Hipervínculos TSJ • Cabeceras DC3 • Cols Auto-width</text>
+  <text x="635" y="641" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">pandas DataFrame → .xlsx con formato institucional</text>
 
-    <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="45" y="70" class="bold-dc3">2.1 Cliente HTTP</text>
-    <text x="45" y="88" class="node-text-dc3">• requests + urllib3</text>
-    <text x="45" y="105" class="node-text-dc3">• SSL verify=False (Bypass)</text>
-    <text x="45" y="122" class="node-text-dc3">• User-Agent Chrome 126</text>
+  <line x1="450" y1="662" x2="450" y2="688" stroke="url(#green-pp)" stroke-width="2" marker-end="url(#arr-pp-green)"/>
 
-    <rect x="290" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="300" y="70" class="bold-dc3">2.2 Servidor TSJ</text>
-    <text x="300" y="88" class="node-text-dc3">• historico.tsj.gob.ve</text>
-    <text x="300" y="105" class="node-text-dc3">• Paginación Mensual / Anual</text>
-    <text x="300" y="122" class="node-text-dc3">• Cobertura según Sala escogida</text>
+  <!-- ── LAYER 4: OUTPUTS ── -->
+  <rect x="30" y="688" width="840" height="158" rx="12" fill="url(#card-pp)" stroke="url(#purple-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
+  <rect x="30" y="688" width="6" height="158" rx="3" fill="url(#purple-pp)"/>
+  <text x="55" y="711" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7" letter-spacing="1">CAPA 4 — SALIDAS Y REPORTES</text>
 
-    <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#00F2FE" stroke-width="1.5"/>
-    <text x="555" y="70" class="bold-dc3" fill="#00F2FE">2.3 "Ver Extracto:" Pop-Up</text>
-    <text x="555" y="88" class="node-text-dc3">• Detecta enlace under 📄</text>
-    <text x="555" y="105" class="node-text-dc3">• Abre Sub-página Pop-Up</text>
-    <text x="555" y="122" class="node-text-dc3">• Captura Ratio Decidendi</text>
+  <rect x="50" y="720" width="196" height="110" rx="8" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
+  <text x="148" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">Dashboard Real-Time</text>
+  <text x="148" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Cards por sentencia</text>
+  <text x="148" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Filtros: Sala, Mes, Keyword</text>
+  <text x="148" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Barra de progreso XHR</text>
+  <text x="148" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">http://127.0.0.1:8050</text>
+  <text x="148" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">Dash + Bootstrap 5</text>
+
+  <rect x="262" y="720" width="196" height="110" rx="8" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
+  <text x="360" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">SQLite por Sala</text>
+  <text x="360" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">7 archivos .db</text>
+  <text x="360" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">data/Databases_SQLite/</text>
+  <text x="360" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">sala_&lt;nombre&gt;.db</text>
+  <text x="360" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Tabla: decisiones</text>
+  <text x="360" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">sqlite3 + WAL mode</text>
+
+  <rect x="474" y="720" width="196" height="110" rx="8" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
+  <text x="572" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">Excel por Sala</text>
+  <text x="572" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">7 archivos .xlsx</text>
+  <text x="572" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">data/Excel_Buscador/</text>
+  <text x="572" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">sala_&lt;nombre&gt;.xlsx</text>
+  <text x="572" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Hipervínculos activos</text>
+  <text x="572" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">pandas + openpyxl</text>
+
+  <rect x="686" y="720" width="196" height="110" rx="8" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
+  <text x="784" y="738" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#a855f7">PDF Oficial TSJ</text>
+  <text x="784" y="754" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Maquetación ReportLab</text>
+  <text x="784" y="768" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Membrete institucional</text>
+  <text x="784" y="782" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#FFC809">Folio Vertical Oficial</text>
+  <text x="784" y="798" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">data/PDFs/</text>
+  <text x="784" y="820" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">reportlab + pillow</text>
+
+  <line x1="450" y1="846" x2="450" y2="872" stroke="url(#purple-pp)" stroke-width="2" marker-end="url(#arr-pp-gold)"/>
+
+  <!-- ── LAYER 5: INFRASTRUCTURE ── -->
+  <rect x="30" y="872" width="840" height="198" rx="12" fill="url(#card-pp)" stroke="url(#red-pp)" stroke-width="1.5" filter="url(#shadow-pp)"/>
+  <rect x="30" y="872" width="6" height="198" rx="3" fill="url(#red-pp)"/>
+  <text x="55" y="895" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#f43f5e" letter-spacing="1">CAPA 5 — INFRAESTRUCTURA &amp; DESPLIEGUE (PODMAN)</text>
+
+  <!-- Podman box -->
+  <rect x="50" y="906" width="380" height="148" rx="8" fill="#071D38" stroke="url(#red-pp)" stroke-width="1.5"/>
+  <text x="240" y="924" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#f43f5e">🐳 Containerfile + podman-compose.yml</text>
+  <text x="240" y="942" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">FROM python:3.11-slim</text>
+  <text x="240" y="957" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">RUN playwright install chromium --with-deps</text>
+  <text x="240" y="972" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FFC809">EXPOSE 8050</text>
+  <text x="240" y="988" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">CMD ["python", "main.py", "--dashboard"]</text>
+  <text x="240" y="1006" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Volume: ./data:/app/data (SQLite + Excel persist)</text>
+  <text x="240" y="1022" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Health: curl -f http://localhost:8050/</text>
+  <text x="240" y="1040" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">podman build -t case-law-extractor . &amp;&amp; podman run -p 8050:8050 .</text>
+
+  <!-- Scheduler box -->
+  <rect x="460" y="906" width="390" height="148" rx="8" fill="#071D38" stroke="#4FACFE" stroke-width="1.5"/>
+  <text x="655" y="924" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4FACFE">⏱ Auto-Sync 24h Scheduler</text>
+  <text x="655" y="942" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">src/scheduler.py — global_scheduler</text>
+  <text x="655" y="957" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#AABBCC">dcc.Interval id="interval-24h-sync"</text>
+  <text x="655" y="972" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#FFC809">interval=86,400,000 ms (24 horas)</text>
+  <text x="655" y="988" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Dispara worker_multisala_scraper()</text>
+  <text x="655" y="1003" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">threading.Thread(daemon=True)</text>
+  <text x="655" y="1019" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">progress_callback → sync_progress dict</text>
+  <text x="655" y="1036" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#AABBCC">Intervalo 400ms → polling progress bar</text>
+  <text x="655" y="1054" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#778899">O presionar "Sincronizar" manualmente</text>
+
+  <!-- ── TECH STACK STRIP ── -->
+  <rect x="30" y="1085" width="840" height="90" rx="12" fill="#040D1A" stroke="#0066CC" stroke-width="1" filter="url(#shadow-pp)"/>
+  <text x="450" y="1105" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#778899" letter-spacing="1">STACK TECNOLÓGICO</text>
+  <!-- tech pills row 1 -->
+  <g font-family="Arial, sans-serif" font-size="9" text-anchor="middle">
+    <rect x="50" y="1112" width="90" height="20" rx="10" fill="#071D38" stroke="#4FACFE" stroke-width="1"/>
+    <text x="95" y="1126" fill="#4FACFE">Python 3.11</text>
+    <rect x="152" y="1112" width="82" height="20" rx="10" fill="#071D38" stroke="#4FACFE" stroke-width="1"/>
+    <text x="193" y="1126" fill="#4FACFE">Playwright</text>
+    <rect x="246" y="1112" width="62" height="20" rx="10" fill="#071D38" stroke="#38F9D7" stroke-width="1"/>
+    <text x="277" y="1126" fill="#38F9D7">SQLite3</text>
+    <rect x="320" y="1112" width="80" height="20" rx="10" fill="#071D38" stroke="#38F9D7" stroke-width="1"/>
+    <text x="360" y="1126" fill="#38F9D7">openpyxl</text>
+    <rect x="412" y="1112" width="56" height="20" rx="10" fill="#071D38" stroke="#FFC809" stroke-width="1"/>
+    <text x="440" y="1126" fill="#FFC809">Dash</text>
+    <rect x="480" y="1112" width="56" height="20" rx="10" fill="#071D38" stroke="#FFC809" stroke-width="1"/>
+    <text x="508" y="1126" fill="#FFC809">DBC</text>
+    <rect x="548" y="1112" width="80" height="20" rx="10" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
+    <text x="588" y="1126" fill="#a855f7">ReportLab</text>
+    <rect x="640" y="1112" width="56" height="20" rx="10" fill="#071D38" stroke="#a855f7" stroke-width="1"/>
+    <text x="668" y="1126" fill="#a855f7">pandas</text>
+    <rect x="708" y="1112" width="70" height="20" rx="10" fill="#071D38" stroke="#f43f5e" stroke-width="1"/>
+    <text x="743" y="1126" fill="#f43f5e">Podman</text>
+    <rect x="790" y="1112" width="62" height="20" rx="10" fill="#071D38" stroke="#f43f5e" stroke-width="1"/>
+    <text x="821" y="1126" fill="#f43f5e">gunicorn</text>
   </g>
+  <text x="450" y="1163" text-anchor="middle" font-family="Arial, sans-serif" font-size="8.5" fill="#556677">BeautifulSoup4 • lxml • requests • urllib3 • colorama • tqdm • pillow • threading</text>
 
-  <!-- Arrow Down 2 -> 3 -->
-  <path d="M 450 505 L 450 535" stroke="#00F2FE" stroke-width="3" fill="none" marker-end="url(#dc3-arrow-cyan)"/>
-
-  <!-- STEP 3: Parsing DOM, Filtro NLP & Normalización -->
-  <g transform="translate(45, 540)">
-    <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
-    <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-gold-grad)"/>
-    
-    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
-    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 3</text>
-    <text x="140" y="32" class="card-title-dc3">Parsing DOM HTML &amp; Inteligencia en Evidencia Digital DC3</text>
-
-    <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="45" y="70" class="bold-dc3">3.1 BeautifulSoup Parser</text>
-    <text x="45" y="88" class="node-text-dc3">• Parser Lxml C-Engine</text>
-    <text x="45" y="105" class="node-text-dc3">• Extrae: Exp, Sent, Fecha</text>
-    <text x="45" y="122" class="node-text-dc3">• clean_text() de espacios</text>
-
-    <rect x="290" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#FFC809" stroke-width="1.5"/>
-    <text x="300" y="70" class="bold-dc3" fill="#FFC809">3.2 TECH_KEYWORDS Filter</text>
-    <text x="300" y="88" class="node-text-dc3">• Evidencia / Prueba Digital</text>
-    <text x="300" y="105" class="node-text-dc3">• Cadena de Custodia / Hash</text>
-    <text x="300" y="122" class="node-text-dc3">• Delito Informático / WhatsApp</text>
-
-    <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="555" y="70" class="bold-dc3">3.3 Nombres Dinámicos</text>
-    <text x="555" y="88" class="code-text-dc3">sanitize_search_name()</text>
-    <text x="555" y="105" class="node-text-dc3">• Incluye Sala y Mes en título</text>
-    <text x="555" y="122" class="node-text-dc3">• ej. Escaneo_SCC_Febrero...</text>
-  </g>
-
-  <!-- Arrow Down 3 -> 4 -->
-  <path d="M 450 700 L 450 730" stroke="#38F9D7" stroke-width="3" fill="none" marker-end="url(#dc3-arrow-green)"/>
-
-  <!-- STEP 4: Persistencia Emparejada 1:1 -->
-  <g transform="translate(45, 735)">
-    <rect x="0" y="0" width="810" height="175" rx="14" fill="url(#dc3-card-grad)" stroke="#38F9D7" stroke-width="2" filter="url(#dc3-shadow)"/>
-    <rect x="15" y="15" width="6" height="145" rx="3" fill="url(#dc3-green-grad)"/>
-    
-    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-green-grad)"/>
-    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 4</text>
-    <text x="140" y="32" class="card-title-dc3">Persistencia Emparejada 1:1 (SQLite DB + Matriz Excel con Nombre Dinámico)</text>
-
-    <rect x="35" y="48" width="365" height="110" rx="8" fill="#061830" stroke="#38F9D7" stroke-width="1.5"/>
-    <text x="50" y="70" class="bold-dc3" fill="#38F9D7">🗄️ Base de Datos SQLite Dedicada</text>
-    <text x="50" y="88" class="node-text-dc3">• Ruta: data/Databases_SQLite/Escaneo_&lt;Sala&gt;_&lt;Mes&gt;.db</text>
-    <text x="50" y="105" class="node-text-dc3">• Inserción Atómica: ON CONFLICT(link_directo) DO UPDATE</text>
-    <text x="50" y="122" class="node-text-dc3">• Cero duplicados, almacenamiento relacional filtrado</text>
-
-    <rect x="420" y="48" width="370" height="110" rx="8" fill="#061830" stroke="#38F9D7" stroke-width="1.5"/>
-    <text x="435" y="70" class="bold-dc3" fill="#38F9D7">📊 Matriz Analítica Excel Emparejada</text>
-    <text x="435" y="88" class="node-text-dc3">• Ruta: data/Excel_Buscador/Escaneo_&lt;Sala&gt;_&lt;Mes&gt;.xlsx</text>
-    <text x="435" y="105" class="node-text-dc3">• 9 Columnas de Datos + Extracto completo de Pop-Up</text>
-    <text x="435" y="122" class="node-text-dc3">• Columna 9: Hipervínculo Azul Clicable de la URL Pop-Up</text>
-  </g>
-
-  <!-- Arrow Down 4 -> 5 -->
-  <path d="M 450 910 L 450 940" stroke="#38F9D7" stroke-width="3" fill="none" marker-end="url(#dc3-arrow-green)"/>
-
-  <!-- STEP 5: Salidas UX y PDF Institucional -->
-  <g transform="translate(45, 945)">
-    <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
-    <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-gold-grad)"/>
-    
-    <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
-    <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 5</text>
-    <text x="140" y="32" class="card-title-dc3">Exportación de Documentos y Salidas UX Estilo DC3</text>
-
-    <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="45" y="70" class="bold-dc3">5.1 PDF Oficial TSJ</text>
-    <text x="45" y="88" class="node-text-dc3">• ReportLab Engine</text>
-    <text x="45" y="105" class="node-text-dc3">• Membrete e Imprimible</text>
-    <text x="45" y="122" class="node-text-dc3">• data/PDFs/</text>
-
-    <rect x="290" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="300" y="70" class="bold-dc3">5.2 JSON / CSV Backups</text>
-    <text x="300" y="88" class="node-text-dc3">• Resguardo de datos</text>
-    <text x="300" y="105" class="node-text-dc3">• Integración RAG / LLM</text>
-    <text x="300" y="122" class="node-text-dc3">• Intercambio de APIs</text>
-
-    <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#FFC809" stroke-width="1.5"/>
-    <text x="555" y="70" class="bold-dc3" fill="#FFC809">5.3 Consola DC3 &amp; Stats</text>
-    <text x="555" y="88" class="node-text-dc3">• main.py --db (Reporte BDs)</text>
-    <text x="555" y="105" class="node-text-dc3">• Menú Táctico Gold/Navy</text>
-    <text x="555" y="122" class="node-text-dc3">• Sincronización GitHub</text>
-  </g>
-
-  <!-- Bottom Printable Summary Banner (DC3 Footer) -->
-  <g transform="translate(45, 1125)">
-    <rect x="0" y="0" width="810" height="175" rx="14" fill="#0F2440" stroke="#0066CC" stroke-width="1.5" filter="url(#dc3-shadow)"/>
-    <text x="30" y="33" class="title-dc3" fill="#FFFFFF">📜 GARANTÍAS DE IMPRESIÓN Y GOBERNANZA CYBER CENTER DC3</text>
-
-    <g transform="translate(30, 52)">
-      <circle cx="12" cy="12" r="12" fill="url(#dc3-gold-grad)"/>
-      <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
-      <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#FFC809">Selección Interactivas por Sala y Mes:</text>
-      <text x="260" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Filtra la búsqueda por 1 de 7 Salas o Todas, y por un Mes específico o Todo el Año.</text>
-    </g>
-
-    <g transform="translate(30, 80)">
-      <circle cx="12" cy="12" r="12" fill="url(#dc3-green-grad)"/>
-      <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
-      <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#38F9D7">Verificación Pop-Up:</text>
-      <text x="260" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Abre el link bajo 'Ver Extracto:', valida la ratio decidendi y guarda esa URL exacta como link_directo.</text>
-    </g>
-
-    <g transform="translate(30, 108)">
-      <circle cx="12" cy="12" r="12" fill="url(#dc3-cyan-grad)"/>
-      <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
-      <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#00F2FE">Estándar Folio Vertical DC3:</text>
-      <text x="260" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Proporción de página Folio/Legal (900x1350) optimizada para lectura en papel e informes.</text>
-    </g>
-
-    <!-- Footer Code Line -->
-    <rect x="30" y="136" width="750" height="26" rx="6" fill="#061830"/>
-    <text x="45" y="153" class="code-text-dc3">DC3 Cyber Forensics Laboratory Style • Extractor TSJ Venezuela • GitHub: julljoll/case-law-extractor</text>
-  </g>
+  <!-- ── FOOTER ── -->
+  <rect x="0" y="1230" width="900" height="120" fill="#040D1A"/>
+  <rect x="0" y="1230" width="900" height="2" fill="url(#gold-pp)"/>
+  <text x="450" y="1258" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">Case Law Extractor powered by sha256.us</text>
+  <text x="450" y="1277" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#AABBCC">Arquitectura LegalTech v2.0 • TSJ Venezuela 2019–2026 • DC3 Cyber Forensics Design System</text>
+  <rect x="155" y="1293" width="590" height="1" fill="#0066CC" fill-opacity="0.4"/>
+  <text x="215" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">7 Salas Orgánicas</text>
+  <text x="450" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">Chromium Headless Real</text>
+  <text x="685" y="1315" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#778899">Windows / Linux / Podman</text>
+  <text x="450" y="1340" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#44556677">© 2026 Case Law Extractor • sha256.us • MIT License</text>
 </svg>

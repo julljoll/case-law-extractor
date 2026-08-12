@@ -1,0 +1,54 @@
+# Case Law Extractor — .dockerignore
+# Excluye archivos innecesarios del contexto de build del contenedor
+
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+extractor.log
+
+# Data local (se monta como volumen)
+data/
+
+# Editor configs
+.vscode/
+*.code-workspace
+.idea/
+
+# Test artifacts
+tests/__pycache__/
+.pytest_cache/
+htmlcov/
+.coverage
+
+# Scrapy source (framework repo, no necesario en container)
+scrapy/
+
+# Entornos virtuales
+venv/
+env/
+.env/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Gemini/AI workspace
+.gemini/
+*.gemini
+
+# Temp files
+*.tmp
+*.bak
