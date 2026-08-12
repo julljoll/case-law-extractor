@@ -2,14 +2,14 @@
   
   <!-- SEO & Accessibility Metadata -->
   <title id="scraper-title">Lógica de Extracción y Flujo Pop-Up TSJ - DC3 Cyber Forensics Style</title>
-  <desc id="scraper-desc">Diagrama de flujo detallado en 5 pasos que demuestra el escaneo de la lista TSJ, identificación del enlace onder Ver Extracto, apertura de la ventana emergente Pop-Up, verificación de la Ratio Decidendi y guardado emparejado en SQLite y Excel.</desc>
+  <desc id="scraper-desc">Diagrama de flujo detallado en 5 pasos que demuestra la selección de Sala y Mes, escaneo de la lista TSJ, identificación del enlace onder Ver Extracto, apertura de la ventana emergente Pop-Up, verificación de la Ratio Decidendi y guardado emparejado en SQLite y Excel.</desc>
 
   <metadata>
     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:schema="http://schema.org/">
       <rdf:Description>
-        <dc:title>Lógica de Extracción y Flujo Pop-Up TSJ</dc:title>
-        <dc:description>Flujo de scraping y verificación de ventanas emergentes Pop-Up con copiado de URL directa en SQLite DB y Excel .xlsx.</dc:description>
-        <dc:subject>Scraper TSJ, Pop-Up Ver Extracto, Evidencia Digital, Python BeautifulSoup, SQLite3, Excel, DC3 Cyber Center</dc:subject>
+        <dc:title>Lógica de Extracción y Flujo Pop-Up TSJ con Selección de Sala y Mes</dc:title>
+        <dc:description>Flujo de scraping, selección interactiva por Sala y Mes y verificación de ventanas emergentes Pop-Up con copiado de URL directa en SQLite DB y Excel .xlsx.</dc:description>
+        <dc:subject>Scraper TSJ, Selección Sala Mes, Pop-Up Ver Extracto, Evidencia Digital, Python BeautifulSoup, SQLite3, Excel, DC3 Cyber Center</dc:subject>
         <dc:creator>Extractor Jurisprudencias TSJ Team</dc:creator>
         <dc:publisher>Department of Defense Cyber Crime Center Style Architecture</dc:publisher>
         <schema:license>MIT</schema:license>
@@ -96,13 +96,13 @@
     
     <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-cyan-grad-sc)"/>
     <text x="82" y="30" text-anchor="middle" class="card-badge-sc-dc3">PASO 1</text>
-    <text x="140" y="32" class="card-title-sc-dc3">Escaneo Inicial y Detección de Enlace "Ver Extracto:"</text>
+    <text x="140" y="32" class="card-title-sc-dc3">Escaneo Inicial (Filtro por Sala y Mes) &amp; Detección "Ver Extracto:"</text>
 
-    <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="45" y="70" class="bold-sc-dc3">1.1 Navegación TSJ</text>
-    <text x="45" y="88" class="node-text-sc-dc3">• Apertura historico.tsj.gob.ve</text>
-    <text x="45" y="105" class="node-text-sc-dc3">• Captura N° Sentencia y Exp</text>
-    <text x="45" y="122" class="node-text-sc-dc3">• Lectura de Fecha y Sala</text>
+    <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#FFC809" stroke-width="1.5"/>
+    <text x="45" y="70" class="bold-sc-dc3" fill="#FFC809">1.1 Selección Sala/Mes</text>
+    <text x="45" y="88" class="node-text-sc-dc3">• Sala: Plena, scon, spa, scc...</text>
+    <text x="45" y="105" class="node-text-sc-dc3">• Mes: Enero-Dic / Todo el Año</text>
+    <text x="45" y="122" class="node-text-sc-dc3">• Navega a historico.tsj.gob.ve</text>
 
     <rect x="290" y="48" width="250" height="95" rx="8" fill="#061830" stroke="#00F2FE" stroke-width="1.5"/>
     <text x="300" y="70" class="bold-sc-dc3" fill="#00F2FE">1.2 Enlace bajo "Ver Extracto:"</text>
@@ -201,7 +201,7 @@
     <text x="435" y="70" class="bold-sc-dc3" fill="#38F9D7">4.2 Sanitización Nombre Búsqueda</text>
     <text x="435" y="88" class="code-text-sc-dc3">name = sanitize_search_name(formula)</text>
     <text x="435" y="108" class="node-text-sc-dc3">• Asigna nombre espejo a BD SQLite y Excel</text>
-    <text x="435" y="125" class="node-text-sc-dc3">• ej. Busqueda_Delitos_Informaticos</text>
+    <text x="435" y="125" class="node-text-sc-dc3">• ej. Escaneo_SCC_Febrero</text>
   </g>
 
   <!-- Arrow Down 4 -> 5 -->
@@ -220,13 +220,13 @@
     <text x="50" y="70" class="bold-sc-dc3" fill="#38F9D7">🗄️ SQLite DB Dedicada</text>
     <text x="50" y="88" class="node-text-sc-dc3">• Guarda link_directo + extracto verificado del Pop-Up</text>
     <text x="50" y="105" class="code-text-sc-dc3">INSERT INTO decisiones ON CONFLICT(link_directo)...</text>
-    <text x="50" y="122" class="node-text-sc-dc3">• data/Databases_SQLite/&lt;Busqueda_Formula&gt;.db</text>
+    <text x="50" y="122" class="node-text-sc-dc3">• data/Databases_SQLite/Escaneo_&lt;Sala&gt;_&lt;Mes&gt;.db</text>
 
     <rect x="420" y="48" width="370" height="110" rx="8" fill="#061830" stroke="#38F9D7" stroke-width="1.5"/>
     <text x="435" y="70" class="bold-sc-dc3" fill="#38F9D7">📊 Excel Emparejado (.xlsx)</text>
     <text x="435" y="88" class="node-text-sc-dc3">• Columna 8: Extracto Pop-Up | Columna 9: Link Directo</text>
     <text x="435" y="105" class="node-text-sc-dc3">• Hipervínculo azul clicable para abrir la sentencia oficial</text>
-    <text x="435" y="122" class="node-text-sc-dc3">• data/Excel_Buscador/&lt;Busqueda_Formula&gt;.xlsx</text>
+    <text x="435" y="122" class="node-text-sc-dc3">• data/Excel_Buscador/Escaneo_&lt;Sala&gt;_&lt;Mes&gt;.xlsx</text>
   </g>
 
   <!-- Bottom Code Sequence Summary (DC3 Footer) -->

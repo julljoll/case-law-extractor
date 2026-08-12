@@ -432,22 +432,22 @@ class JurisprudenciaExtractor:
         buscador = BuscadorTSJExcel(config_dict=self.config)
         return buscador.ejecutar_busqueda_e_indizacion(palabra_clave=palabra_clave)
 
-    def run_actualizar_jurisprudencias(self, palabra_clave: str = "", ano_inicio: int = 2019, ano_fin: int = 2026) -> str:
+    def run_actualizar_jurisprudencias(self, palabra_clave: str = "", ano_inicio: int = 2019, ano_fin: int = 2026, sala_info: Optional[Dict[str, str]] = None, mes_info: Optional[Dict[str, str]] = None) -> str:
         """
         Scans for latest jurisprudence updates from ano_inicio (2019) to present date (2026),
-        updating both SQLite database and Excel workbook.
+        updating both SQLite database and Excel workbook with optional Sala and Month filtering.
         """
         from src.buscador_tsj_excel import BuscadorTSJExcel
         buscador = BuscadorTSJExcel(config_dict=self.config)
-        return buscador.actualizar_ultimas_jurisprudencias(palabra_clave=palabra_clave, ano_inicio=ano_inicio, ano_fin=ano_fin)
+        return buscador.actualizar_ultimas_jurisprudencias(palabra_clave=palabra_clave, ano_inicio=ano_inicio, ano_fin=ano_fin, sala_info=sala_info, mes_info=mes_info)
 
-    def run_escaneo_global(self, ano_inicio: int = 2019, ano_fin: int = 2026) -> str:
+    def run_escaneo_global(self, ano_inicio: int = 2019, ano_fin: int = 2026, sala_info: Optional[Dict[str, str]] = None, mes_info: Optional[Dict[str, str]] = None) -> str:
         """
-        Runs global scanner across all 7 TSJ Chambers and all decision pages from 2019 to 2026.
+        Runs global scanner across TSJ Chambers and decision pages with optional Sala and Month filtering.
         """
         from src.buscador_tsj_excel import BuscadorTSJExcel
         buscador = BuscadorTSJExcel(config_dict=self.config)
-        return buscador.escanear_global_todas_las_paginas(ano_inicio=ano_inicio, ano_fin=ano_fin)
+        return buscador.escanear_global_todas_las_paginas(ano_inicio=ano_inicio, ano_fin=ano_fin, sala_info=sala_info, mes_info=mes_info)
 
 
     def run_consultar_db_stats(self) -> List[Dict[str, Any]]:

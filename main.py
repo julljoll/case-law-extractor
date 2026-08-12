@@ -8,7 +8,7 @@ import sys
 import os
 from colorama import init, Fore, Style
 from src.extractor import JurisprudenciaExtractor
-from src.utils import load_config
+from src.utils import load_config, prompt_select_sala, prompt_select_mes
 
 init(autoreset=True)
 
@@ -21,7 +21,7 @@ def print_banner():
 
 def show_menu():
     print(f"{Fore.YELLOW}▸ SELECCIONE LA OPCIÓN DE OPERACIÓN (DC3 SYSTEM TACTICAL MENU):{Style.RESET_ALL}")
-    print(f"  {Fore.YELLOW}[1]{Style.RESET_ALL} Escaneo Global de Todas las Páginas del TSJ (2019 a 2026) ➔ Escaneo_Global.db + .xlsx")
+    print(f"  {Fore.YELLOW}[1]{Style.RESET_ALL} Escaneo Global / Específico de Páginas del TSJ ➔ Escaneo_<Sala>_<Mes>.db + .xlsx")
     print(f"  {Fore.YELLOW}[2]{Style.RESET_ALL} Actualizar Base de Datos de Últimas Jurisprudencias ➔ Actualizacion.db + .xlsx")
     print(f"  {Fore.YELLOW}[3]{Style.RESET_ALL} Búsqueda por Fórmula / Palabra Clave / Expediente ➔ Genera BD SQLite + Excel Dedicados")
     print(f"  {Fore.YELLOW}[4]{Style.RESET_ALL} Inspeccionar Estadísticas de Todas las Bases de Datos SQLite Generadas")
@@ -35,23 +35,28 @@ def main():
     if len(sys.argv) > 1:
         arg = sys.argv[1].lower()
         if arg in ["--escaneo-global", "--global", "-g", "1"]:
-            print(f"{Fore.CYAN}Ejecutando Escaneo Global de Todas las Páginas del TSJ (2019 - 2026)...{Style.RESET_ALL}")
+            sala_choice = prompt_select_sala()
+            mes_choice = prompt_select_mes()
+            print(f"{Fore.CYAN}Ejecutando Escaneo TSJ para {sala_choice['nombre']} | Período: {mes_choice['nombre']}...{Style.RESET_ALL}")
             extractor = JurisprudenciaExtractor()
-            extractor.run_escaneo_global(ano_inicio=2019, ano_fin=2026)
+            extractor.run_escaneo_global(ano_inicio=2019, ano_fin=2026, sala_info=sala_choice, mes_info=mes_choice)
             return
         elif arg in ["--actualizar", "--ultimas", "-u", "2"]:
-            print(f"{Fore.CYAN}Ejecutando Sincronización de Últimas Jurisprudencias...{Style.RESET_ALL}")
+            sala_choice = prompt_select_sala()
+            mes_choice = prompt_select_mes()
+            print(f"{Fore.CYAN}Ejecutando Sincronización para {sala_choice['nombre']} | Período: {mes_choice['nombre']}...{Style.RESET_ALL}")
             extractor = JurisprudenciaExtractor()
-            extractor.run_actualizar_jurisprudencias(ano_inicio=2019, ano_fin=2026)
+            extractor.run_actualizar_jurisprudencias(ano_inicio=2019, ano_fin=2026, sala_info=sala_choice, mes_info=mes_choice)
             return
         elif arg in ["--stats", "--db", "4"]:
             extractor = JurisprudenciaExtractor()
             extractor.run_consultar_db_stats()
             return
         elif arg in ["--paso-a-paso", "-p", "paso_a_paso", "5"]:
-            print(f"{Fore.CYAN}Ejecutando Modo Paso a Paso con Impresión a PDF...{Style.RESET_ALL}")
+            sala_choice = prompt_select_sala()
+            print(f"{Fore.CYAN}Ejecutando Modo Paso a Paso para {sala_choice['nombre']} con Impresión a PDF...{Style.RESET_ALL}")
             extractor = JurisprudenciaExtractor()
-            extractor.run_paso_a_paso()
+            extractor.run_paso_a_paso(salas=[sala_choice["key"]] if sala_choice["key"] != "todas" else None)
             return
         elif os.path.exists(sys.argv[1]):
             extractor = JurisprudenciaExtractor(config_path=sys.argv[1])
@@ -65,21 +70,28 @@ def main():
         if sys.stdin.isatty():
             opcion = input("Ingrese el número de opción (1-6): ").strip()
             if opcion == "1":
+                sala_choice = prompt_select_sala()
+                mes_choice = prompt_select_mes()
                 extractor = JurisprudenciaExtractor()
-                extractor.run_escaneo_global(ano_inicio=2019, ano_fin=2026)
+                extractor.run_escaneo_global(ano_inicio=2019, ano_fin=2026, sala_info=sala_choice, mes_info=mes_choice)
             elif opcion == "2":
+                sala_choice = prompt_select_sala()
+                mes_choice = prompt_select_mes()
                 extractor = JurisprudenciaExtractor()
-                extractor.run_actualizar_jurisprudencias(ano_inicio=2019, ano_fin=2026)
+                extractor.run_actualizar_jurisprudencias(ano_inicio=2019, ano_fin=2026, sala_info=sala_choice, mes_info=mes_choice)
             elif opcion == "3":
-                kw = input("Ingrese la palabra clave, fórmula de búsqueda, delito, materia o expediente: ").strip()
+                kw = input("\nIngrese la palabra clave, fórmula de búsqueda, delito, materia o expediente: ").strip()
+                sala_choice = prompt_select_sala()
+                mes_choice = prompt_select_mes()
                 extractor = JurisprudenciaExtractor()
-                extractor.run_actualizar_jurisprudencias(palabra_clave=kw, ano_inicio=2019, ano_fin=2026)
+                extractor.run_actualizar_jurisprudencias(palabra_clave=kw, ano_inicio=2019, ano_fin=2026, sala_info=sala_choice, mes_info=mes_choice)
             elif opcion == "4":
                 extractor = JurisprudenciaExtractor()
                 extractor.run_consultar_db_stats()
             elif opcion == "5":
+                sala_choice = prompt_select_sala()
                 extractor = JurisprudenciaExtractor()
-                extractor.run_paso_a_paso()
+                extractor.run_paso_a_paso(salas=[sala_choice["key"]] if sala_choice["key"] != "todas" else None)
             elif opcion == "6":
                 print("Saliendo...")
                 sys.exit(0)

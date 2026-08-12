@@ -70,6 +70,67 @@ SALAS_MAP = {
     }
 }
 
+# Choices for interactive TSJ Chamber and Month selection
+SALAS_CHOICES = {
+    "0": {"key": "todas", "nombre": "Todas las Salas / Juzgados", "code": "todas"},
+    "1": {"key": "plena", "nombre": "Sala Plena", "code": "plena"},
+    "2": {"key": "constitucional", "nombre": "Sala Constitucional", "code": "scon"},
+    "3": {"key": "politico_administrativa", "nombre": "Sala Político-Administrativa", "code": "spa"},
+    "4": {"key": "electoral", "nombre": "Sala Electoral", "code": "se"},
+    "5": {"key": "casacion_civil", "nombre": "Sala de Casación Civil", "code": "scc"},
+    "6": {"key": "casacion_penal", "nombre": "Sala de Casación Penal", "code": "scp"},
+    "7": {"key": "casacion_social", "nombre": "Sala de Casación Social", "code": "scs"}
+}
+
+MESES_CHOICES = {
+    "0": {"key": "todo_el_ano", "nombre": "Todo el Año en curso (Enero - Diciembre)", "code": "ano_completo"},
+    "1": {"key": "enero", "nombre": "Enero", "code": "enero"},
+    "2": {"key": "febrero", "nombre": "Febrero", "code": "febrero"},
+    "3": {"key": "marzo", "nombre": "Marzo", "code": "marzo"},
+    "4": {"key": "abril", "nombre": "Abril", "code": "abril"},
+    "5": {"key": "mayo", "nombre": "Mayo", "code": "mayo"},
+    "6": {"key": "junio", "nombre": "Junio", "code": "junio"},
+    "7": {"key": "julio", "nombre": "Julio", "code": "julio"},
+    "8": {"key": "agosto", "nombre": "Agosto", "code": "agosto"},
+    "9": {"key": "septiembre", "nombre": "Septiembre", "code": "septiembre"},
+    "10": {"key": "octubre", "nombre": "Octubre", "code": "octubre"},
+    "11": {"key": "noviembre", "nombre": "Noviembre", "code": "noviembre"},
+    "12": {"key": "diciembre", "nombre": "Diciembre", "code": "diciembre"}
+}
+
+
+def prompt_select_sala() -> Dict[str, str]:
+    """Displays DC3 style interactive menu for selecting TSJ Chamber."""
+    print(f"\n{Fore.BLUE}{'='*78}")
+    print(f"{Fore.YELLOW}  [ TSJ CYBER FORENSICS LAB ] {Fore.CYAN}SELECCIÓN DE SALA O JUZGADO TSJ")
+    print(f"{Fore.BLUE}{'='*78}{Style.RESET_ALL}")
+    print(f"  {Fore.GREEN}[0]{Style.RESET_ALL} TODAS LAS SALAS (Plena, Constitucional, Político-Admin, Electoral, Civil, Penal, Social)")
+    print(f"  {Fore.YELLOW}[1]{Style.RESET_ALL} Sala Plena")
+    print(f"  {Fore.YELLOW}[2]{Style.RESET_ALL} Sala Constitucional")
+    print(f"  {Fore.YELLOW}[3]{Style.RESET_ALL} Sala Político-Administrativa")
+    print(f"  {Fore.YELLOW}[4]{Style.RESET_ALL} Sala Electoral")
+    print(f"  {Fore.YELLOW}[5]{Style.RESET_ALL} Sala de Casación Civil")
+    print(f"  {Fore.YELLOW}[6]{Style.RESET_ALL} Sala de Casación Penal")
+    print(f"  {Fore.YELLOW}[7]{Style.RESET_ALL} Sala de Casación Social\n")
+    
+    opc = input(f"{Fore.YELLOW}Seleccione el número de Sala [0-7] (Por defecto: 0): {Style.RESET_ALL}").strip()
+    return SALAS_CHOICES.get(opc, SALAS_CHOICES["0"])
+
+
+def prompt_select_mes() -> Dict[str, str]:
+    """Displays DC3 style interactive menu for selecting Month / Year period."""
+    print(f"\n{Fore.BLUE}{'='*78}")
+    print(f"{Fore.YELLOW}  [ TSJ CYBER FORENSICS LAB ] {Fore.CYAN}SELECCIÓN DE MES O PERÍODO A ESCANEAR")
+    print(f"{Fore.BLUE}{'='*78}{Style.RESET_ALL}")
+    print(f"  {Fore.GREEN}[0]{Style.RESET_ALL} TODO EL AÑO EN CURSO (Enero a Diciembre)")
+    print(f"  {Fore.YELLOW}[1]{Style.RESET_ALL} Enero      {Fore.YELLOW}[2]{Style.RESET_ALL} Febrero    {Fore.YELLOW}[3]{Style.RESET_ALL} Marzo      {Fore.YELLOW}[4]{Style.RESET_ALL} Abril")
+    print(f"  {Fore.YELLOW}[5]{Style.RESET_ALL} Mayo       {Fore.YELLOW}[6]{Style.RESET_ALL} Junio      {Fore.YELLOW}[7]{Style.RESET_ALL} Julio      {Fore.YELLOW}[8]{Style.RESET_ALL} Agosto")
+    print(f"  {Fore.YELLOW}[9]{Style.RESET_ALL} Septiembre {Fore.YELLOW}[10]{Style.RESET_ALL} Octubre   {Fore.YELLOW}[11]{Style.RESET_ALL} Noviembre  {Fore.YELLOW}[12]{Style.RESET_ALL} Diciembre\n")
+    
+    opc = input(f"{Fore.YELLOW}Seleccione el número de Mes [0-12] (Por defecto: 0): {Style.RESET_ALL}").strip()
+    return MESES_CHOICES.get(opc, MESES_CHOICES["0"])
+
+
 # Keywords specifically for digital evidence, computer crimes, and technology
 TECH_KEYWORDS = [
     "prueba digital", "evidencia digital", "delito informático", "delitos informáticos",

@@ -15,7 +15,9 @@ from src.utils import (
     export_to_excel,
     generate_decision_pdf,
     export_summary_pdf,
-    sanitize_search_name
+    sanitize_search_name,
+    prompt_select_sala,
+    prompt_select_mes
 )
 from src.extractor import JurisprudenciaExtractor
 
@@ -41,7 +43,6 @@ class TestJurisprudenciaExtractor(unittest.TestCase):
     def tearDown(self):
         if os.path.exists(self.test_dir):
             shutil.rmtree(self.test_dir, ignore_errors=True)
-
 
     def test_load_and_save_config(self):
         config_path = os.path.join(self.test_dir, "test_config.json")
@@ -174,6 +175,23 @@ class TestJurisprudenciaExtractor(unittest.TestCase):
         self.assertTrue(os.path.exists(excel_path))
         self.assertIn("Busqueda_Evidencia_Digital", excel_path)
         self.assertTrue(os.path.exists("data/Databases_SQLite/Busqueda_Evidencia_Digital.db"))
+
+    def test_sala_and_mes_filtering(self):
+        extractor = JurisprudenciaExtractor(config_dict={
+            "carpeta_excel": self.test_dir
+        })
+        sala_choice = {"key": "casacion_civil", "nombre": "Sala de Casación Civil", "code": "scc"}
+        mes_choice = {"key": "febrero", "nombre": "Febrero", "code": "febrero"}
+        
+        excel_path = extractor.run_escaneo_global(
+            ano_inicio=2019,
+            ano_fin=2026,
+            sala_info=sala_choice,
+            mes_info=mes_choice
+        )
+        self.assertTrue(os.path.exists(excel_path))
+        self.assertIn("Escaneo_SCC_Febrero", excel_path)
+        self.assertTrue(os.path.exists("data/Databases_SQLite/Escaneo_SCC_Febrero_2019_2026.db"))
 
 
 if __name__ == "__main__":

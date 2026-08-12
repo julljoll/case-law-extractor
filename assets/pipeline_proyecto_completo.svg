@@ -2,14 +2,14 @@
   
   <!-- SEO & Accessibility Metadata -->
   <title id="pipeline-title">Pipeline de Arquitectura General - Extractor Jurisprudencias TSJ Venezuela</title>
-  <desc id="pipeline-desc">Diagrama vectorial Folio imprimible que ilustra las 5 etapas del pipeline de extracción, scraping HTTP, parsing DOM, inteligencia en evidencia digital, persistencia emparejada en SQLite y Excel, y maquetación de PDFs institucionales estilo DC3 Cyber Center.</desc>
+  <desc id="pipeline-desc">Diagrama vectorial Folio imprimible que ilustra la selección de Sala y Mes, scraping HTTP, parsing DOM, inteligencia en evidencia digital, persistencia emparejada en SQLite y Excel, y maquetación de PDFs institucionales estilo DC3 Cyber Center.</desc>
 
   <metadata>
     <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:schema="http://schema.org/">
       <rdf:Description>
         <dc:title>Pipeline de Arquitectura General - Extractor Jurisprudencias TSJ</dc:title>
-        <dc:description>Diagrama de arquitectura técnica Folio imprimible con el flujo de datos emparejados SQLite DB y Excel .xlsx.</dc:description>
-        <dc:subject>LegalTech, Web Scraping, TSJ Venezuela, Evidencia Digital, SQLite, ReportLab, DC3 Cyber Center</dc:subject>
+        <dc:description>Diagrama de arquitectura técnica Folio imprimible con selección interactiva por Sala y Mes y flujo de datos emparejados SQLite DB y Excel .xlsx.</dc:description>
+        <dc:subject>LegalTech, Web Scraping, TSJ Venezuela, Selección Sala Mes, Evidencia Digital, SQLite, ReportLab, DC3 Cyber Center</dc:subject>
         <dc:creator>Extractor Jurisprudencias TSJ Team</dc:creator>
         <dc:publisher>Department of Defense Cyber Crime Center Style Architecture</dc:publisher>
         <schema:license>MIT</schema:license>
@@ -35,12 +35,6 @@
     <linearGradient id="dc3-gold-grad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#FFC809"/>
       <stop offset="100%" stop-color="#FFCC00"/>
-    </linearGradient>
-
-    <!-- DC3 Blue Accent Gradient -->
-    <linearGradient id="dc3-blue-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0066CC"/>
-      <stop offset="100%" stop-color="#1E88E5"/>
     </linearGradient>
 
     <linearGradient id="dc3-cyan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -95,33 +89,33 @@
     <text x="702" y="47" text-anchor="middle" class="card-badge-dc3">DC3 CYBER LAB</text>
   </g>
 
-  <!-- STEP 1: Configuración y Entradas -->
+  <!-- STEP 1: Selección Interactiva de Sala y Mes -->
   <g transform="translate(45, 150)">
     <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#dc3-card-grad)" stroke="#0066CC" stroke-width="2" filter="url(#dc3-shadow)"/>
     <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#dc3-gold-grad)"/>
     
     <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-gold-grad)"/>
     <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 1</text>
-    <text x="140" y="32" class="card-title-dc3">Configuración y Menú Táctico CLI (main.py / config.json)</text>
+    <text x="140" y="32" class="card-title-dc3">Selección Interactiva de Sala (0-7) y Mes / Período (0-12)</text>
 
     <!-- Subcards -->
-    <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="45" y="70" class="bold-dc3">1.1 Interfaz main.py</text>
-    <text x="45" y="88" class="node-text-dc3">• Menú DC3 Táctico [1-6]</text>
-    <text x="45" y="105" class="node-text-dc3">• Banderas CLI: -g, -u, -p</text>
+    <rect x="35" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#FFC809" stroke-width="1.5"/>
+    <text x="45" y="70" class="bold-dc3" fill="#FFC809">1.1 Menú Interactivo</text>
+    <text x="45" y="88" class="code-text-dc3">prompt_select_sala()</text>
+    <text x="45" y="105" class="code-text-dc3">prompt_select_mes()</text>
     <text x="45" y="122" class="node-text-dc3">• ejecutable_extractor.bat</text>
 
     <rect x="290" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="300" y="70" class="bold-dc3">1.2 config.json</text>
-    <text x="300" y="88" class="node-text-dc3">• Rango Años: 2019 - 2026</text>
-    <text x="300" y="105" class="node-text-dc3">• Cobertura 7 Salas TSJ</text>
-    <text x="300" y="122" class="node-text-dc3">• modo_tecnologia: True</text>
+    <text x="300" y="70" class="bold-dc3">1.2 Selección de Sala</text>
+    <text x="300" y="88" class="node-text-dc3">• Plena, Constitucional (scon)</text>
+    <text x="300" y="105" class="node-text-dc3">• SPA, Electoral (se), Civil (scc)</text>
+    <text x="300" y="122" class="node-text-dc3">• Penal (scp), Social (scs) / TODAS</text>
 
     <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="555" y="70" class="bold-dc3">1.3 Fórmulas Búsqueda</text>
-    <text x="555" y="88" class="node-text-dc3">• "Evidencia Digital"</text>
-    <text x="555" y="105" class="node-text-dc3">• "Delito Informático"</text>
-    <text x="555" y="122" class="node-text-dc3">• Expedientes (ej. C25-664)</text>
+    <text x="555" y="70" class="bold-dc3">1.3 Mes o Período</text>
+    <text x="555" y="88" class="node-text-dc3">• Enero - Diciembre (1-12)</text>
+    <text x="555" y="105" class="node-text-dc3">• Todo el Año en curso (0)</text>
+    <text x="555" y="122" class="node-text-dc3">• Filtro atómico en scraping</text>
   </g>
 
   <!-- Arrow Down 1 -> 2 -->
@@ -145,8 +139,8 @@
     <rect x="290" y="48" width="240" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
     <text x="300" y="70" class="bold-dc3">2.2 Servidor TSJ</text>
     <text x="300" y="88" class="node-text-dc3">• historico.tsj.gob.ve</text>
-    <text x="300" y="105" class="node-text-dc3">• Paginación Mensual 2019-26</text>
-    <text x="300" y="122" class="node-text-dc3">• Mapeo de 7 Salas TSJ</text>
+    <text x="300" y="105" class="node-text-dc3">• Paginación Mensual / Anual</text>
+    <text x="300" y="122" class="node-text-dc3">• Cobertura según Sala escogida</text>
 
     <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#00F2FE" stroke-width="1.5"/>
     <text x="555" y="70" class="bold-dc3" fill="#00F2FE">2.3 "Ver Extracto:" Pop-Up</text>
@@ -180,10 +174,10 @@
     <text x="300" y="122" class="node-text-dc3">• Delito Informático / WhatsApp</text>
 
     <rect x="545" y="48" width="245" height="95" rx="8" fill="#061830" stroke="#1E3A8A"/>
-    <text x="555" y="70" class="bold-dc3">3.3 Normalizador Nombres</text>
+    <text x="555" y="70" class="bold-dc3">3.3 Nombres Dinámicos</text>
     <text x="555" y="88" class="code-text-dc3">sanitize_search_name()</text>
-    <text x="555" y="105" class="node-text-dc3">• Genera sufijos limpios</text>
-    <text x="555" y="122" class="node-text-dc3">• ej. Busqueda_Delitos...</text>
+    <text x="555" y="105" class="node-text-dc3">• Incluye Sala y Mes en título</text>
+    <text x="555" y="122" class="node-text-dc3">• ej. Escaneo_SCC_Febrero...</text>
   </g>
 
   <!-- Arrow Down 3 -> 4 -->
@@ -196,17 +190,17 @@
     
     <rect x="35" y="15" width="95" height="22" rx="11" fill="url(#dc3-green-grad)"/>
     <text x="82" y="30" text-anchor="middle" class="card-badge-dc3">ETAPA 4</text>
-    <text x="140" y="32" class="card-title-dc3">Persistencia Emparejada 1:1 (SQLite DB + Matriz Excel)</text>
+    <text x="140" y="32" class="card-title-dc3">Persistencia Emparejada 1:1 (SQLite DB + Matriz Excel con Nombre Dinámico)</text>
 
     <rect x="35" y="48" width="365" height="110" rx="8" fill="#061830" stroke="#38F9D7" stroke-width="1.5"/>
     <text x="50" y="70" class="bold-dc3" fill="#38F9D7">🗄️ Base de Datos SQLite Dedicada</text>
-    <text x="50" y="88" class="node-text-dc3">• Ruta: data/Databases_SQLite/&lt;Busqueda_Formula&gt;.db</text>
+    <text x="50" y="88" class="node-text-dc3">• Ruta: data/Databases_SQLite/Escaneo_&lt;Sala&gt;_&lt;Mes&gt;.db</text>
     <text x="50" y="105" class="node-text-dc3">• Inserción Atómica: ON CONFLICT(link_directo) DO UPDATE</text>
-    <text x="50" y="122" class="node-text-dc3">• Cero duplicados, almacenamiento relacional indexado</text>
+    <text x="50" y="122" class="node-text-dc3">• Cero duplicados, almacenamiento relacional filtrado</text>
 
     <rect x="420" y="48" width="370" height="110" rx="8" fill="#061830" stroke="#38F9D7" stroke-width="1.5"/>
     <text x="435" y="70" class="bold-dc3" fill="#38F9D7">📊 Matriz Analítica Excel Emparejada</text>
-    <text x="435" y="88" class="node-text-dc3">• Ruta: data/Excel_Buscador/&lt;Busqueda_Formula&gt;.xlsx</text>
+    <text x="435" y="88" class="node-text-dc3">• Ruta: data/Excel_Buscador/Escaneo_&lt;Sala&gt;_&lt;Mes&gt;.xlsx</text>
     <text x="435" y="105" class="node-text-dc3">• 9 Columnas de Datos + Extracto completo de Pop-Up</text>
     <text x="435" y="122" class="node-text-dc3">• Columna 9: Hipervínculo Azul Clicable de la URL Pop-Up</text>
   </g>
@@ -250,22 +244,22 @@
     <g transform="translate(30, 52)">
       <circle cx="12" cy="12" r="12" fill="url(#dc3-gold-grad)"/>
       <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
-      <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#FFC809">Generación Emparejada 1:1:</text>
-      <text x="210" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Cada término de búsqueda crea un archivo SQLite (.db) y un Excel (.xlsx) con nombres espejo.</text>
+      <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#FFC809">Selección Interactivas por Sala y Mes:</text>
+      <text x="260" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Filtra la búsqueda por 1 de 7 Salas o Todas, y por un Mes específico o Todo el Año.</text>
     </g>
 
     <g transform="translate(30, 80)">
       <circle cx="12" cy="12" r="12" fill="url(#dc3-green-grad)"/>
       <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
       <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#38F9D7">Verificación Pop-Up:</text>
-      <text x="210" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Abre el link bajo 'Ver Extracto:', valida la ratio decidendi y guarda esa URL exacta como link_directo.</text>
+      <text x="260" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Abre el link bajo 'Ver Extracto:', valida la ratio decidendi y guarda esa URL exacta como link_directo.</text>
     </g>
 
     <g transform="translate(30, 108)">
       <circle cx="12" cy="12" r="12" fill="url(#dc3-cyan-grad)"/>
       <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#061830">✓</text>
       <text x="32" y="16" font-family="Segoe UI" font-size="11.5px" font-weight="700" fill="#00F2FE">Estándar Folio Vertical DC3:</text>
-      <text x="210" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Proporción de página Folio/Legal (900x1350) optimizada para lectura en papel e informes.</text>
+      <text x="260" y="16" font-family="Segoe UI" font-size="11px" fill="#94A3B8">Proporción de página Folio/Legal (900x1350) optimizada para lectura en papel e informes.</text>
     </g>
 
     <!-- Footer Code Line -->
