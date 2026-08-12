@@ -165,6 +165,9 @@ class TSJDatabaseManager:
                 mgr = TSJDatabaseManager(db_path=full_path)
                 stats = mgr.obtener_estadisticas()
                 stats["filename"] = db_file
+                res.append(stats)
+            except Exception as e:
+                res.append({"filename": db_file, "error": str(e), "total_registros": 0})
         return res
 
     @staticmethod
