@@ -37,7 +37,19 @@ El **Extractor de Jurisprudencias TSJ** automatiza la recolección de decisiones
 
 ## 🔄 Pipeline de Funcionamiento (Workflow)
 
-El flujo de trabajo está diseñado en **5 etapas secuenciales** altamente optimizadas para garantizar tolerancia a fallos, procesamiento limpia de datos e indexación rápida.
+El flujo de trabajo está diseñado en **5 etapas secuenciales** altamente optimizadas para garantizar tolerancia a fallos, procesamiento limpio de datos e indexación rápida.
+
+### 📐 Diagramas Vectoriales HD (Arquitectura & Scraping)
+
+![Pipeline Completo del Proyecto](assets/pipeline_proyecto_completo.svg)
+
+<br/>
+
+![Lógica de Extracción del Scraper](assets/logica_extraccion_scraper.svg)
+
+---
+
+### 📊 Diagrama de Secuencia de Datos
 
 ```mermaid
 flowchart TD

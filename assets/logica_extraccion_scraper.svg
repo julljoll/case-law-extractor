@@ -1,0 +1,282 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 950" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad-scraper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B132B"/>
+      <stop offset="50%" stop-color="#1C2541"/>
+      <stop offset="100%" stop-color="#0B132B"/>
+    </linearGradient>
+
+    <!-- Card Gradients -->
+    <linearGradient id="card-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1C2541"/>
+      <stop offset="100%" stop-color="#0B132B"/>
+    </linearGradient>
+    
+    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE"/>
+      <stop offset="100%" stop-color="#4FACFE"/>
+    </linearGradient>
+
+    <linearGradient id="green-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38F9D7"/>
+      <stop offset="100%" stop-color="#43E97B"/>
+    </linearGradient>
+
+    <linearGradient id="purple-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F355DA"/>
+      <stop offset="100%" stop-color="#6E0DD0"/>
+    </linearGradient>
+
+    <linearGradient id="amber-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB300"/>
+      <stop offset="100%" stop-color="#F57C00"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow-effect" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <filter id="shadow-effect">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Markers -->
+    <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#00F2FE" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38F9D7" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#F355DA" />
+    </marker>
+  </defs>
+
+  <style>
+    .header-title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 26px; font-weight: 800; fill: #FFFFFF; letter-spacing: 1px; }
+    .header-subtitle { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; font-weight: 500; fill: #8D99AE; }
+    .phase-title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 16px; font-weight: 700; fill: #F8FAFC; }
+    .phase-badge { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 800; fill: #0B132B; text-transform: uppercase; letter-spacing: 1px; }
+    .code-box { font-family: 'Consolas', monospace; font-size: 11px; fill: #38F9D7; }
+    .text-dim { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; fill: #CBD5E1; }
+    .text-bold { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-weight: 700; fill: #FFFFFF; }
+  </style>
+
+  <!-- Background -->
+  <rect width="1400" height="950" fill="url(#bg-grad-scraper)"/>
+
+  <!-- Top Banner -->
+  <g transform="translate(50, 40)">
+    <rect x="0" y="0" width="1300" height="75" rx="16" fill="#1C2541" stroke="#3A506B" stroke-width="1.5" filter="url(#shadow-effect)"/>
+    <text x="30" y="38" class="header-title">🔍 LÓGICA DE EXTRACCIÓN Y FLUJO DEL SCRAPER (TSJ VENEZUELA)</text>
+    <text x="30" y="60" class="header-subtitle">Detalle del ciclo de vida: Petición HTTP ➔ Parsing DOM HTML ➔ Pop-Up Extract ➔ Filtro NLP ➔ Persistencia Emparejada</text>
+    <rect x="1120" y="20" width="150" height="35" rx="8" fill="url(#cyan-glow)"/>
+    <text x="1195" y="42" text-anchor="middle" class="phase-badge">SCRAPER ENGINE</text>
+  </g>
+
+  <!-- Flow Steps Grid (5 Columns) -->
+
+  <!-- STEP A: Dispadcher HTTP -->
+  <g transform="translate(50, 155)">
+    <rect x="0" y="0" width="230" height="490" rx="16" fill="url(#card-grad)" stroke="#3A506B" stroke-width="2" filter="url(#shadow-effect)"/>
+    <rect x="15" y="15" width="200" height="6" rx="3" fill="url(#cyan-glow)"/>
+    
+    <rect x="15" y="30" width="80" height="22" rx="4" fill="url(#cyan-glow)"/>
+    <text x="55" y="45" text-anchor="middle" class="phase-badge">PASO A</text>
+    <text x="15" y="75" class="phase-title">Petición HTTP</text>
+
+    <!-- Content Nodes -->
+    <rect x="15" y="95" width="200" height="110" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="118" class="text-bold">1. Sesión &amp; Headers</text>
+    <text x="25" y="138" class="text-dim">• User-Agent Chrome 126</text>
+    <text x="25" y="155" class="text-dim">• Accept: text/html</text>
+    <text x="25" y="172" class="text-dim">• Referer: tsj.gob.ve</text>
+    <text x="25" y="189" class="text-dim">• SSL verify=False</text>
+
+    <rect x="15" y="215" width="200" height="120" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="238" class="text-bold">2. Enrutador por Sala</text>
+    <text x="25" y="258" class="code-text">SALAS_MAP = {</text>
+    <text x="25" y="275" class="code-text">  "scon": Sala Constitucional,</text>
+    <text x="25" y="292" class="code-text">  "scp": Casación Penal,</text>
+    <text x="25" y="309" class="code-text">  "spa", "scc", "scs", "se"...</text>
+    <text x="25" y="324" class="code-text">}</text>
+
+    <rect x="15" y="345" width="200" height="125" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="368" class="text-bold">3. Reintentos &amp; Wait</text>
+    <text x="25" y="388" class="text-dim">• max_retries = 3</text>
+    <text x="25" y="405" class="text-dim">• timeout = 15s</text>
+    <text x="25" y="422" class="text-dim">• Detection encoding:</text>
+    <text x="25" y="439" class="code-text">response.apparent_encoding</text>
+  </g>
+
+  <!-- Connection A -> B -->
+  <path d="M 280 400 L 310 400" stroke="#00F2FE" stroke-width="3" fill="none" marker-end="url(#arrow-cyan)"/>
+
+  <!-- STEP B: Parsing Tabla Principal -->
+  <g transform="translate(320, 155)">
+    <rect x="0" y="0" width="230" height="490" rx="16" fill="url(#card-grad)" stroke="#3A506B" stroke-width="2" filter="url(#shadow-effect)"/>
+    <rect x="15" y="15" width="200" height="6" rx="3" fill="url(#cyan-glow)"/>
+    
+    <rect x="15" y="30" width="80" height="22" rx="4" fill="url(#cyan-glow)"/>
+    <text x="55" y="45" text-anchor="middle" class="phase-badge">PASO B</text>
+    <text x="15" y="75" class="phase-title">Parsing DOM HTML</text>
+
+    <rect x="15" y="95" width="200" height="110" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="118" class="text-bold">1. BeautifulSoup Lxml</text>
+    <text x="25" y="138" class="text-dim">• Parse DOM tree HTML</text>
+    <text x="25" y="155" class="text-dim">• Busca etiquetas &lt;table&gt;</text>
+    <text x="25" y="172" class="text-dim">• Iteración filas &lt;tr&gt;</text>
+    <text x="25" y="189" class="text-dim">• Extracción atributos &lt;a href&gt;</text>
+
+    <rect x="15" y="215" width="200" height="150" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="238" class="text-bold">2. Metadatos Clave</text>
+    <text x="25" y="258" class="text-dim">• <tspan fill="#00F2FE">numero_sentencia</tspan> (ej. 161)</text>
+    <text x="25" y="278" class="text-dim">• <tspan fill="#00F2FE">expediente</tspan> (ej. C25-664)</text>
+    <text x="25" y="298" class="text-dim">• <tspan fill="#00F2FE">fecha</tspan> (ej. 23 de Marzo 2026)</text>
+    <text x="25" y="318" class="text-dim">• <tspan fill="#00F2FE">ponente</tspan> (ej. Dr. Moreno)</text>
+    <text x="25" y="338" class="text-dim">• <tspan fill="#00F2FE">link_directo</tspan> (.HTML)</text>
+
+    <rect x="15" y="375" width="200" height="95" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="398" class="text-bold">3. Limpieza Textual</text>
+    <text x="25" y="418" class="code-text">clean_text(raw_string)</text>
+    <text x="25" y="435" class="text-dim">• Stripping \r\n\t &amp; NBSP</text>
+    <text x="25" y="452" class="text-dim">• Caracteres no imprimibles</text>
+  </g>
+
+  <!-- Connection B -> C -->
+  <path d="M 550 400 L 580 400" stroke="#00F2FE" stroke-width="3" fill="none" marker-end="url(#arrow-cyan)"/>
+
+  <!-- STEP C: Captura Pop-Up Extracto -->
+  <g transform="translate(590, 155)">
+    <rect x="0" y="0" width="230" height="490" rx="16" fill="url(#card-grad)" stroke="#3A506B" stroke-width="2" filter="url(#shadow-effect)"/>
+    <rect x="15" y="15" width="200" height="6" rx="3" fill="url(#amber-glow)"/>
+    
+    <rect x="15" y="30" width="80" height="22" rx="4" fill="url(#amber-glow)"/>
+    <text x="55" y="45" text-anchor="middle" class="phase-badge">PASO C</text>
+    <text x="15" y="75" class="phase-title">Pop-Up "Ver Extracto"</text>
+
+    <rect x="15" y="95" width="200" height="120" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="118" class="text-bold">1. Sub-Petición Pop-Up</text>
+    <text x="25" y="138" class="text-dim">• Simulación clic usuario</text>
+    <text x="25" y="155" class="text-dim">• Carga emergente fallo</text>
+    <text x="25" y="172" class="text-dim">• Inspección DOM modal</text>
+    <text x="25" y="189" class="text-dim">• Extracción del extracto</text>
+
+    <rect x="15" y="225" width="200" height="135" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="248" class="text-bold">2. Extracción de Razón</text>
+    <text x="25" y="268" class="text-dim">• <tspan fill="#FFB300">tema</tspan>: Motivación Pericial</text>
+    <text x="25" y="288" class="text-dim">• <tspan fill="#FFB300">materia</tspan>: Procesal Penal</text>
+    <text x="25" y="308" class="text-dim">• <tspan fill="#FFB300">asunto</tspan>: Delito Informático</text>
+    <text x="25" y="328" class="text-dim">• <tspan fill="#FFB300">extracto</tspan>: Ratio Decidendi</text>
+
+    <rect x="15" y="370" width="200" height="100" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="393" class="text-bold">3. Trazabilidad URL</text>
+    <text x="25" y="413" class="node-text">• URL Canónica Única</text>
+    <text x="25" y="430" class="code-text">historico.tsj.gob.ve/...</text>
+    <text x="25" y="447" class="node-text">• Clave Primaria Universal</text>
+  </g>
+
+  <!-- Connection C -> D -->
+  <path d="M 820 400 L 850 400" stroke="#F355DA" stroke-width="3" fill="none" marker-end="url(#arrow-purple)"/>
+
+  <!-- STEP D: Filtro Tecnológico NLP -->
+  <g transform="translate(860, 155)">
+    <rect x="0" y="0" width="230" height="490" rx="16" fill="url(#card-grad)" stroke="#3A506B" stroke-width="2" filter="url(#shadow-effect)"/>
+    <rect x="15" y="15" width="200" height="6" rx="3" fill="url(#purple-glow)"/>
+    
+    <rect x="15" y="30" width="80" height="22" rx="4" fill="url(#purple-glow)"/>
+    <text x="55" y="45" text-anchor="middle" class="phase-badge" style="fill:#FFFFFF">PASO D</text>
+    <text x="15" y="75" class="phase-title">Filtro Tecnológico</text>
+
+    <rect x="15" y="95" width="200" height="145" rx="10" fill="#0B132B" stroke="#F355DA" stroke-width="1.5"/>
+    <text x="25" y="118" class="text-bold" style="fill:#F355DA">1. TECH_KEYWORDS</text>
+    <text x="25" y="138" class="text-dim">• "prueba digital"</text>
+    <text x="25" y="155" class="text-dim">• "evidencia digital"</text>
+    <text x="25" y="172" class="text-dim">• "delito informático"</text>
+    <text x="25" y="189" class="text-dim">• "cadena de custodia"</text>
+    <text x="25" y="206" class="text-dim">• "peritaje informático"</text>
+    <text x="25" y="223" class="text-dim">• "ciberseguridad" / "hash"</text>
+
+    <rect x="15" y="250" width="200" height="100" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="273" class="text-bold">2. Clasificación Categoría</text>
+    <text x="25" y="293" class="text-dim">Si coincide palabra clave:</text>
+    <text x="25" y="310" class="code-text">modo_tecnologia = True</text>
+    <text x="25" y="327" class="text-dim">Guarda copia en /Tecnologica</text>
+
+    <rect x="15" y="360" width="200" height="110" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="25" y="383" class="text-bold">3. Sanitizador Nombre BD</text>
+    <text x="25" y="403" class="code-text">sanitize_search_name()</text>
+    <text x="25" y="420" class="text-dim">• 'Evidencia Digital'</text>
+    <text x="25" y="437" class="text-dim">➜ Busqueda_Evidencia_Digital</text>
+  </g>
+
+  <!-- Connection D -> E -->
+  <path d="M 1090 400 L 1120 400" stroke="#38F9D7" stroke-width="3" fill="none" marker-end="url(#arrow-green)"/>
+
+  <!-- STEP E: Guardado Emparejado 1:1 -->
+  <g transform="translate(1130, 155)">
+    <rect x="0" y="0" width="220" height="490" rx="16" fill="url(#card-grad)" stroke="#3A506B" stroke-width="2" filter="url(#shadow-effect)"/>
+    <rect x="15" y="15" width="190" height="6" rx="3" fill="url(#green-glow)"/>
+    
+    <rect x="15" y="30" width="80" height="22" rx="4" fill="url(#green-glow)"/>
+    <text x="55" y="45" text-anchor="middle" class="phase-badge">PASO E</text>
+    <text x="15" y="75" class="phase-title">Persistencia 1:1</text>
+
+    <rect x="15" y="95" width="190" height="160" rx="10" fill="#0B132B" stroke="#38F9D7" stroke-width="1.5"/>
+    <text x="25" y="118" class="text-bold" style="fill:#38F9D7">🗄️ SQLite DB Dedicada</text>
+    <text x="25" y="138" class="code-text">INSERT INTO decisiones</text>
+    <text x="25" y="155" class="code-text">ON CONFLICT(link_directo)</text>
+    <text x="25" y="172" class="code-text">DO UPDATE SET...</text>
+    <text x="25" y="192" class="text-dim">• Cero duplicados</text>
+    <text x="25" y="209" class="text-dim">• Actualización atómica</text>
+    <text x="25" y="226" class="text-dim">• Índices de búsqueda</text>
+
+    <rect x="15" y="265" width="190" height="140" rx="10" fill="#0B132B" stroke="#38F9D7" stroke-width="1.5"/>
+    <text x="25" y="288" class="text-bold" style="fill:#38F9D7">📊 Matriz Excel Emparejada</text>
+    <text x="25" y="308" class="code-text">export_excel_profesional()</text>
+    <text x="25" y="328" class="text-dim">• Libros openpyxl</text>
+    <text x="25" y="345" class="text-dim">• 9 Columnas de Datos</text>
+    <text x="25" y="362" class="text-dim">• Ancho autoajustado</text>
+
+    <rect x="15" y="415" width="190" height="55" rx="8" fill="url(#green-glow)"/>
+    <text x="110" y="448" text-anchor="middle" font-family="Segoe UI" font-size="13px" font-weight="800" fill="#0B132B">✓ PROCESO COMPLETADO</text>
+  </g>
+
+  <!-- Bottom Detailed Flow Code Diagram -->
+  <g transform="translate(50, 670)">
+    <rect x="0" y="0" width="1300" height="230" rx="16" fill="#1C2541" stroke="#3A506B" stroke-width="1.5" filter="url(#shadow-effect)"/>
+    
+    <text x="30" y="35" font-family="Segoe UI" font-size="16px" font-weight="700" fill="#F8FAFC">⚡ SECUENCIA DE CÓDIGO INTERNO Y MÉTODOS DEL SCRAPER</text>
+
+    <!-- Step 1 Code Box -->
+    <rect x="30" y="55" width="380" height="150" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="45" y="80" class="text-bold" fill="#00F2FE">1. JurisprudenciaExtractor &amp; BuscadorTSJExcel</text>
+    <text x="45" y="102" class="code-text">extractor = JurisprudenciaExtractor()</text>
+    <text x="45" y="122" class="code-text"># Ejecuta escaneo global o búsqueda</text>
+    <text x="45" y="142" class="code-text">extractor.run_actualizar_jurisprudencias(</text>
+    <text x="45" y="162" class="code-text">    palabra_clave="Evidencia Digital"</text>
+    <text x="45" y="182" class="code-text">)</text>
+
+    <!-- Step 2 Code Box -->
+    <rect x="445" y="55" width="410" height="150" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="460" y="80" class="text-bold" fill="#FFB300">2. Normalización de Nombre y Creación de BD</text>
+    <text x="460" y="102" class="code-text">name = sanitize_search_name("Evidencia Digital")</text>
+    <text x="460" y="122" class="code-text"># Output: 'Busqueda_Evidencia_Digital'</text>
+    <text x="460" y="142" class="code-text">db_path = "data/Databases_SQLite/" + name + ".db"</text>
+    <text x="460" y="162" class="code-text">excel_path = "data/Excel_Buscador/" + name + ".xlsx"</text>
+    <text x="460" y="182" class="code-text">target_db = TSJDatabaseManager(db_path=db_path)</text>
+
+    <!-- Step 3 Code Box -->
+    <rect x="885" y="55" width="385" height="150" rx="10" fill="#0B132B" stroke="#3A506B"/>
+    <text x="900" y="80" class="text-bold" fill="#38F9D7">3. Guardado Emparejado Atómico</text>
+    <text x="900" y="102" class="code-text">target_db.guardar_lote(decisiones)</text>
+    <text x="900" y="122" class="code-text">export_tsj_to_excel_profesional(</text>
+    <text x="900" y="142" class="code-text">    target_db.obtener_todas(),</text>
+    <text x="900" y="162" class="code-text">    excel_path</text>
+    <text x="900" y="182" class="code-text">)</text>
+  </g>
+
+</svg>
