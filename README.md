@@ -276,10 +276,9 @@ Aparecerá el menú interactivo en consola con la opción del Dashboard Web y se
 
 ```text
 ==============================================================================
-  [ TSJ CYBER FORENSICS LAB ] DEPARTMENT OF DEFENSE CYBER CRIME CENTER STYLE
-     BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA (2019 - 2026)
+  [BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA (2019 - 2026)
   Generación de BD SQLite + Matriz Excel (.xlsx) Dedicadas por Fórmula
-==============================================================================
+=============================================================================
 
 Seleccione la opción deseada:
   [1] Escaneo Global / Específico de Páginas del TSJ ➔ Escaneo_<Sala>_<Mes>.db + .xlsx
@@ -303,9 +302,8 @@ Seleccione la opción deseada:
 
 ### 3. Ejecución Directa en Windows
 
-Puedes hacer doble clic sobre los archivos lanzadores:
-- **`ejecutar_extractor.bat`**: Abre la consola interactiva lista para operar.
-- **`run.bat`**: Ejecución rápida del pipeline principal.
+Puedes hacer doble clic sobre el archivo ejecutable único:
+- **`ejecutar_extractor.bat`**: Lanzador interactivo principal (ofrece menú táctico, Dashboard Web, escaneos y pruebas).
 
 ---
 

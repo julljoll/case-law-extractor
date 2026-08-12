@@ -121,12 +121,13 @@ exit /b 0
 """
 
 # Standardize CRLF
+import os
+
 crlf_content = bat_content.replace('\r\n', '\n').replace('\n', '\r\n')
 with open('ejecutar_extractor.bat', 'wb') as f:
     f.write(crlf_content.encode('utf-8'))
 
-run_content = "@echo off\r\ncall ejecutar_extractor.bat %*\r\n"
-with open('run.bat', 'wb') as f:
-    f.write(run_content.encode('utf-8'))
+if os.path.exists('run.bat'):
+    os.remove('run.bat')
 
-print("Batch files generated successfully with CRLF endings.")
+print("Único archivo de ejecución 'ejecutar_extractor.bat' generado con éxito con codificación CRLF.")
