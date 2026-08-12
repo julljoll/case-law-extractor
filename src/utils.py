@@ -9,6 +9,7 @@ import json
 import logging
 import re
 import time
+import unicodedata
 from datetime import datetime
 from typing import Dict, List, Any, Optional, Tuple
 import requests
@@ -155,6 +156,32 @@ def save_config(config_data: Dict[str, Any], config_path: str = "config.json") -
     """Saves dictionary configuration to JSON file."""
     with open(config_path, "w", encoding="utf-8") as f:
         json.dump(config_data, f, indent=2, ensure_ascii=False)
+
+
+def sanitize_search_name(query_or_formula: str, prefix: str = "Busqueda") -> str:
+    """
+    Sanitizes search query/formula into a clean, filesystem-safe string
+    used for naming both SQLite databases (.db) and Excel workbooks (.xlsx).
+    Example: 'Delitos Informáticos (2024)' -> 'Busqueda_delitos_informaticos_2024'
+    """
+    if not query_or_formula or not str(query_or_formula).strip():
+        return f"{prefix}_General"
+    
+    # Normalize unicode (strip accents)
+    nfkd_form = unicodedata.normalize('NFKD', str(query_or_formula))
+    text = "".join([c for c in nfkd_form if not unicodedata.combining(c)])
+    
+    # Replace non-alphanumeric characters with underscores
+    clean = re.sub(r'[^a-zA-Z0-9]+', '_', text).strip('_')
+    
+    if not clean:
+        return f"{prefix}_General"
+        
+    if prefix and not clean.lower().startswith(prefix.lower()):
+        return f"{prefix}_{clean}"
+        
+    return clean
+
 
 
 def clean_text(text: Optional[str]) -> str:

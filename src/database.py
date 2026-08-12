@@ -11,11 +11,13 @@ from typing import Dict, List, Any, Optional, Tuple
 
 
 class TSJDatabaseManager:
-    """Manages the local SQLite database data/tsj_jurisprudencia.db."""
+    """Manages local SQLite databases for TSJ Venezuela Jurisprudence searches."""
 
-    def __init__(self, db_path: str = "data/tsj_jurisprudencia.db"):
+    def __init__(self, db_path: str = "data/Databases_SQLite/Escaneo_Global_TSJ_2019_2026.db"):
         self.db_path = db_path
-        os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
+        folder = os.path.dirname(self.db_path)
+        if folder:
+            os.makedirs(folder, exist_ok=True)
         self.init_db()
 
     def get_connection(self) -> sqlite3.Connection:
@@ -148,3 +150,23 @@ class TSJDatabaseManager:
                 "por_ano": por_ano,
                 "db_path": os.path.abspath(self.db_path)
             }
+
+    @staticmethod
+    def listar_todas_las_bases_de_datos(base_dir: str = "data/Databases_SQLite") -> List[Dict[str, Any]]:
+        """Scans the database directory and returns statistics for each search database."""
+        if not os.path.exists(base_dir):
+            return []
+        
+        db_files = [f for f in os.listdir(base_dir) if f.endswith(".db")]
+        res = []
+        for db_file in sorted(db_files):
+            full_path = os.path.join(base_dir, db_file)
+            try:
+                mgr = TSJDatabaseManager(db_path=full_path)
+                stats = mgr.obtener_estadisticas()
+                stats["filename"] = db_file
+                res.append(stats)
+            except Exception as e:
+                res.append({"filename": db_file, "error": str(e), "total_registros": 0})
+        return res
+

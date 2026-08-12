@@ -325,9 +325,13 @@ El comportamiento del extractor se controla mediante el archivo `config.json`:
 
 ---
 
-## 🗄️ Esquema de la Base de Datos (SQLite)
+## 🗄️ Esquema de Bases de Datos SQLite Dedicadas
 
-Ubicación de la base de datos: `data/tsj_jurisprudencia.db`
+Cada búsqueda o fórmula ejecutada genera una base de datos SQLite independiente ubicada en `data/Databases_SQLite/` que se empareja 1:1 con su correspondiente libro de trabajo en Excel en `data/Excel_Buscador/`.
+
+**Ejemplos de archivos emparejados generados:**
+- Búsqueda: `"delitos informáticos"` -> `data/Databases_SQLite/Busqueda_delitos_informaticos.db` y `data/Excel_Buscador/Busqueda_delitos_informaticos.xlsx`
+- Escaneo Global: -> `data/Databases_SQLite/Escaneo_Global_TSJ_2019_2026.db` y `data/Excel_Buscador/Escaneo_Global_TSJ_2019_2026.xlsx`
 
 ### Tabla: `decisiones`
 

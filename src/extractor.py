@@ -450,25 +450,29 @@ class JurisprudenciaExtractor:
         return buscador.escanear_global_todas_las_paginas(ano_inicio=ano_inicio, ano_fin=ano_fin)
 
 
-    def run_consultar_db_stats(self) -> Dict[str, Any]:
-        """Displays statistics and summary of local SQLite database."""
+    def run_consultar_db_stats(self) -> List[Dict[str, Any]]:
+        """Displays statistics and summary of all local SQLite search databases."""
         from src.database import TSJDatabaseManager
-        db = TSJDatabaseManager()
-        stats = db.obtener_estadisticas()
+        all_dbs = TSJDatabaseManager.listar_todas_las_bases_de_datos()
         
         print(f"\n{Fore.CYAN}===========================================================================")
-        print(f"{Fore.CYAN}      ESTADÍSTICAS Y REGISTROS DE LA BASE DE DATOS SQLITE LOCAL")
+        print(f"{Fore.CYAN}    ESTADÍSTICAS DE BASES DE DATOS SQLITE POR FÓRMULA DE BÚSQUEDA")
         print(f"{Fore.CYAN}==========================================================================={Style.RESET_ALL}")
-        print(f"  {Fore.GREEN}Ruta de Base de Datos:{Style.RESET_ALL} {stats['db_path']}")
-        print(f"  {Fore.GREEN}Total de Sentencias Registradas:{Style.RESET_ALL} {stats['total_registros']}")
-        print(f"\n{Fore.YELLOW}Desglose por Sala:{Style.RESET_ALL}")
-        for sala, cant in stats['por_sala'].items():
-            print(f"   • {sala}: {cant} decisiones")
-        print(f"\n{Fore.YELLOW}Desglose por Año:{Style.RESET_ALL}")
-        for ano, cant in stats['por_ano'].items():
-            print(f"   • Año {ano}: {cant} decisiones")
-        print(f"{Fore.CYAN}==========================================================================={Style.RESET_ALL}\n")
-        return stats
+        
+        if not all_dbs:
+            print(f"  {Fore.YELLOW}No se encontraron bases de datos en data/Databases_SQLite/{Style.RESET_ALL}\n")
+            return []
+
+        for item in all_dbs:
+            print(f"\n  {Fore.GREEN}• Archivo SQLite:{Style.RESET_ALL} {item['filename']}")
+            print(f"    {Fore.WHITE}Ruta Absoluta:{Style.RESET_ALL} {item.get('db_path', 'N/A')}")
+            print(f"    {Fore.WHITE}Total Registros:{Style.RESET_ALL} {item.get('total_registros', 0)}")
+            if "por_sala" in item and item["por_sala"]:
+                salas_str = ", ".join([f"{k}: {v}" for k, v in item["por_sala"].items()])
+                print(f"    {Fore.YELLOW}Por Sala:{Style.RESET_ALL} {salas_str}")
+        
+        print(f"\n{Fore.CYAN}==========================================================================={Style.RESET_ALL}\n")
+        return all_dbs
 
 
 if __name__ == "__main__":

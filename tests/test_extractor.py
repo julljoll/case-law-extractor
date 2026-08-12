@@ -14,7 +14,8 @@ from src.utils import (
     export_to_csv,
     export_to_excel,
     generate_decision_pdf,
-    export_summary_pdf
+    export_summary_pdf,
+    sanitize_search_name
 )
 from src.extractor import JurisprudenciaExtractor
 
@@ -162,12 +163,18 @@ class TestJurisprudenciaExtractor(unittest.TestCase):
         excel_path = extractor.run_escaneo_global(ano_inicio=2019, ano_fin=2026)
         self.assertTrue(os.path.exists(excel_path))
 
+    def test_dynamic_db_and_excel_naming(self):
+        sanitized = sanitize_search_name("Delitos Informáticos (2024)", prefix="Busqueda")
+        self.assertEqual(sanitized, "Busqueda_Delitos_Informaticos_2024")
+        
+        extractor = JurisprudenciaExtractor(config_dict={
+            "carpeta_excel": self.test_dir
+        })
+        excel_path = extractor.run_actualizar_jurisprudencias(palabra_clave="Evidencia Digital", ano_inicio=2019, ano_fin=2026)
+        self.assertTrue(os.path.exists(excel_path))
+        self.assertIn("Busqueda_Evidencia_Digital", excel_path)
+        self.assertTrue(os.path.exists("data/Databases_SQLite/Busqueda_Evidencia_Digital.db"))
 
 
 if __name__ == "__main__":
     unittest.main()
-
-
-
-
-
