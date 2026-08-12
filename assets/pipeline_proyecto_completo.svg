@@ -1,251 +1,252 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1350" width="100%" height="100%">
   <defs>
     <!-- Background Gradient -->
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="bg-grad-vertical" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#0F172A"/>
       <stop offset="50%" stop-color="#1E293B"/>
       <stop offset="100%" stop-color="#0F172A"/>
     </linearGradient>
 
-    <!-- Card Gradients -->
-    <linearGradient id="card-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+    <!-- Card Gradient -->
+    <linearGradient id="card-grad-v" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#1E293B"/>
       <stop offset="100%" stop-color="#0F172A"/>
     </linearGradient>
     
-    <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="cyan-glow-v" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#00F2FE"/>
       <stop offset="100%" stop-color="#4FACFE"/>
     </linearGradient>
 
-    <linearGradient id="green-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="green-glow-v" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#38F9D7"/>
       <stop offset="100%" stop-color="#43E97B"/>
     </linearGradient>
 
-    <linearGradient id="purple-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="purple-glow-v" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#F355DA"/>
       <stop offset="100%" stop-color="#6E0DD0"/>
     </linearGradient>
 
-    <linearGradient id="orange-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="orange-glow-v" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#FF0844"/>
       <stop offset="100%" stop-color="#FFB199"/>
     </linearGradient>
 
-    <!-- Filters for Glow Effect -->
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-    
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.5"/>
+    <!-- Drop Shadow Filter -->
+    <filter id="shadow-v">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
     </filter>
 
-    <!-- Marker Arrow -->
-    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#00F2FE" />
+    <!-- Marker Arrow Down -->
+    <marker id="arrow-down-cyan" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#00F2FE" />
     </marker>
-    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38F9D7" />
+    <marker id="arrow-down-green" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 1 0 L 5 10 L 9 0 z" fill="#38F9D7" />
     </marker>
   </defs>
 
   <style>
-    .title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 28px; font-weight: 800; fill: #FFFFFF; letter-spacing: 1px; }
-    .subtitle { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 15px; font-weight: 500; fill: #94A3B8; }
-    .card-title { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 18px; font-weight: 700; fill: #F8FAFC; }
-    .card-subtitle { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; font-weight: 600; fill: #00F2FE; text-transform: uppercase; letter-spacing: 1px; }
-    .node-text { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; fill: #CBD5E1; }
-    .badge-text { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 700; fill: #0F172A; }
-    .code-text { font-family: 'Consolas', monospace; font-size: 12px; fill: #38F9D7; }
+    .title-v { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 22px; font-weight: 800; fill: #FFFFFF; letter-spacing: 0.5px; }
+    .subtitle-v { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 13px; font-weight: 500; fill: #94A3B8; }
+    .card-title-v { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 16px; font-weight: 700; fill: #F8FAFC; }
+    .card-badge-v { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 11px; font-weight: 800; fill: #0F172A; letter-spacing: 1px; }
+    .node-text-v { font-family: 'Segoe UI', system-ui, sans-serif; font-size: 12px; fill: #CBD5E1; }
+    .code-text-v { font-family: 'Consolas', monospace; font-size: 11px; fill: #38F9D7; }
+    .bold-v { font-weight: 700; fill: #FFFFFF; }
   </style>
 
   <!-- Background Layer -->
-  <rect width="1400" height="900" fill="url(#bg-grad)"/>
+  <rect width="900" height="1350" fill="url(#bg-grad-vertical)"/>
 
-  <!-- Top Title Banner -->
-  <g transform="translate(60, 45)">
-    <rect x="0" y="0" width="1280" height="75" rx="16" fill="#1E293B" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
-    <text x="30" y="38" class="title">⚖️ PIPELINE DE ARQUITECTURA GENERAL - EXTRACTOR TSJ VENEZUELA</text>
-    <text x="30" y="60" class="subtitle">Flujo completo end-to-end: Configuración ➔ Scraping HTTP ➔ Parsing &amp; Filtros ➔ Persistencia Emparejada ➔ Documentación</text>
-    <rect x="1100" y="20" width="150" height="35" rx="8" fill="url(#cyan-glow)"/>
-    <text x="1175" y="42" text-anchor="middle" class="badge-text">v2.5 PRODUCTION</text>
+  <!-- Page Margin Indicator (Folio Print Border Guide) -->
+  <rect x="25" y="25" width="850" height="1300" rx="16" fill="none" stroke="#334155" stroke-width="1.5" stroke-dasharray="8,5"/>
+
+  <!-- Header Banner (Printable Folio Header) -->
+  <g transform="translate(45, 45)">
+    <rect x="0" y="0" width="810" height="85" rx="14" fill="#1E293B" stroke="#334155" stroke-width="1.5" filter="url(#shadow-v)"/>
+    <text x="25" y="38" class="title-v">⚖️ PIPELINE GENERAL DE ARQUITECTURA (TSJ)</text>
+    <text x="25" y="62" class="subtitle-v">Formato Folio Imprimible • Diagrama de Flujo Secuencial Vertical de Datos</text>
+    <rect x="630" y="25" width="155" height="35" rx="8" fill="url(#cyan-glow-v)"/>
+    <text x="707" y="47" text-anchor="middle" class="card-badge-v">HOJA FOLIO VERTICAL</text>
   </g>
 
-  <!-- Stage 1: Entradas y Configuración -->
-  <g transform="translate(60, 160)">
-    <rect x="0" y="0" width="220" height="420" rx="16" fill="url(#card-grad-1)" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
-    <rect x="15" y="15" width="190" height="6" rx="3" fill="url(#cyan-glow)"/>
-    <text x="20" y="42" class="card-subtitle">ETAPA 1</text>
-    <text x="20" y="68" class="card-title">Configuración CLI</text>
+  <!-- STEP 1: Configuración y Entradas -->
+  <g transform="translate(45, 150)">
+    <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#card-grad-v)" stroke="#334155" stroke-width="2" filter="url(#shadow-v)"/>
+    <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#cyan-glow-v)"/>
     
-    <!-- Nodes inside Card 1 -->
-    <rect x="15" y="95" width="190" height="70" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="120" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">main.py (CLI)</text>
-    <text x="25" y="145" class="node-text">• Menú Interactivo [1-6]</text>
-    <text x="25" y="158" class="node-text">• Banderas (-g, -u, -p)</text>
+    <rect x="35" y="15" width="100" height="22" rx="4" fill="url(#cyan-glow-v)"/>
+    <text x="85" y="30" text-anchor="middle" class="card-badge-v">ETAPA 1</text>
+    <text x="145" y="32" class="card-title-v">Entradas, Menú CLI y Parámetros (main.py / config.json)</text>
 
-    <rect x="15" y="180" width="190" height="90" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="205" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">config.json</text>
-    <text x="25" y="225" class="node-text">• Rango: 2019 a 2026</text>
-    <text x="25" y="242" class="node-text">• 7 Salas del TSJ</text>
-    <text x="25" y="259" class="node-text">• Filtro Tecnológico: True</text>
+    <!-- Subcards -->
+    <rect x="35" y="48" width="240" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="45" y="70" class="bold-v">1.1 Interfaz main.py</text>
+    <text x="45" y="88" class="node-text-v">• Menú Interactivo [1-6]</text>
+    <text x="45" y="105" class="node-text-v">• CLI: -g (Global), -u (Update)</text>
+    <text x="45" y="122" class="node-text-v">• CLI: -p (Paso a Paso PDF)</text>
 
-    <rect x="15" y="285" width="190" height="115" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="310" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">Fórmulas Búsqueda</text>
-    <text x="25" y="330" class="node-text">• "Evidencia Digital"</text>
-    <text x="25" y="347" class="node-text">• "Delito Informático"</text>
-    <text x="25" y="364" class="node-text">• "C25-664" / Expedientes</text>
-    <text x="25" y="381" class="node-text">• Materia / Palabras Clave</text>
+    <rect x="290" y="48" width="240" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="300" y="70" class="bold-v">1.2 config.json</text>
+    <text x="300" y="88" class="node-text-v">• Rango Años: 2019 - 2026</text>
+    <text x="300" y="105" class="node-text-v">• Cobertura 7 Salas del TSJ</text>
+    <text x="300" y="122" class="node-text-v">• modo_tecnologia: True</text>
+
+    <rect x="545" y="48" width="245" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="555" y="70" class="bold-v">1.3 Fórmulas de Búsqueda</text>
+    <text x="555" y="88" class="node-text-v">• "Evidencia Digital"</text>
+    <text x="555" y="105" class="node-text-v">• "Delito Informático"</text>
+    <text x="555" y="122" class="node-text-v">• Expedientes (ej. C25-664)</text>
   </g>
 
-  <!-- Connection 1 -> 2 -->
-  <path d="M 280 370 L 320 370" stroke="#00F2FE" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+  <!-- Arrow Down 1 -> 2 -->
+  <path d="M 450 310 L 450 340" stroke="#00F2FE" stroke-width="3" fill="none" marker-end="url(#arrow-down-cyan)"/>
 
-  <!-- Stage 2: Web Scraping & Extracción HTTP -->
-  <g transform="translate(330, 160)">
-    <rect x="0" y="0" width="230" height="420" rx="16" fill="url(#card-grad-1)" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
-    <rect x="15" y="15" width="200" height="6" rx="3" fill="url(#cyan-glow)"/>
-    <text x="20" y="42" class="card-subtitle">ETAPA 2</text>
-    <text x="20" y="68" class="card-title">Scraping HTTP</text>
-
-    <rect x="15" y="95" width="200" height="90" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="120" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">requests / urllib3</text>
-    <text x="25" y="142" class="node-text">• Timeout: 15s | Retries: 3</text>
-    <text x="25" y="159" class="node-text">• SSL Bypass (verify=False)</text>
-    <text x="25" y="176" class="node-text">• Headers User-Agent Chrome</text>
-
-    <rect x="15" y="198" width="200" height="100" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="222" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">Portal TSJ Venezuela</text>
-    <text x="25" y="242" class="node-text">• historico.tsj.gob.ve</text>
-    <text x="25" y="259" class="node-text">• Consultas por Sala (7)</text>
-    <text x="25" y="276" class="node-text">• Paginación Mensual 2019-26</text>
-
-    <rect x="15" y="310" width="200" height="90" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="335" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">Captura Pop-Up Extract</text>
-    <text x="25" y="355" class="node-text">• Ventana Emergente HTML</text>
-    <text x="25" y="372" class="node-text">• "Ver Extracto" Detallado</text>
-    <text x="25" y="389" class="node-text">• URLs Directas de Fallos</text>
-  </g>
-
-  <!-- Connection 2 -> 3 -->
-  <path d="M 560 370 L 600 370" stroke="#00F2FE" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
-
-  <!-- Stage 3: Parsing & Filtro Inteligente -->
-  <g transform="translate(610, 160)">
-    <rect x="0" y="0" width="230" height="420" rx="16" fill="url(#card-grad-1)" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
-    <rect x="15" y="15" width="200" height="6" rx="3" fill="url(#purple-glow)"/>
-    <text x="20" y="42" class="card-subtitle" style="fill:#F355DA">ETAPA 3</text>
-    <text x="20" y="68" class="card-title">Parsing &amp; NLP</text>
-
-    <rect x="15" y="95" width="200" height="90" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="120" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">BeautifulSoup &amp; Lxml</text>
-    <text x="25" y="142" class="node-text">• Parsing de Tablas HTML</text>
-    <text x="25" y="159" class="node-text">• Extracción de Regex</text>
-    <text x="25" y="176" class="node-text">• Limpieza Text: clean_text()</text>
-
-    <rect x="15" y="198" width="200" height="110" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="222" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">Filtro Tecnológico</text>
-    <text x="25" y="242" class="node-text">• TECH_KEYWORDS (26+ terms)</text>
-    <text x="25" y="259" class="node-text">• Cadena de Custodia Digital</text>
-    <text x="25" y="276" class="node-text">• Peritaje Informático &amp; Hash</text>
-    <text x="25" y="293" class="node-text">• Evidencia Electrónica</text>
-
-    <rect x="15" y="320" width="200" height="80" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="343" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">Sanitizador Nombres</text>
-    <text x="25" y="365" class="code-text">sanitize_search_name()</text>
-    <text x="25" y="382" class="node-text">Normaliza a Busqueda_...</text>
-  </g>
-
-  <!-- Connection 3 -> 4 -->
-  <path d="M 840 370 L 880 370" stroke="#00F2FE" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
-
-  <!-- Stage 4: Persistencia Emparejada 1:1 -->
-  <g transform="translate(890, 160)">
-    <rect x="0" y="0" width="220" height="420" rx="16" fill="url(#card-grad-1)" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
-    <rect x="15" y="15" width="190" height="6" rx="3" fill="url(#green-glow)"/>
-    <text x="20" y="42" class="card-subtitle" style="fill:#38F9D7">ETAPA 4</text>
-    <text x="20" y="68" class="card-title">Persistencia 1:1</text>
-
-    <rect x="15" y="95" width="190" height="145" rx="10" fill="#0F172A" stroke="#38F9D7" stroke-width="1.5"/>
-    <text x="25" y="120" font-weight="700" fill="#38F9D7" font-size="13px" font-family="Segoe UI">🗄️ SQLite DB Dedicada</text>
-    <text x="25" y="142" class="node-text">• data/Databases_SQLite/</text>
-    <text x="25" y="159" class="code-text">&lt;Busqueda&gt;.db</text>
-    <text x="25" y="179" class="node-text">• Tabla: decisiones</text>
-    <text x="25" y="196" class="node-text">• UNIQUE(link_directo)</text>
-    <text x="25" y="213" class="node-text">• ON CONFLICT DO UPDATE</text>
-    <text x="25" y="230" class="node-text">• Índices: sala, exp, año</text>
-
-    <rect x="15" y="252" width="190" height="145" rx="10" fill="#0F172A" stroke="#38F9D7" stroke-width="1.5"/>
-    <text x="25" y="277" font-weight="700" fill="#38F9D7" font-size="13px" font-family="Segoe UI">📊 Matriz Excel Emparejada</text>
-    <text x="25" y="299" class="node-text">• data/Excel_Buscador/</text>
-    <text x="25" y="316" class="code-text">&lt;Busqueda&gt;.xlsx</text>
-    <text x="25" y="336" class="node-text">• 9 Columnas Estructuradas</text>
-    <text x="25" y="353" class="node-text">• Formato openpyxl visual</text>
-    <text x="25" y="370" class="node-text">• Links Directos Oficiales</text>
-  </g>
-
-  <!-- Connection 4 -> 5 -->
-  <path d="M 1110 370 L 1150 370" stroke="#38F9D7" stroke-width="3" fill="none" marker-end="url(#arrow-green)"/>
-
-  <!-- Stage 5: Salidas y Documentación PDF -->
-  <g transform="translate(1160, 160)">
-    <rect x="0" y="0" width="180" height="420" rx="16" fill="url(#card-grad-1)" stroke="#334155" stroke-width="2" filter="url(#shadow)"/>
-    <rect x="15" y="15" width="150" height="6" rx="3" fill="url(#orange-glow)"/>
-    <text x="20" y="42" class="card-subtitle" style="fill:#FF0844">ETAPA 5</text>
-    <text x="20" y="68" class="card-title">Salidas UX</text>
-
-    <rect x="15" y="95" width="150" height="95" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="120" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">PDF Oficial TSJ</text>
-    <text x="25" y="140" class="node-text">• ReportLab Engine</text>
-    <text x="25" y="157" class="node-text">• Membrete Escudo</text>
-    <text x="25" y="174" class="node-text">• Formato Imprimible</text>
-
-    <rect x="15" y="202" width="150" height="95" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="227" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">Export JSON / CSV</text>
-    <text x="25" y="247" class="node-text">• Backups de datos</text>
-    <text x="25" y="264" class="node-text">• Intercambio RAG</text>
-    <text x="25" y="281" class="node-text">• APIs futuras</text>
-
-    <rect x="15" y="308" width="150" height="95" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="25" y="333" font-weight="700" fill="#F8FAFC" font-size="13px" font-family="Segoe UI">GitHub &amp; Stats</text>
-    <text x="25" y="353" class="node-text">• main.py --db</text>
-    <text x="25" y="370" class="node-text">• Sync GitHub CI</text>
-    <text x="25" y="387" class="node-text">• .agents/AGENTS.md</text>
-  </g>
-
-  <!-- Bottom Interactive Status Bar -->
-  <g transform="translate(60, 610)">
-    <rect x="0" y="0" width="1280" height="230" rx="16" fill="#1E293B" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <!-- STEP 2: Extracción HTTP & Conexión Portal TSJ -->
+  <g transform="translate(45, 345)">
+    <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#card-grad-v)" stroke="#334155" stroke-width="2" filter="url(#shadow-v)"/>
+    <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#cyan-glow-v)"/>
     
-    <text x="30" y="38" font-family="Segoe UI" font-size="16px" font-weight="700" fill="#F8FAFC">💡 REGLAS DE ARQUITECTURA Y GARANTÍAS DEL SISTEMA</text>
+    <rect x="35" y="15" width="100" height="22" rx="4" fill="url(#cyan-glow-v)"/>
+    <text x="85" y="30" text-anchor="middle" class="card-badge-v">ETAPA 2</text>
+    <text x="145" y="32" class="card-title-v">Scraping HTTP y Peticiones al Servidor TSJ</text>
 
-    <g transform="translate(30, 60)">
-      <circle cx="15" cy="15" r="15" fill="url(#cyan-glow)"/>
-      <text x="15" y="20" text-anchor="middle" font-family="Segoe UI" font-size="12px" font-weight="800" fill="#0F172A">1</text>
-      <text x="40" y="15" font-family="Segoe UI" font-size="14px" font-weight="700" fill="#00F2FE">Generación Dinámica Emparejada 1:1</text>
-      <text x="40" y="33" font-family="Segoe UI" font-size="12px" fill="#94A3B8">Cada término o fórmula de búsqueda genera en el mismo acto una BD SQLite (.db) y un archivo Excel (.xlsx) con nombres idénticos sanitizados.</text>
+    <rect x="35" y="48" width="240" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="45" y="70" class="bold-v">2.1 Cliente HTTP</text>
+    <text x="45" y="88" class="node-text-v">• requests + urllib3</text>
+    <text x="45" y="105" class="node-text-v">• SSL verify=False (Bypass)</text>
+    <text x="45" y="122" class="node-text-v">• User-Agent Chrome 126</text>
+
+    <rect x="290" y="48" width="240" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="300" y="70" class="bold-v">2.2 Servidor TSJ</text>
+    <text x="300" y="88" class="node-text-v">• historico.tsj.gob.ve</text>
+    <text x="300" y="105" class="node-text-v">• Paginación por Meses/Año</text>
+    <text x="300" y="122" class="node-text-v">• Mapeo de 7 Salas TSJ</text>
+
+    <rect x="545" y="48" width="245" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="555" y="70" class="bold-v">2.3 "Ver Extracto:" Pop-Up</text>
+    <text x="555" y="88" class="node-text-v">• Detecta enlace under 📄</text>
+    <text x="555" y="105" class="node-text-v">• Abre Sub-página Pop-Up</text>
+    <text x="555" y="122" class="node-text-v">• Captura Ratio Decidendi</text>
+  </g>
+
+  <!-- Arrow Down 2 -> 3 -->
+  <path d="M 450 505 L 450 535" stroke="#00F2FE" stroke-width="3" fill="none" marker-end="url(#arrow-down-cyan)"/>
+
+  <!-- STEP 3: Parsing DOM, Filtro NLP & Normalización -->
+  <g transform="translate(45, 540)">
+    <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#card-grad-v)" stroke="#334155" stroke-width="2" filter="url(#shadow-v)"/>
+    <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#purple-glow-v)"/>
+    
+    <rect x="35" y="15" width="100" height="22" rx="4" fill="url(#purple-glow-v)"/>
+    <text x="85" y="30" text-anchor="middle" class="card-badge-v" style="fill:#FFFFFF">ETAPA 3</text>
+    <text x="145" y="32" class="card-title-v">Parsing DOM HTML &amp; Inteligencia en Evidencia Digital</text>
+
+    <rect x="35" y="48" width="240" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="45" y="70" class="bold-v">3.1 BeautifulSoup Parser</text>
+    <text x="45" y="88" class="node-text-v">• Parser Lxml de alto speed</text>
+    <text x="45" y="105" class="node-text-v">• Extrae: Exp, Sent, Fecha</text>
+    <text x="45" y="122" class="node-text-v">• clean_text() de espacios</text>
+
+    <rect x="290" y="48" width="240" height="95" rx="8" fill="#0F172A" stroke="#F355DA" stroke-width="1.5"/>
+    <text x="300" y="70" class="bold-v" fill="#F355DA">3.2 TECH_KEYWORDS Filter</text>
+    <text x="300" y="88" class="node-text-v">• Evidencia / Prueba Digital</text>
+    <text x="300" y="105" class="node-text-v">• Cadena de Custodia / Hash</text>
+    <text x="300" y="122" class="node-text-v">• Delito Informático / WhatsApp</text>
+
+    <rect x="545" y="48" width="245" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="555" y="70" class="bold-v">3.3 Normalizador Nombres</text>
+    <text x="555" y="88" class="code-text-v">sanitize_search_name()</text>
+    <text x="555" y="105" class="node-text-v">• Genera sufijos limpios</text>
+    <text x="555" y="122" class="node-text-v">• ej. Busqueda_Delitos...</text>
+  </g>
+
+  <!-- Arrow Down 3 -> 4 -->
+  <path d="M 450 700 L 450 730" stroke="#38F9D7" stroke-width="3" fill="none" marker-end="url(#arrow-down-green)"/>
+
+  <!-- STEP 4: Persistencia Emparejada 1:1 -->
+  <g transform="translate(45, 735)">
+    <rect x="0" y="0" width="810" height="175" rx="14" fill="url(#card-grad-v)" stroke="#38F9D7" stroke-width="2" filter="url(#shadow-v)"/>
+    <rect x="15" y="15" width="6" height="145" rx="3" fill="url(#green-glow-v)"/>
+    
+    <rect x="35" y="15" width="100" height="22" rx="4" fill="url(#green-glow-v)"/>
+    <text x="85" y="30" text-anchor="middle" class="card-badge-v">ETAPA 4</text>
+    <text x="145" y="32" class="card-title-v">Persistencia Emparejada 1:1 (SQLite DB + Matriz Excel)</text>
+
+    <rect x="35" y="48" width="365" height="110" rx="8" fill="#0F172A" stroke="#38F9D7" stroke-width="1.5"/>
+    <text x="50" y="72" class="bold-v" fill="#38F9D7">🗄️ Base de Datos SQLite Dedicada</text>
+    <text x="50" y="92" class="node-text-v">• Ruta: data/Databases_SQLite/&lt;Busqueda_Formula&gt;.db</text>
+    <text x="50" y="110" class="node-text-v">• Inserción Atómica: ON CONFLICT(link_directo) DO UPDATE</text>
+    <text x="50" y="128" class="node-text-v">• Cero duplicados, almacenamiento relacional indexado por sala y año</text>
+
+    <rect x="420" y="48" width="370" height="110" rx="8" fill="#0F172A" stroke="#38F9D7" stroke-width="1.5"/>
+    <text x="435" y="72" class="bold-v" fill="#38F9D7">📊 Matriz Analítica Excel Emparejada</text>
+    <text x="435" y="92" class="node-text-v">• Ruta: data/Excel_Buscador/&lt;Busqueda_Formula&gt;.xlsx</text>
+    <text x="435" y="110" class="node-text-v">• 9 Columnas de Datos estructurados + Extracto de Pop-Up</text>
+    <text x="435" y="128" class="node-text-v">• Columna 9: Hipervínculo Azul Clicable de la URL que abrió Pop-Up</text>
+  </g>
+
+  <!-- Arrow Down 4 -> 5 -->
+  <path d="M 450 910 L 450 940" stroke="#38F9D7" stroke-width="3" fill="none" marker-end="url(#arrow-down-green)"/>
+
+  <!-- STEP 5: Salidas UX y PDF Institucional -->
+  <g transform="translate(45, 945)">
+    <rect x="0" y="0" width="810" height="160" rx="14" fill="url(#card-grad-v)" stroke="#334155" stroke-width="2" filter="url(#shadow-v)"/>
+    <rect x="15" y="15" width="6" height="130" rx="3" fill="url(#orange-glow-v)"/>
+    
+    <rect x="35" y="15" width="100" height="22" rx="4" fill="url(#orange-glow-v)"/>
+    <text x="85" y="30" text-anchor="middle" class="card-badge-v">ETAPA 5</text>
+    <text x="145" y="32" class="card-title-v">Exportación de Documentos y Salidas UX</text>
+
+    <rect x="35" y="48" width="240" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="45" y="70" class="bold-v">5.1 PDF Oficial TSJ</text>
+    <text x="45" y="88" class="node-text-v">• ReportLab Engine</text>
+    <text x="45" y="105" class="node-text-v">• Membrete e Imprimible</text>
+    <text x="45" y="122" class="node-text-v">• data/PDFs/</text>
+
+    <rect x="290" y="48" width="240" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="300" y="70" class="bold-v">5.2 JSON / CSV Backups</text>
+    <text x="300" y="88" class="node-text-v">• Resguardo de datos</text>
+    <text x="300" y="105" class="node-text-v">• Integración con RAG/LLM</text>
+    <text x="300" y="122" class="node-text-v">• Intercambio de APIs</text>
+
+    <rect x="545" y="48" width="245" height="95" rx="8" fill="#0F172A" stroke="#334155"/>
+    <text x="555" y="70" class="bold-v">5.3 Consola &amp; Stats</text>
+    <text x="555" y="88" class="node-text-v">• main.py --db (Reporte BDs)</text>
+    <text x="555" y="105" class="node-text-v">• Colorama &amp; tqdm CLI</text>
+    <text x="555" y="122" class="node-text-v">• Sincronización GitHub</text>
+  </g>
+
+  <!-- Bottom Printable Summary Banner (Folio Footer) -->
+  <g transform="translate(45, 1125)">
+    <rect x="0" y="0" width="810" height="175" rx="14" fill="#1E293B" stroke="#334155" stroke-width="1.5" filter="url(#shadow-v)"/>
+    <text x="30" y="35" class="card-title-v" fill="#F8FAFC">📜 GARANTÍAS DE IMPRESIÓN Y GOBERNANZA DEL SISTEMA</text>
+
+    <g transform="translate(30, 55)">
+      <circle cx="12" cy="12" r="12" fill="url(#cyan-glow-v)"/>
+      <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#0F172A">✓</text>
+      <text x="32" y="16" font-family="Segoe UI" font-size="12px" font-weight="700" fill="#00F2FE">GeneraciónEmparejada 1:1:</text>
+      <text x="210" y="16" font-family="Segoe UI" font-size="12px" fill="#94A3B8">Cada término de búsqueda crea un archivo SQLite (.db) y un Excel (.xlsx) con nombres espejo.</text>
     </g>
 
-    <g transform="translate(450, 60)">
-      <circle cx="15" cy="15" r="15" fill="url(#green-glow)"/>
-      <text x="15" y="20" text-anchor="middle" font-family="Segoe UI" font-size="12px" font-weight="800" fill="#0F172A">2</text>
-      <text x="40" y="15" font-family="Segoe UI" font-size="14px" font-weight="700" fill="#38F9D7">Idempotencia y Sin Duplicados</text>
-      <text x="40" y="33" font-family="Segoe UI" font-size="12px" fill="#94A3B8">El campo link_directo actúa como clave única estricta (ON CONFLICT DO UPDATE). Las ejecuciones repetidas actualizan registros sin duplicar.</text>
+    <g transform="translate(30, 85)">
+      <circle cx="12" cy="12" r="12" fill="url(#green-glow-v)"/>
+      <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#0F172A">✓</text>
+      <text x="32" y="16" font-family="Segoe UI" font-size="12px" font-weight="700" fill="#38F9D7">Verificación Pop-Up:</text>
+      <text x="210" y="16" font-family="Segoe UI" font-size="12px" fill="#94A3B8">Abre el link bajo 'Ver Extracto:', valida la ratio decidendi y guarda esa URL exacta como link_directo.</text>
     </g>
 
-    <g transform="translate(870, 60)">
-      <circle cx="15" cy="15" r="15" fill="url(#purple-glow)"/>
-      <text x="15" y="20" text-anchor="middle" font-family="Segoe UI" font-size="12px" font-weight="800" fill="#FFFFFF">3</text>
-      <text x="40" y="15" font-family="Segoe UI" font-size="14px" font-weight="700" fill="#F355DA">Módulo de Inteligencia Tecnológica</text>
-      <text x="40" y="33" font-family="Segoe UI" font-size="12px" fill="#94A3B8">Filtro semántico especializado en peritaje informático, evidencia digital, redes sociales, logs de auditoría y cadena de custodia electrónica.</text>
+    <g transform="translate(30, 115)">
+      <circle cx="12" cy="12" r="12" fill="url(#purple-glow-v)"/>
+      <text x="12" y="16" text-anchor="middle" font-family="Segoe UI" font-size="11px" font-weight="800" fill="#FFFFFF">✓</text>
+      <text x="32" y="16" font-family="Segoe UI" font-size="12px" font-weight="700" fill="#F355DA">Estándar Folio Vertical:</text>
+      <text x="210" y="16" font-family="Segoe UI" font-size="12px" fill="#94A3B8">Proporción de página Folio/Legal (900x1350) optimizada para lectura en papel y PDF.</text>
     </g>
 
-    <!-- Bottom Code Banner -->
-    <rect x="30" y="145" width="1220" height="60" rx="10" fill="#0F172A" stroke="#334155"/>
-    <text x="50" y="172" class="code-text">$ python main.py -g                              # Escaneo Global -> Escaneo_Global_TSJ_2019_2026.db + .xlsx</text>
-    <text x="50" y="192" class="code-text">$ python main.py [Opción 3: 'Evidencia Digital']   # Búsqueda Dedicada -> Busqueda_Evidencia_Digital.db + .xlsx</text>
+    <!-- Footer Code Line -->
+    <rect x="30" y="138" width="750" height="26" rx="6" fill="#0F172A"/>
+    <text x="45" y="155" class="code-text-v">Extractor Jurisprudencias TSJ • Venezuela • Repositorio GitHub: julljoll/case-law-extractor</text>
   </g>
 </svg>

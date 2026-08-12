@@ -68,9 +68,10 @@ Este documento establece la guía directiva oficial de nivel canónico para el d
   - Maquetación de PDFs con fidelidad a estándares oficiales del TSJ utilizando `reportlab` (membrete institucional, encabezados, tablas estilizadas, fuentes legibles).
   - Experiencia de usuario en CLI mediante retroalimentación visual (`colorama`), barras de progreso (`tqdm`) y menús formateados.
   - Creación de documentación Markdown UX-First (alertas, diagramas Mermaid, tablas limpias, badges explicativos).
+  - **Diagramación SVG Imprimible (Formato Folio Vertical):** Todos los diagramas `.svg` solicitados deben construirse estrictamente en **orientación vertical (portrait)** con proporciones estándar de **Hoja Folio / Legal (`viewBox="0 0 900 1350"` o relación ~1:1.5)** para impresión física perfecta.
 - **Directivas Técnicas:**
   - Evitar interfaces de consola genéricas o desordenadas; priorizar el uso de colores semánticos (verde = éxito, amarillo = advertencia, cian = información).
-  - Los archivos PDF deben cumplir con estándares formales jurídicos de presentación institucional.
+  - Los archivos PDF y diagramas SVG deben cumplir con estándares formales de presentación institucional e imprimibilidad en papel Folio.
 
 ---
 
