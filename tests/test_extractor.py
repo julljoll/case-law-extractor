@@ -199,6 +199,11 @@ class TestJurisprudenciaExtractor(unittest.TestCase):
         self.assertTrue(hasattr(server_module, "TSJDashboardHandler"))
         self.assertTrue(hasattr(server_module, "start_server"))
 
+    def test_dash_app_import(self):
+        import gui.dash_app as dash_module
+        self.assertTrue(hasattr(dash_module, "app"))
+        self.assertTrue(hasattr(dash_module, "run_dash_app"))
+
 
 if __name__ == "__main__":
     unittest.main()

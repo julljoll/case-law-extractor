@@ -2,7 +2,7 @@
 
 bat_content = """@echo off
 chcp 65001 > nul
-title Extractor de Jurisprudencias - TSJ Venezuela
+title Extractor de Jurisprudencias TSJ Venezuela - DC3 Cyber Lab
 
 REM Verificar instalacion de Python
 where python >nul 2>nul
@@ -12,55 +12,90 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-if "%~1"=="1" goto MODO_TECNOLOGIA
-if "%~1"=="--tech" goto MODO_TECNOLOGIA
-if "%~1"=="2" goto MODO_ESTANDAR
-if "%~1"=="3" goto MODO_PRUEBAS
-if "%~1"=="4" goto SALIR
+if "%~1"=="1" goto MODO_ESCANEO_GLOBAL
+if "%~1"=="2" goto MODO_ACTUALIZAR
+if "%~1"=="3" goto MODO_BUSQUEDA
+if "%~1"=="4" goto MODO_STATS
+if "%~1"=="5" goto MODO_PASO_A_PASO
+if "%~1"=="6" goto MODO_DASH_WEB
+if "%~1"=="7" goto MODO_PRUEBAS
+if "%~1"=="8" goto SALIR
 
 cls
-echo ===========================================================================
-echo       SISTEMA DE EXTRACCION DE JURISPRUDENCIA - TSJ VENEZUELA
-echo  Modulo Especializado: Pruebas Digitales, Delitos Informaticos y Tecnologia
-echo ===========================================================================
+color 0A
+echo ===============================================================================
+echo   [ TSJ CYBER FORENSICS LAB ] DEPARTMENT OF DEFENSE CYBER CRIME CENTER STYLE
+echo      BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA (2019 - 2026)
+echo   Generacion de BD SQLite + Matriz Excel (.xlsx) Dedicadas por Formula
+echo ===============================================================================
 echo.
 
 :MENU
 echo Seleccione la opcion deseada:
 echo.
-echo   [1] Escaneo Multisala: Pruebas Digitales, Delitos Informaticos y Tecnologia (Todas las Salas)
-echo   [2] Extraccion Estandar (Segun config.json)
-echo   [3] Ejecutar Pruebas del Sistema (Unit Tests)
-echo   [4] Salir
+echo   [1] Escaneo Global Completo de Todas las Paginas del TSJ (2019 a 2026) (SQLite + Excel)
+echo   [2] Actualizar Base de Datos SQLite y Excel (Ultimas Jurisprudencias)
+echo   [3] Busqueda Personalizada por Palabra Clave, Materia o Expediente (SQLite + Excel)
+echo   [4] Ver Estadisticas y Registros de la Base de Datos SQLite Local
+echo   [5] Extraccion Guiada Paso a Paso (Ventana Emergente e Impresion PDF)
+echo   [6] INICIAR DASHBOARD WEB 100%% PYTHON (http://127.0.0.1:8050/ - Dash + Bootstrap)
+echo   [7] Ejecutar Pruebas del Sistema (Unit Tests)
+echo   [8] Salir
 echo.
-set /p OPCION="Ingrese el numero de opcion (1-4): "
+set /p OPCION="Ingrese el numero de opcion (1-8): "
 
-if "%OPCION%"=="1" goto MODO_TECNOLOGIA
-if "%OPCION%"=="2" goto MODO_ESTANDAR
-if "%OPCION%"=="3" goto MODO_PRUEBAS
-if "%OPCION%"=="4" goto SALIR
+if "%OPCION%"=="1" goto MODO_ESCANEO_GLOBAL
+if "%OPCION%"=="2" goto MODO_ACTUALIZAR
+if "%OPCION%"=="3" goto MODO_BUSQUEDA
+if "%OPCION%"=="4" goto MODO_STATS
+if "%OPCION%"=="5" goto MODO_PASO_A_PASO
+if "%OPCION%"=="6" goto MODO_DASH_WEB
+if "%OPCION%"=="7" goto MODO_PRUEBAS
+if "%OPCION%"=="8" goto SALIR
 
 echo.
-echo [Opcion Invalida] Por favor ingrese un numero del 1 al 4.
+echo [Opcion Invalida] Por favor ingrese un numero del 1 al 8.
 echo.
 goto MENU
 
-:MODO_TECNOLOGIA
+:MODO_DASH_WEB
 cls
 echo ===========================================================================
-echo  Iniciando Escaneo Multisala: Pruebas Digitales, Delitos Informaticos...
+echo  Iniciando Dashboard Web 100%% Python (Dash + Dash Bootstrap Components)...
+echo  Abra en su navegador: http://127.0.0.1:8050/
 echo ===========================================================================
 echo.
-python main.py --modo-tecnologia
+start http://127.0.0.1:8050/
+python main.py --dash
 goto FIN
 
-:MODO_ESTANDAR
+:MODO_ESCANEO_GLOBAL
 cls
 echo ===========================================================================
-echo  Iniciando Extraccion Estandar segun config.json...
+echo  Iniciando Escaneo Global de Todas las Paginas del TSJ (2019 a 2026)...
 echo ===========================================================================
 echo.
-python main.py config.json
+python main.py --escaneo-global
+goto FIN
+
+:MODO_ACTUALIZAR
+cls
+python main.py --actualizar
+goto FIN
+
+:MODO_BUSQUEDA
+cls
+python main.py
+goto FIN
+
+:MODO_STATS
+cls
+python main.py --stats
+goto FIN
+
+:MODO_PASO_A_PASO
+cls
+python main.py --paso-a-paso
 goto FIN
 
 :MODO_PRUEBAS
@@ -69,7 +104,7 @@ echo ===========================================================================
 echo  Ejecutando Suite de Pruebas Unitarias...
 echo ===========================================================================
 echo.
-python -m unittest tests/test_extractor.py
+python -m unittest discover tests
 goto FIN
 
 :FIN

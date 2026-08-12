@@ -26,7 +26,7 @@ def show_menu():
     print(f"  {Fore.YELLOW}[3]{Style.RESET_ALL} Búsqueda por Fórmula / Palabra Clave / Expediente ➔ Genera BD SQLite + Excel Dedicados")
     print(f"  {Fore.YELLOW}[4]{Style.RESET_ALL} Inspeccionar Estadísticas de Todas las Bases de Datos SQLite Generadas")
     print(f"  {Fore.YELLOW}[5]{Style.RESET_ALL} Extracción Guiada Paso a Paso (Ventana Emergente e Impresión PDF)")
-    print(f"  {Fore.GREEN}[6] INICIAR DASHBOARD WEB EN TIEMPO REAL (http://localhost:8080/gui/index.html){Style.RESET_ALL}")
+    print(f"  {Fore.GREEN}[6] INICIAR DASHBOARD WEB 100% PYTHON (http://127.0.0.1:8050/ - Dash + Bootstrap){Style.RESET_ALL}")
     print(f"  {Fore.YELLOW}[7]{Style.RESET_ALL} Salir\n")
 
 def main():
@@ -35,9 +35,9 @@ def main():
     # Check CLI arguments
     if len(sys.argv) > 1:
         arg = sys.argv[1].lower()
-        if arg in ["--web", "--dashboard", "--gui", "6"]:
-            from gui.server import start_server
-            start_server()
+        if arg in ["--dash", "--web", "--dashboard", "--gui", "6"]:
+            from gui.dash_app import run_dash_app
+            run_dash_app()
             return
         elif arg in ["--escaneo-global", "--global", "-g", "1"]:
             sala_choice = prompt_select_sala()
@@ -98,8 +98,8 @@ def main():
                 extractor = JurisprudenciaExtractor()
                 extractor.run_paso_a_paso(salas=[sala_choice["key"]] if sala_choice["key"] != "todas" else None)
             elif opcion == "6":
-                from gui.server import start_server
-                start_server()
+                from gui.dash_app import run_dash_app
+                run_dash_app()
             elif opcion == "7":
                 print("Saliendo...")
                 sys.exit(0)
