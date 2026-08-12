@@ -129,35 +129,112 @@ Extractor Jurisprudencias/
 
 ---
 
-## 🛠️ Requisitos e Instalación
+## 🛠️ Requisitos, Dependencias y Puesta en Marcha
 
-### Prerrequisitos
-- **Python 3.9** o superior instalado en el sistema.
-- Conexión a Internet activa para la extracción de datos desde el portal del TSJ.
+### 📋 Prerrequisitos del Sistema
+- **Python 3.9** o superior ([Descargar Python](https://www.python.org/downloads/)).
+- **Git** ([Descargar Git](https://git-scm.com/)).
+- Conexión a Internet activa para realizar peticiones al portal del TSJ.
 
-### Pasos de Instalación
+---
 
-1. **Clonar o descargar el repositorio:**
-   ```bash
-   git clone <URL_DEL_REPOSITO>
-   cd "Extractor Jurisprudencias"
-   ```
+### 📦 Dependencias del Proyecto (`requirements.txt`)
 
-2. **Crear y activar un entorno virtual (Recomendado):**
-   ```bash
-   # Windows
-   python -m venv venv
-   .\venv\Scripts\activate
+Todas las dependencias necesarias están especificadas en `requirements.txt`. A continuación se detalla el propósito de cada paquete:
 
-   # Linux/macOS
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+| Paquete | Versión Mínima | Propósito / Función en el Proyecto |
+| :--- | :--- | :--- |
+| `requests` | `>= 2.31.0` | Cliente HTTP para realizar scraping y descargas desde el portal del TSJ. |
+| `beautifulsoup4` | `>= 4.12.0` | Parser del DOM HTML para extraer metadatos de las sentencias. |
+| `lxml` | `>= 4.9.0` | Motor de parsing C de alto rendimiento para procesar HTML complejo. |
+| `pandas` | `>= 2.0.0` | Estructuración y manipulación de datos en dataframes analíticos. |
+| `openpyxl` | `>= 3.1.0` | Generación y formateo de libros de trabajo Excel (`.xlsx`). |
+| `colorama` | `>= 0.4.6` | Formato visual con colores semánticos en la interfaz de consola CLI. |
+| `tqdm` | `>= 4.66.0` | Barras de progreso animadas en la terminal durante el escaneo. |
+| `reportlab` | `>= 4.0.0` | Motor de maquetación y generación de documentos PDF con formato oficial. |
+| `pillow` | `>= 10.0.0` | Procesamiento e inserción de imágenes/emblemas en los encabezados PDF. |
 
-3. **Instalar dependencias necesarias:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+---
+
+### 🏁 Guía Paso a Paso para Poner en Marcha el Proyecto
+
+Sigue estos 6 pasos detallados para clonar, configurar y ejecutar el proyecto desde cero en cualquier equipo:
+
+#### Paso 1: Clonar el Repositorio
+Abre tu terminal o PowerShell y ejecuta:
+```bash
+git clone https://github.com/julljoll/case-law-extractor.git
+cd case-law-extractor
+```
+
+#### Paso 2: Crear el Entorno Virtual (`venv`)
+Es recomendable aislar las dependencias dentro de un entorno virtual:
+
+- **En Windows (PowerShell / CMD):**
+  ```powershell
+  python -m venv venv
+  ```
+- **En Linux / macOS:**
+  ```bash
+  python3 -m venv venv
+  ```
+
+#### Paso 3: Activar el Entorno Virtual
+
+- **En Windows (PowerShell):**
+  ```powershell
+  .\venv\Scripts\Activate.ps1
+  ```
+  *(Si PowerShell bloquea los scripts, ejecuta antes: `Set-ExecutionPolicy Unrestricted -Scope Process`)*
+
+- **En Windows (CMD):**
+  ```cmd
+  venv\Scripts\activate.bat
+  ```
+
+- **En Linux / macOS:**
+  ```bash
+  source venv/bin/activate
+  ```
+
+#### Paso 4: Instalar las Dependencias
+Con el entorno virtual activado, instala todos los paquetes requeridos con un solo comando:
+```bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+#### Paso 5: Generar Recursos Visuales e Inicializar Entorno
+Ejecuta el script auxiliar para verificar la creación del emblema institucional para los documentos PDF:
+```bash
+python src/create_assets.py
+```
+*(Este comando generará el archivo `assets/escudo_venezuela.png` necesario para los reportes PDF).*
+
+#### Paso 6: Ejecutar el Sistema
+
+- **Opción A: Modo Menú Interactivo (Consola)**
+  ```bash
+  python main.py
+  ```
+
+- **Opción B: Lanzador Automático en Windows**
+  Hacer doble clic en `ejecutar_extractor.bat` o ejecutarlo desde la terminal:
+  ```cmd
+  ejecutar_extractor.bat
+  ```
+
+---
+
+### ⚡ Solución de Problemas Frecuentes (Troubleshooting)
+
+> [!WARNING]  
+> **Error SSL Handshake (`SSLCertVerificationError`):**  
+> El servidor del TSJ a menudo presenta inconsistencias SSL. El proyecto ya incluye `verify=False` en las peticiones HTTP y desactiva las advertencias con `urllib3.disable_warnings()`, por lo que no requiere configuración adicional de certificados.
+
+> [!TIP]  
+> **Permisos de Ejecución de Scripts `.bat` en Windows:**  
+> Si Windows bloquea la ejecución de `ejecutar_extractor.bat`, haz clic derecho sobre el archivo -> *Propiedades* -> marca la casilla **Desbloquear** (*Unblock*) -> *Aplicar*.
 
 ---
 
