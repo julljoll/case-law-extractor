@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 > nul
-title case-law-extractor powered by sha256.us - Dashboard Web (100%% Python)
+title Case Law Extractor powered by sha256.us - Dashboard Web
 
 REM Activar entorno virtual si existe
 if exist venv\Scripts\activate.bat (
@@ -17,7 +17,7 @@ if %errorlevel% neq 0 (
 
 cls
 echo ===============================================================================
-echo   case-law-extractor powered by sha256.us
+echo   Case Law Extractor powered by sha256.us
 echo   Iniciando entorno local y abriendo interfaz web en navegador...
 echo ===============================================================================
 echo.

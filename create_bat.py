@@ -9,7 +9,7 @@ import os
 # --- BAT 1: Lanzador Directo del Dashboard Web ---
 dashboard_bat_content = """@echo off
 chcp 65001 > nul
-title case-law-extractor powered by sha256.us - Dashboard Web (100%% Python)
+title Case Law Extractor powered by sha256.us - Dashboard Web
 
 REM Activar entorno virtual si existe
 if exist venv\\Scripts\\activate.bat (
@@ -26,7 +26,7 @@ if %errorlevel% neq 0 (
 
 cls
 echo ===============================================================================
-echo   case-law-extractor powered by sha256.us
+echo   Case Law Extractor powered by sha256.us
 echo   Iniciando entorno local y abriendo interfaz web en navegador...
 echo ===============================================================================
 echo.
@@ -41,7 +41,7 @@ pause
 # --- BAT 2: Gestor Interactivo CLI del Proyecto ---
 extractor_bat_content = """@echo off
 chcp 65001 > nul
-title case-law-extractor powered by sha256.us - Gestor CLI
+title Case Law Extractor powered by sha256.us - Gestor CLI
 
 REM Activar entorno virtual si existe
 if exist venv\\Scripts\\activate.bat (
@@ -68,8 +68,8 @@ if "%~1"=="8" goto SALIR
 cls
 color 0A
 echo ===============================================================================
-echo   case-law-extractor powered by sha256.us
-echo      BUSCADOR Y BASE DE DATOS DE JURISPRUDENCIA TSJ VENEZUELA (2019 - 2026)
+echo   Case Law Extractor powered by sha256.us
+echo      Dashboard en Tiempo Real TSJ Venezuela
 echo   Generacion de BD SQLite + Matriz Excel (.xlsx) Dedicadas por Formula
 echo ===============================================================================
 echo.

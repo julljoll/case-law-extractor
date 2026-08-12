@@ -26,7 +26,7 @@ app = dash.Dash(
         dbc.themes.BOOTSTRAP,
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     ],
-    title="case-law-extractor powered by sha256.us - Dashboard Web Python"
+    title="Case Law Extractor powered by sha256.us"
 )
 server = app.server
 
@@ -53,12 +53,8 @@ app.layout = dbc.Container([
                     html.Div([
                         html.Img(src="/assets/logo_sha256.svg", style={"height": "65px", "width": "65px"}, className="me-3"),
                         html.Div([
-                            html.Span([
-                                html.I(className="fa-solid fa-shield-halved me-2"),
-                                "CASE-LAW-EXTRACTOR • POWERED BY SHA256.US"
-                            ], className="badge bg-warning text-dark mb-2 px-3 py-2 fw-bold rounded-pill"),
-                            html.H2("case-law-extractor powered by sha256.us", className="text-white fw-bold mb-1"),
-                            html.P("Buscador y Dashboard en Tiempo Real TSJ Venezuela (2019 - 2026). Generación emparejada de Bases de Datos SQLite (.db) y matrices Excel (.xlsx) en 100% Python.", className="text-light mb-0 small opacity-75")
+                            html.H2("Case Law Extractor powered by sha256.us", className="text-white fw-bold mb-1"),
+                            html.P("Dashboard en Tiempo Real TSJ Venezuela", className="text-light mb-0 small opacity-75")
                         ])
                     ], className="d-flex align-items-center")
                 ], md=8),

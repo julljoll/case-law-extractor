@@ -1,4 +1,4 @@
-# 🏛️ Canonical Directives: case-law-extractor powered by sha256.us
+# 🏛️ Canonical Directives: Case Law Extractor powered by sha256.us
 
 > **Status:** Top-Level Canonical Specification (`.agents/AGENTS.md`)  
 > **Scope:** Multi-Agent Governance, Role Specifications, Architecture Standards & LegalTech Excellence Guidelines  
@@ -8,7 +8,7 @@
 
 ## 📌 Visión General del Documento Canónico
 
-Este documento establece la guía directiva oficial de nivel canónico para el desarrollo, mantenimiento, evolución y aseguramiento de calidad del proyecto **case-law-extractor powered by sha256.us**. Define los roles multidisciplinarios, los estándares de codificación, las habilidades requeridas, las reglas de QA y las directivas de arquitectura que cualquier agente de IA o desarrollador debe cumplir de forma estricta.
+Este documento establece la guía directiva oficial de nivel canónico para el desarrollo, mantenimiento, evolución y aseguramiento de calidad del proyecto **Case Law Extractor powered by sha256.us**. Define los roles multidisciplinarios, los estándares de codificación, las habilidades requeridas, las reglas de QA y las directivas de arquitectura que cualquier agente de IA o desarrollador debe cumplir de forma estricta.
 
 ---
 
