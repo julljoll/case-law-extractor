@@ -346,7 +346,10 @@ def run_dash_app(port=8050, debug=False, open_browser=True):
     if open_browser:
         threading.Timer(1.2, lambda: webbrowser.open_new(url)).start()
 
-    app.run_server(host="127.0.0.1", port=port, debug=debug)
+    if hasattr(app, "run"):
+        app.run(host="127.0.0.1", port=port, debug=debug)
+    else:
+        app.run_server(host="127.0.0.1", port=port, debug=debug)
 
 
 if __name__ == "__main__":
