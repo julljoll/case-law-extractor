@@ -88,15 +88,15 @@ flowchart TD
     end
 ```
 
-### Detalle por Etapas:
+### Detalle por Etapas del Scraper:
 
-| Etapa | Nombre | Descripción | Tecnologías Utilizadas |
+| Etapa | Nombre | Descripción de Secuencia | Tecnologías Utilizadas |
 | :--- | :--- | :--- | :--- |
 | **Etapa 1** | **Scraping HTTP** | Consultas automatizadas al portal web del TSJ con manejo de reintentos, timeouts y evasión de bloqueos SSL. | `requests`, `urllib3` |
-| **Etapa 2** | **Parsing & Clean** | Procesamiento del DOM HTML, extracción del cuadro de metadatos y limpieza de texto normalizado. | `BeautifulSoup4`, `lxml`, `re` |
-| **Etapa 3** | **Clasificación** | Detección de patrones y palabras clave tecnológicas en materias civiles, penales y constitucionales. | Regex, Custom Algorithms |
-| **Etapa 4** | **Persistencia DB** | Inserción/Actualización atómica en base de datos relacional SQLite indexada por enlace único. | `sqlite3` (Tabla `decisiones`) |
-| **Etapa 5** | **Exportación UX** | Creación de matrices de datos visuales en Excel y maquetación de sentencias en PDF con diseño oficial. | `pandas`, `openpyxl`, `reportlab` |
+| **Etapa 2** | **Parsing & Pop-Up** | Identificación de la lista de sentencias, extracción del enlace bajo `"Ver Extracto:"` y apertura de la ventana emergente Pop-Up. | `BeautifulSoup4`, `lxml`, `re` |
+| **Etapa 3** | **Verificación NLP** | Verificación de la relevancia del extracto (Ratio Decidendi) obtenido en el Pop-Up frente a los filtros de tecnología o búsqueda. | Regex, Custom Algorithms |
+| **Etapa 4** | **Copiado de URL & DB** | Copiado de la URL que abrió el Pop-Up como `link_directo` en SQLite DB atómica sin duplicados (`ON CONFLICT DO UPDATE`). | `sqlite3` (Tabla `decisiones`) |
+| **Etapa 5** | **Exportación UX** | Exportación emparejada 1:1 en Excel (`.xlsx`) con hipervínculos azules clicables y maquetación de sentencias en PDF oficial. | `pandas`, `openpyxl`, `reportlab` |
 
 ---
 
