@@ -132,7 +132,13 @@ flowchart LR
 > **2. Manejo de Red SSL:** Los servidores del TSJ suelen fallar en handshake SSL. Las peticiones deben usar `verify=False` y registrar logs informativos sin interrumpir la ejecución global.
 
 > [!TIP]  
-> **3. Formato PDF de Alta Fidelidad:** Los PDFs generados en `src/utils.py` mediante ReportLab representan documentos legales oficiales y deben mantener los márgenes, logos y tipografías mecionadas.
+> **3. Formato PDF de Alta Fidelidad:** Los PDFs generados en `src/utils.py` mediante ReportLab representan documentos legales oficiales y deben mantener los márgenes, logos y tipografías mencionadas.
+
+> [!NOTE]  
+> **4. Ajuste Tipográfico y Cero Desbordamiento Visual (SVG/PDF/UI):** Todos los diagramas gráficos, interfaces vectoriales `.svg`, documentos PDF y componentes visuales deben calibrar minuciosamente los tamaños de letra (`font-size`), márgenes e interlineados para garantizar que **ningún texto desborde** los límites de las tarjetas o del lienzo (`viewBox="0 0 900 1350"` en formato Folio Vertical).
+
+> [!NOTE]  
+> **5. Optimización SEO & Accesibilidad Universal Obligatoria:** Todas las entregas documentales, recursos gráficos SVG e interfaces web deben incorporar de forma automática estándares completos de SEO y accesibilidad: atributos `role="img"`, `aria-labelledby`, metadatos `<metadata>` con Schema.org / Dublin Core, etiquetas `<title>` y `<desc>` semánticas, y estructura HTML5 / Markdown optimizada para motores de búsqueda y lectores de pantalla.
 
 ---
 
