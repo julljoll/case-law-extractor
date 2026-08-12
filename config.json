@@ -1,0 +1,17 @@
+{
+  "sala": "Sala Constitucional",
+  "sala_id": "constitucional",
+  "ano": 2026,
+  "ano_inicio": 2019,
+  "ano_fin": 2026,
+  "palabra_clave": "",
+  "limite": 20,
+  "formato_salida": "excel",
+  "carpeta_salida": "data/PDFs",
+  "carpeta_excel": "data/Excel_Buscador",
+  "descargar_pdf_directo": false,
+  "modo_tecnologia": true,
+  "escanear_todas_las_salas": true,
+  "carpeta_tecnologia": "data/Jurisprudencia_Tecnologica"
+}
+
