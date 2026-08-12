@@ -114,29 +114,36 @@ flowchart TD
 ## 📁 Estructura del Proyecto
 
 ```text
-Extractor Jurisprudencias/
+case-law-extractor/
 ├── config.json                     # Configuración principal (salas, años, límites, rutas)
-├── main.py                         # Punto de entrada y CLI interactivo
-├── ejecutar_extractor.bat          # Lanzador rápido para Windows
-├── run.bat                         # Script ejecutable directo
-├── create_bat.py                   # Generador de ejecutables bat
-├── requirements.txt                # Dependencias del sistema
+├── main.py                         # Punto de entrada y CLI interactivo (DC3 Style)
+├── iniciar_dashboard_web.bat       # Lanzador directo del Dashboard Web 100% Python (http://127.0.0.1:8050/)
+├── ejecutar_extractor.bat          # Gestor interactivo CLI de operaciones del proyecto
+├── create_bat.py                   # Generador de archivos .bat dedicados con codificación CRLF
+├── requirements.txt                # Dependencias de Python (Dash, Pandas, ReportLab, etc.)
 │
 ├── src/                            # Código fuente del núcleo
-│   ├── extractor.py                # Clase JurisprudenciaExtractor (Scraper & Orquestador)
-│   ├── database.py                 # Gestor TSJDatabaseManager (SQLite)
-│   ├── buscador_tsj_excel.py       # Consultor y exportador a Excel
-│   ├── paso_a_paso_scraper.py      # Extractor guiado paso a paso con PDF
-│   └── utils.py                    # Utilidades de parsing, PDF ReportLab, exportaciones
+│   ├── extractor.py                # Orquestador principal de scraping e indexación
+│   ├── database.py                 # TSJDatabaseManager (Indexación SQLite relacional idempotente)
+│   ├── buscador_tsj_excel.py       # Motor de búsqueda y generación de matrices Excel Canónicas
+│   ├── scheduler.py                # Programador de sincronización automática de 24 horas (Auto-Updater)
+│   ├── paso_a_paso_scraper.py      # Extractor guiado paso a paso con ventana emergente y PDF
+│   └── utils.py                    # Utilidades de red, parsing HTML, maquetación PDF e identificadores por Sala
+│
+├── gui/                            # Interfaz gráfica de usuario (Web Dashboard)
+│   ├── dash_app.py                 # Dashboard reactivo 100% Python (Dash + Bootstrap + DC3 Style)
+│   ├── server.py                   # Servidor proxy local HTTP
+│   ├── index.html                  # Interfaz HTML standard imprimible
+│   └── app.js                      # Cliente JavaScript con búsqueda instantánea debounced y borrado de caché
 │
 ├── data/                           # Directorio de persistencia de datos (auto-generado)
-│   ├── tsj_jurisprudencia.db       # Base de datos relacional SQLite
-│   ├── Excel_Buscador/             # Archivos Excel generados (.xlsx)
-│   ├── PDFs/                       # Sentencias extraídas en PDF oficial
-│   └── Jurisprudencia_Tecnologica/ # PDFs clasificados en área digital/tecnológica
+│   ├── Databases_SQLite/           # Bases de datos SQLite Canónicas por Sala (sala_<nombre>.db)
+│   ├── Excel_Buscador/             # Matrices Excel Canónicas por Sala (sala_<nombre>.xlsx)
+│   ├── test_output/                # Salida de pruebas, PDFs e informes temporales
+│   └── PDFs/                       # Sentencias extraídas en PDF oficial
 │
-├── assets/                         # Recursos gráficos y logos para PDF
-└── tests/                          # Suite de pruebas unitarias (test_extractor.py)
+├── assets/                         # Hojas de estilo CSS y logo_sha256.svg
+└── tests/                          # Suite de pruebas unitarias (test_extractor.py, test_scheduler.py)
 ```
 
 ---

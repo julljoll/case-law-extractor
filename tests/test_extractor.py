@@ -173,8 +173,8 @@ class TestJurisprudenciaExtractor(unittest.TestCase):
         })
         excel_path = extractor.run_actualizar_jurisprudencias(palabra_clave="Evidencia Digital", ano_inicio=2019, ano_fin=2026)
         self.assertTrue(os.path.exists(excel_path))
-        self.assertIn("Busqueda_Evidencia_Digital", excel_path)
-        self.assertTrue(os.path.exists("data/Databases_SQLite/Busqueda_Evidencia_Digital.db"))
+        self.assertIn("tsj_todas_las_salas", excel_path)
+        self.assertTrue(os.path.exists("data/Databases_SQLite/tsj_todas_las_salas.db"))
 
     def test_sala_and_mes_filtering(self):
         extractor = JurisprudenciaExtractor(config_dict={
@@ -190,8 +190,8 @@ class TestJurisprudenciaExtractor(unittest.TestCase):
             mes_info=mes_choice
         )
         self.assertTrue(os.path.exists(excel_path))
-        self.assertIn("Escaneo_SCC_Febrero", excel_path)
-        self.assertTrue(os.path.exists("data/Databases_SQLite/Escaneo_SCC_Febrero_2019_2026.db"))
+        self.assertIn("sala_casacion_civil", excel_path)
+        self.assertTrue(os.path.exists("data/Databases_SQLite/sala_casacion_civil.db"))
 
 
     def test_gui_server_import(self):

@@ -23,7 +23,8 @@ from src.utils import (
     load_config,
     export_tsj_to_excel_profesional,
     clean_text,
-    sanitize_search_name
+    sanitize_search_name,
+    get_canonical_filenames
 )
 from src.database import TSJDatabaseManager
 
