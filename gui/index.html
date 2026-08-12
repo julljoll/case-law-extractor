@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard en Tiempo Real - Extractor Jurisprudencias TSJ Venezuela | DC3 Cyber Lab</title>
+  <meta name="description" content="Dashboard en tiempo real para búsqueda, filtrado por Sala y Mes, extracción de extractos Pop-Up y generación emparejada de SQLite DB y matrices Excel del Tribunal Supremo de Justicia de Venezuela. Estilo DC3 Federal Cyber Center.">
+  <meta name="keywords" content="Jurisprudencia TSJ, Venezuela, Evidencia Digital, Delitos Informáticos, Ciberseguridad, SQLite, Excel, PDF, DC3 Cyber Center">
+  <meta name="author" content="Extractor Jurisprudencias TSJ Team">
+
+  <!-- Schema.org / Dublin Core Metadata -->
+  <meta name="DC.title" content="Dashboard en Tiempo Real Extractor TSJ Venezuela">
+  <meta name="DC.subject" content="Jurisprudencia, Evidencia Digital, Ciberdelitos, TSJ Venezuela">
+  <meta name="DC.creator" content="DC3 Cyber Forensics Laboratory Style">
+
+  <!-- Bootstrap 5 CSS & FontAwesome Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+  <!-- DC3 Design System Custom Stylesheet -->
+  <link href="/assets/dc3_design_system.css" rel="stylesheet">
+
+  <style>
+    /* Custom DC3 Dashboard Overrides */
+    .dc3-hero-section {
+      background: radial-gradient(circle at 50% 0%, #112A46 0%, #061830 100%);
+      border-bottom: 4px solid var(--dc3-gold-accent);
+      padding: 3rem 1.5rem 4.5rem 1.5rem;
+      color: #FFFFFF;
+    }
+    .dc3-search-bar {
+      background: #0B2240;
+      border: 1.5px solid var(--dc3-blue-tactical);
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .dc3-card-item {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .dc3-card-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+      border-color: #0066CC;
+    }
+    .dc3-badge-sala {
+      background-color: rgba(0, 102, 204, 0.1);
+      color: #0066CC;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+    }
+    .dc3-badge-fecha {
+      background-color: rgba(255, 200, 9, 0.15);
+      color: #D97706;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+    }
+    .dc3-popup-preview {
+      background-color: #F8FAFC;
+      border-left: 4px solid var(--dc3-gold-accent);
+      padding: 0.85rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Banner (DC3 Style Printable Header) -->
+  <header class="dc3-hero-section" role="banner">
+    <div class="container text-center text-md-start">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <div class="dc3-pill-badge mb-2">
+            <i class="fa-solid => fa-shield-halved me-1"></i> TSJ CYBER FORENSICS LAB • DC3 STYLE
+          </div>
+          <h1 class="dc3-header-title">Buscador y Dashboard en Tiempo Real TSJ</h1>
+          <p class="dc3-header-subtitle">
+            Conexión en tiempo real con el portal oficial del Tribunal Supremo de Justicia de Venezuela (2019 - 2026). Generación de Bases de Datos SQLite (.db) y matrices Excel (.xlsx) emparejadas por Sala y Mes.
+          </p>
+        </div>
+        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+          <button class="dc3-btn-gold btn-lg w-100 mb-2" id="btnExportExcel" onclick="exportarExcelDB()">
+            <i class="fa-solid fa-file-excel me-2"></i> Generar Excel & SQLite
+          </button>
+          <a href="https://github.com/julljoll/case-law-extractor" target="_blank" class="dc3-btn-outline btn-sm w-100 text-center d-block text-decoration-none">
+            <i class="fa-brands fa-github me-1"></i> Repositorio GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Controls & Selection Bar -->
+      <div class="dc3-search-bar mt-4">
+        <div class="row g-3 align-items-center">
+          <!-- Sala Selector -->
+          <div class="col-md-4">
+            <label class="form-label text-light fw-bold small text-uppercase mb-1">
+              <i class="fa-solid fa-building-columns text-warning me-1"></i> Sala o Juzgado TSJ:
+            </label>
+            <select class="form-select bg-dark text-light border-secondary" id="selectSala" onchange="cargarDecisiones()">
+              <option value="todas">🏛️ [0] TODAS LAS SALAS (Plena, scon, spa, se, scc, scp, scs)</option>
+              <option value="plena">Sala Plena</option>
+              <option value="constitucional">Sala Constitucional (scon)</option>
+              <option value="politico_administrativa">Sala Político-Administrativa (spa)</option>
+              <option value="electoral">Sala Electoral (se)</option>
+              <option value="casacion_civil">Sala de Casación Civil (scc)</option>
+              <option value="casacion_penal">Sala de Casación Penal (scp)</option>
+              <option value="casacion_social">Sala de Casación Social (scs)</option>
+            </select>
+          </div>
+
+          <!-- Mes Selector -->
+          <div class="col-md-4">
+            <label class="form-label text-light fw-bold small text-uppercase mb-1">
+              <i class="fa-regular fa-calendar-days text-warning me-1"></i> Período / Mes:
+            </label>
+            <select class="form-select bg-dark text-light border-secondary" id="selectMes" onchange="cargarDecisiones()">
+              <option value="todo_el_ano">📅 [0] TODO EL AÑO EN CURSO (Enero - Diciembre)</option>
+              <option value="enero">Enero</option>
+              <option value="febrero">Febrero</option>
+              <option value="marzo">Marzo</option>
+              <option value="abril">Abril</option>
+              <option value="mayo">Mayo</option>
+              <option value="junio">Junio</option>
+              <option value="julio">Julio</option>
+              <option value="agosto">Agosto</option>
+              <option value="septiembre">Septiembre</option>
+              <option value="octubre">Octubre</option>
+              <option value="noviembre">Noviembre</option>
+              <option value="diciembre">Diciembre</option>
+            </select>
+          </div>
+
+          <!-- Search Input -->
+          <div class="col-md-4">
+            <label class="form-label text-light fw-bold small text-uppercase mb-1">
+              <i class="fa-solid fa-magnifying-glass text-warning me-1"></i> Buscar Término / Expediente:
+            </label>
+            <div class="input-group">
+              <input type="text" class="form-control bg-dark text-light border-secondary" id="inputSearch" placeholder="ej. Evidencia Digital, C25-664..." onkeyup="filtrarInstantaneo()">
+              <button class="btn btn-warning fw-bold" onclick="cargarDecisiones()">
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="container my-5" role="main">
+    
+    <!-- Status Counter & Toolbar -->
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 p-3 bg-white rounded-3 shadow-sm border">
+      <div>
+        <h5 class="fw-bold mb-0 text-dark">
+          <i class="fa-solid fa-list-check text-primary me-2"></i> Sentencias Encontradas: 
+          <span class="badge bg-primary" id="counterTotal">0</span>
+        </h5>
+        <small class="text-muted" id="statusMessage">Cargando registros en tiempo real...</small>
+      </div>
+      <div class="mt-2 mt-md-0 d-flex gap-2">
+        <button class="btn btn-outline-dark btn-sm" onclick="cargarDecisiones()">
+          <i class="fa-solid fa-sync me-1"></i> Refrescar API
+        </button>
+        <button class="btn btn-outline-primary btn-sm" onclick="verBasesDatosSQLite()">
+          <i class="fa-database fa-solid me-1"></i> Ver Bases SQLite
+        </button>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="row g-4" id="cardsContainer">
+      <!-- Dynamic Javascript Content -->
+    </div>
+
+  </main>
+
+  <!-- Modal Visor Pop-Up "Ver Extracto" -->
+  <div class="modal fade" id="modalExtracto" tabindex="-1" aria-labelledby="modalExtractoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-dark text-white border-bottom border-warning">
+          <h5 class="modal-title fw-bold" id="modalExtractoLabel">
+            <i class="fa-solid fa-file-contract text-warning me-2"></i> Ventana Emergente (Pop-Up) - Ver Extracto Oficial
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="p-3 mb-3 rounded border bg-light">
+            <div class="row g-2">
+              <div class="col-md-6"><strong class="text-primary">Sala:</strong> <span id="popupSala"></span></div>
+              <div class="col-md-6"><strong class="text-primary">Expediente:</strong> <span id="popupExpediente"></span></div>
+              <div class="col-md-6"><strong class="text-primary">Sentencia N°:</strong> <span id="popupSentencia"></span></div>
+              <div class="col-md-6"><strong class="text-primary">Fecha:</strong> <span id="popupFecha"></span></div>
+              <div class="col-md-12"><strong class="text-primary">Magistrado Ponente:</strong> <span id="popupPonente"></span></div>
+              <div class="col-md-12"><strong class="text-primary">Tema:</strong> <span id="popupTema"></span></div>
+              <div class="col-md-12"><strong class="text-primary">Materia:</strong> <span id="popupMateria"></span></div>
+            </div>
+          </div>
+
+          <h6 class="fw-bold text-dark mb-2"><i class="fa-solid fa-quote-left text-warning me-2"></i> Extracto Oficial & Ratio Decidendi:</h6>
+          <div class="p-3 bg-white rounded border shadow-sm text-dark lead fs-6" id="popupTextoExtracto" style="max-height: 250px; overflow-y: auto;"></div>
+
+          <div class="mt-3">
+            <label class="form-label fw-bold small text-muted">URL Enlace Directo que abrió este Pop-Up:</label>
+            <div class="input-group">
+              <input type="text" class="form-control font-monospace small bg-light" id="popupLinkUrl" readonly>
+              <button class="btn btn-dark" onclick="copiarLinkUrl()">
+                <i class="fa-regular fa-copy me-1"></i> Copiar Link
+              </button>
+              <a href="#" target="_blank" class="btn btn-primary" id="popupBtnAbrir">
+                <i class="fa-solid fa-up-right-from-square me-1"></i> Abrir TSJ
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-light">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-light py-4 border-top border-warning mt-5">
+    <div class="container text-center">
+      <p class="mb-1 fw-bold text-warning">Department of Defense Cyber Crime Center Style • Extractor TSJ Venezuela</p>
+      <p class="small text-muted mb-0">Estándar Folio Vertical Imprimible • Base de Datos SQLite (.db) y Matriz Excel (.xlsx) Sincronizadas 1:1</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom Application JS -->
+  <script src="/gui/app.js"></script>
+</body>
+</html>

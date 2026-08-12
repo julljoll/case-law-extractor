@@ -26,7 +26,8 @@ def show_menu():
     print(f"  {Fore.YELLOW}[3]{Style.RESET_ALL} Búsqueda por Fórmula / Palabra Clave / Expediente ➔ Genera BD SQLite + Excel Dedicados")
     print(f"  {Fore.YELLOW}[4]{Style.RESET_ALL} Inspeccionar Estadísticas de Todas las Bases de Datos SQLite Generadas")
     print(f"  {Fore.YELLOW}[5]{Style.RESET_ALL} Extracción Guiada Paso a Paso (Ventana Emergente e Impresión PDF)")
-    print(f"  {Fore.YELLOW}[6]{Style.RESET_ALL} Salir\n")
+    print(f"  {Fore.GREEN}[6] INICIAR DASHBOARD WEB EN TIEMPO REAL (http://localhost:8080/gui/index.html){Style.RESET_ALL}")
+    print(f"  {Fore.YELLOW}[7]{Style.RESET_ALL} Salir\n")
 
 def main():
     print_banner()
@@ -34,7 +35,11 @@ def main():
     # Check CLI arguments
     if len(sys.argv) > 1:
         arg = sys.argv[1].lower()
-        if arg in ["--escaneo-global", "--global", "-g", "1"]:
+        if arg in ["--web", "--dashboard", "--gui", "6"]:
+            from gui.server import start_server
+            start_server()
+            return
+        elif arg in ["--escaneo-global", "--global", "-g", "1"]:
             sala_choice = prompt_select_sala()
             mes_choice = prompt_select_mes()
             print(f"{Fore.CYAN}Ejecutando Escaneo TSJ para {sala_choice['nombre']} | Período: {mes_choice['nombre']}...{Style.RESET_ALL}")
@@ -68,7 +73,7 @@ def main():
     
     try:
         if sys.stdin.isatty():
-            opcion = input("Ingrese el número de opción (1-6): ").strip()
+            opcion = input("Ingrese el número de opción (1-7): ").strip()
             if opcion == "1":
                 sala_choice = prompt_select_sala()
                 mes_choice = prompt_select_mes()
@@ -93,6 +98,9 @@ def main():
                 extractor = JurisprudenciaExtractor()
                 extractor.run_paso_a_paso(salas=[sala_choice["key"]] if sala_choice["key"] != "todas" else None)
             elif opcion == "6":
+                from gui.server import start_server
+                start_server()
+            elif opcion == "7":
                 print("Saliendo...")
                 sys.exit(0)
             else:

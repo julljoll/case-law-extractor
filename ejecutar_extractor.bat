@@ -37,23 +37,36 @@ echo   [2] Actualizar Base de Datos SQLite y Excel (Ultimas Jurisprudencias)
 echo   [3] Busqueda Personalizada por Palabra Clave, Materia o Expediente (SQLite + Excel)
 echo   [4] Ver Estadisticas y Registros de la Base de Datos SQLite Local
 echo   [5] Extraccion Guiada Paso a Paso (Ventana Emergente e Impresion PDF)
-echo   [6] Ejecutar Pruebas del Sistema (Unit Tests)
-echo   [7] Salir
+echo   [6] INICIAR DASHBOARD WEB EN TIEMPO REAL (http://localhost:8080/gui/index.html)
+echo   [7] Ejecutar Pruebas del Sistema (Unit Tests)
+echo   [8] Salir
 echo.
-set /p OPCION="Ingrese el numero de opcion (1-7): "
+set /p OPCION="Ingrese el numero de opcion (1-8): "
 
 if "%OPCION%"=="1" goto MODO_ESCANEO_GLOBAL
 if "%OPCION%"=="2" goto MODO_ACTUALIZAR
 if "%OPCION%"=="3" goto MODO_BUSQUEDA_PERSONALIZADA
 if "%OPCION%"=="4" goto MODO_STATS
 if "%OPCION%"=="5" goto MODO_PASO_A_PASO
-if "%OPCION%"=="6" goto MODO_PRUEBAS
-if "%OPCION%"=="7" goto SALIR
+if "%OPCION%"=="6" goto MODO_WEB
+if "%OPCION%"=="7" goto MODO_PRUEBAS
+if "%OPCION%"=="8" goto SALIR
 
 echo.
-echo [Opcion Invalida] Por favor ingrese un numero del 1 al 7.
+echo [Opcion Invalida] Por favor ingrese un numero del 1 al 8.
 echo.
 goto MENU
+
+:MODO_WEB
+cls
+echo ===========================================================================
+echo  Iniciando Dashboard Web en Tiempo Real (DC3 Cyber Center Style)...
+echo  Abra en su navegador: http://localhost:8080/gui/index.html
+echo ===========================================================================
+echo.
+start http://localhost:8080/gui/index.html
+python main.py --web
+goto FIN
 
 :MODO_ESCANEO_GLOBAL
 cls

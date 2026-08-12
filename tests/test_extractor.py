@@ -194,5 +194,11 @@ class TestJurisprudenciaExtractor(unittest.TestCase):
         self.assertTrue(os.path.exists("data/Databases_SQLite/Escaneo_SCC_Febrero_2019_2026.db"))
 
 
+    def test_gui_server_import(self):
+        import gui.server as server_module
+        self.assertTrue(hasattr(server_module, "TSJDashboardHandler"))
+        self.assertTrue(hasattr(server_module, "start_server"))
+
+
 if __name__ == "__main__":
     unittest.main()
