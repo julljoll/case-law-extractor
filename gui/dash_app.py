@@ -149,11 +149,72 @@ app.layout = dbc.Container([
         ], className="bg-light")
     ], id="modal-popup", size="lg", centered=True, is_open=False),
     
-    # Footer
+    # Elaborate Dashboard Footer (DC3 Cyber Center Style)
     html.Footer([
-        html.P("case-law-extractor powered by sha256.us • DC3 Cyber Forensics Style (100% Python)", className="mb-1 fw-bold text-warning"),
-        html.P("Estándar Folio Vertical Imprimible • Base de Datos SQLite (.db) y Matriz Excel (.xlsx) Sincronizadas 1:1", className="small text-muted mb-0")
-    ], className="bg-dark text-light py-4 border-top border-warning text-center mt-auto")
+        dbc.Container([
+            dbc.Row([
+                # Col 1: Brand & Identity
+                dbc.Col([
+                    html.Div([
+                        html.Img(src="/assets/logo_sha256.svg", style={"height": "42px", "width": "42px"}, className="me-2"),
+                        html.Span("Case Law Extractor", className="fw-bold text-white fs-5")
+                    ], className="d-flex align-items-center mb-1"),
+                    html.P("powered by sha256.us", className="text-warning fw-bold small mb-2 ms-1"),
+                    html.P(
+                        "Plataforma inteligente de escaneo, indexación y analítica jurídica automatizada "
+                        "del Tribunal Supremo de Justicia (TSJ) de Venezuela. Diseñada bajo estándares tácticos de ciberseguridad.",
+                        className="text-light small opacity-75 mb-3", style={"fontSize": "0.83rem", "lineHeight": "1.4"}
+                    ),
+                    html.Div([
+                        html.Span("● Sistema Operativo", className="badge bg-success text-white me-2 px-2 py-1 small"),
+                        html.Span("SQLite + Excel 1:1", className="badge bg-dark text-warning border border-warning px-2 py-1 small")
+                    ], className="d-flex align-items-center")
+                ], md=4, className="mb-4 mb-md-0"),
+
+                # Col 2: System Capabilities & Architecture
+                dbc.Col([
+                    html.H6([html.I(className="fa-solid fa-cubes text-warning me-2"), "Arquitectura & Módulos"], className="text-white fw-bold mb-3 border-bottom border-secondary pb-2"),
+                    html.Ul([
+                        html.Li([html.I(className="fa-solid fa-building-columns text-info me-2"), "Escaneo Multi-Sala TSJ (7 Salas Orgánicas)"], className="mb-2 text-light small"),
+                        html.Li([html.I(className="fa-solid fa-database text-info me-2"), "Indexación Relacional SQLite Idempotente"], className="mb-2 text-light small"),
+                        html.Li([html.I(className="fa-solid fa-file-excel text-info me-2"), "Generación Matriz Analítica Excel (.xlsx)"], className="mb-2 text-light small"),
+                        html.Li([html.I(className="fa-solid fa-file-pdf text-info me-2"), "Impresión PDF Folio Vertical Oficial"], className="mb-2 text-light small")
+                    ], className="list-unstyled mb-0")
+                ], md=4, className="mb-4 mb-md-0"),
+
+                # Col 3: LegalTech & Standards
+                dbc.Col([
+                    html.H6([html.I(className="fa-solid fa-shield-halved text-warning me-2"), "Seguridad & Estándares"], className="text-white fw-bold mb-3 border-bottom border-secondary pb-2"),
+                    html.Ul([
+                        html.Li([html.I(className="fa-solid fa-lock text-success me-2"), "Evasión Resiliente SSL/TLS Handshake"], className="mb-2 text-light small"),
+                        html.Li([html.I(className="fa-solid fa-bolt text-success me-2"), "Filtrado NER en Evidencia Digital"], className="mb-2 text-light small"),
+                        html.Li([html.I(className="fa-solid fa-magnifying-glass text-success me-2"), "Pop-Up Preview & Ratio Decidendi"], className="mb-2 text-light small"),
+                        html.Li([html.I(className="fa-solid fa-code text-success me-2"), "Dashboard 100% Python (Dash + Bootstrap)"], className="mb-2 text-light small")
+                    ], className="list-unstyled mb-0")
+                ], md=4)
+            ], className="py-4"),
+
+            # Bottom Bar (Copyright & Repository Link)
+            html.Div([
+                dbc.Row([
+                    dbc.Col([
+                        html.Span("© 2026 Case Law Extractor powered by sha256.us • Todos los derechos reservados.", className="text-light small opacity-75")
+                    ], md=8, className="text-center text-md-start mb-2 mb-md-0"),
+                    dbc.Col([
+                        html.A([
+                            html.I(className="fa-brands fa-github me-1"),
+                            " Repositorio GitHub"
+                        ], href="https://github.com/julljoll/case-law-extractor", target="_blank", className="text-warning text-decoration-none small me-3 fw-bold"),
+                        html.A([
+                            html.I(className="fa-solid fa-globe me-1"),
+                            " sha256.us"
+                        ], href="https://sha256.us", target="_blank", className="text-light text-decoration-none small opacity-75")
+                    ], md=4, className="text-center text-md-end")
+                ], className="align-items-center")
+            ], className="border-top border-secondary pt-3 mt-2")
+
+        ], fluid=True, className="px-4")
+    ], className="mt-auto py-4 border-top border-warning", style={"backgroundColor": "#061830"})
 
 ], fluid=True, className="px-4 py-3 min-vh-100 d-flex flex-column", style={"backgroundColor": "#F8FAFC"})
 

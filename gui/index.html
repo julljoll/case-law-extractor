@@ -234,11 +234,69 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-light py-4 border-top border-warning mt-5">
-    <div class="container text-center">
-      <p class="mb-1 fw-bold text-warning">case-law-extractor powered by sha256.us • DC3 Cyber Forensics Style</p>
-      <p class="small text-muted mb-0">Estándar Folio Vertical Imprimible • Base de Datos SQLite (.db) y Matriz Excel (.xlsx) Sincronizadas 1:1</p>
+  <!-- Elaborate Dashboard Footer (DC3 Cyber Center Style) -->
+  <footer class="mt-5 py-4 border-top border-warning text-light" style="background-color: #061830;">
+    <div class="container-fluid px-4">
+      <div class="row py-4">
+        <!-- Col 1: Brand & Identity -->
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="d-flex align-items-center mb-1">
+            <img src="/assets/logo_sha256.svg" alt="SHA256 Logo" style="height: 42px; width: 42px;" class="me-2">
+            <span class="fw-bold text-white fs-5">Case Law Extractor</span>
+          </div>
+          <p class="text-warning fw-bold small mb-2 ms-1">powered by sha256.us</p>
+          <p class="text-light small opacity-75 mb-3" style="font-size: 0.83rem; line-height: 1.4;">
+            Plataforma inteligente de escaneo, indexación y analítica jurídica automatizada del Tribunal Supremo de Justicia (TSJ) de Venezuela. Diseñada bajo estándares tácticos de ciberseguridad.
+          </p>
+          <div class="d-flex align-items-center">
+            <span class="badge bg-success text-white me-2 px-2 py-1 small">● Sistema Operativo</span>
+            <span class="badge bg-dark text-warning border border-warning px-2 py-1 small">SQLite + Excel 1:1</span>
+          </div>
+        </div>
+
+        <!-- Col 2: System Capabilities & Architecture -->
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h6 class="text-white fw-bold mb-3 border-bottom border-secondary pb-2">
+            <i class="fa-solid fa-cubes text-warning me-2"></i>Arquitectura & Módulos
+          </h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2 text-light small"><i class="fa-solid fa-building-columns text-info me-2"></i>Escaneo Multi-Sala TSJ (7 Salas Orgánicas)</li>
+            <li class="mb-2 text-light small"><i class="fa-solid fa-database text-info me-2"></i>Indexación Relacional SQLite Idempotente</li>
+            <li class="mb-2 text-light small"><i class="fa-solid fa-file-excel text-info me-2"></i>Generación Matriz Analítica Excel (.xlsx)</li>
+            <li class="mb-2 text-light small"><i class="fa-solid fa-file-pdf text-info me-2"></i>Impresión PDF Folio Vertical Oficial</li>
+          </ul>
+        </div>
+
+        <!-- Col 3: LegalTech & Standards -->
+        <div class="col-md-4">
+          <h6 class="text-white fw-bold mb-3 border-bottom border-secondary pb-2">
+            <i class="fa-solid fa-shield-halved text-warning me-2"></i>Seguridad & Estándares
+          </h6>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2 text-light small"><i class="fa-solid fa-lock text-success me-2"></i>Evasión Resiliente SSL/TLS Handshake</li>
+            <li class="mb-2 text-light small"><i class="fa-solid fa-bolt text-success me-2"></i>Filtrado NER en Evidencia Digital</li>
+            <li class="mb-2 text-light small"><i class="fa-solid fa-magnifying-glass text-success me-2"></i>Pop-Up Preview & Ratio Decidendi</li>
+            <li class="mb-2 text-light small"><i class="fa-solid fa-code text-success me-2"></i>Dashboard 100% Python (Dash + Bootstrap)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-top border-secondary pt-3 mt-2">
+        <div class="row align-items-center">
+          <div class="col-md-8 text-center text-md-start mb-2 mb-md-0">
+            <span class="text-light small opacity-75">© 2026 Case Law Extractor powered by sha256.us • Todos los derechos reservados.</span>
+          </div>
+          <div class="col-md-4 text-center text-md-end">
+            <a href="https://github.com/julljoll/case-law-extractor" target="_blank" class="text-warning text-decoration-none small me-3 fw-bold">
+              <i class="fa-brands fa-github me-1"></i> Repositorio GitHub
+            </a>
+            <a href="https://sha256.us" target="_blank" class="text-light text-decoration-none small opacity-75">
+              <i class="fa-solid fa-globe me-1"></i> sha256.us
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
