@@ -5,19 +5,78 @@ Built with Dash & Dash Bootstrap Components using DC3 Cyber Forensics Design Sys
 
 import os
 import json
+import time
 import webbrowser
 import threading
 import dash
 from dash import dcc, html, Input, Output, State, callback_context
 import dash_bootstrap_components as dbc
 
-from src.utils import SALAS_CHOICES, MESES_CHOICES
+from src.utils import (
+    SALAS_CHOICES, MESES_CHOICES, get_canonical_filenames, matches_sala, normalize_text
+)
 from src.buscador_tsj_excel import BuscadorTSJExcel
 from src.database import TSJDatabaseManager
 from src.scheduler import global_scheduler
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS_DIR = os.path.join(BASE_DIR, "assets")
+
+# Global Sync Progress Tracker for Multi-Sala Scraper
+sync_progress = {
+    "running": False,
+    "percent": 0,
+    "status": "Listo para iniciar escaneo multisala.",
+    "sala": "",
+    "finished": False
+}
+
+
+def worker_multisala_scraper():
+    """Background worker thread running live TSJ multi-sala scraping with progress updates."""
+    global sync_progress
+    sync_progress["running"] = True
+    sync_progress["finished"] = False
+    sync_progress["percent"] = 5
+    sync_progress["status"] = "Conectando con el portal oficial TSJ de Venezuela..."
+    
+    salas_list = [
+        ("constitucional", "Sala Constitucional"),
+        ("politico_administrativa", "Sala Político-Administrativa"),
+        ("casacion_civil", "Sala de Casación Civil"),
+        ("casacion_penal", "Sala de Casación Penal"),
+        ("casacion_social", "Sala de Casación Social"),
+        ("electoral", "Sala Electoral"),
+        ("plena", "Sala Plena")
+    ]
+    
+    buscador = BuscadorTSJExcel()
+    total = len(salas_list)
+    
+    for idx, (s_key, s_nombre) in enumerate(salas_list, start=1):
+        pct = int((idx / total) * 90)
+        sync_progress["percent"] = pct
+        sync_progress["sala"] = s_nombre
+        sync_progress["status"] = f"[{idx}/{total}] Escaneando e indexando nuevas sentencias en {s_nombre}..."
+        
+        sala_choice = {"key": s_key, "nombre": s_nombre}
+        try:
+            buscador.actualizar_ultimas_jurisprudencias(sala_info=sala_choice)
+        except Exception as e:
+            print(f"Error escaneando {s_nombre}: {e}")
+        time.sleep(0.3)
+        
+    # Also update global database
+    try:
+        buscador.actualizar_ultimas_jurisprudencias(sala_info=SALAS_CHOICES["0"])
+    except Exception as e:
+        print(f"Error en escaneo global: {e}")
+    
+    sync_progress["percent"] = 100
+    sync_progress["status"] = "¡Sincronización Multi-Sala 100% completada! Bases de Datos relacionales SQLite y Matrices Excel actualizadas."
+    sync_progress["running"] = False
+    sync_progress["finished"] = True
+
 
 # Initialize Dash App with Bootstrap Theme and Root Assets Folder
 app = dash.Dash(
@@ -29,6 +88,7 @@ app = dash.Dash(
     ],
     title="Case Law Extractor powered by sha256.us"
 )
+app.config.suppress_callback_exceptions = True
 server = app.server
 
 # Custom Styles inline mapping to DC3 Cyber Center Design System
@@ -50,6 +110,7 @@ app.layout = dbc.Container([
     
     # 24-Hour Interval Auto-Sync Trigger (86400000 ms = 24 Hours)
     dcc.Interval(id="interval-24h-sync", interval=86400000, n_intervals=0),
+    dcc.Interval(id="sync-progress-interval", interval=400, disabled=True),
     
     # Header Banner (DC3 Style Printable Header with SHA256 Logo)
     dbc.Card([
@@ -104,7 +165,22 @@ app.layout = dbc.Container([
                         html.Label([html.I(className="fa-solid fa-magnifying-glass text-warning me-1"), " Buscar Término / Expediente:"], className="text-light fw-bold small mb-1"),
                         dbc.Input(id="input-search", placeholder="ej. Evidencia Digital, C25-664...", type="text", debounce=True, className="bg-dark text-light border-secondary")
                     ], md=4),
-                ], className="g-3 mt-1")
+                ], className="g-3 mt-1"),
+                
+                # Animated Sync Progress Bar Container (DC3 Style)
+                html.Div([
+                    dbc.Progress(
+                        id="sync-progress-bar",
+                        value=0,
+                        label="0%",
+                        striped=True,
+                        animated=True,
+                        color="warning",
+                        className="mb-2 shadow-sm rounded-pill",
+                        style={"height": "22px", "fontSize": "12px", "fontWeight": "bold"}
+                    ),
+                    html.Div("Iniciando escaneo multisala...", id="sync-progress-text", className="text-warning small text-center fw-bold")
+                ], id="sync-progress-box", className="mt-3 p-3 rounded-3 border border-warning", style={"backgroundColor": "#071B33", "display": "none"})
             ], className="p-3 mt-3 rounded-3", style={"backgroundColor": "#0B2240", "border": f"1.5px solid {DC3_BLUE}"})
         ])
     ], className="mb-4 shadow-lg border-0", style={"backgroundColor": DC3_NAVY, "borderBottom": f"4px solid {DC3_GOLD}"}),
@@ -247,19 +323,11 @@ app.layout = dbc.Container([
     [Input("select-sala", "value"),
      Input("select-mes", "value"),
      Input("input-search", "value"),
-     Input("btn-sync-24h", "n_clicks"),
      Input("interval-24h-sync", "n_intervals")]
 )
-def update_dashboard(sala_key, mes_key, search_query, n_sync, n_interval):
+def update_dashboard(sala_key, mes_key, search_query, n_interval):
     """Fetches real-time decisions and updates the grid reactively."""
-    ctx = callback_context
-    triggered_id = ctx.triggered_id if ctx.triggered else None
-
     buscador = BuscadorTSJExcel()
-
-    # Execute live scraper scan across all Salas when Sync button is clicked
-    if triggered_id == "btn-sync-24h":
-        buscador.actualizar_ultimas_jurisprudencias(sala_info=SALAS_CHOICES["0"])
 
     # Resolve labels & canonical SQLite DB
     sala_choice = next((v for v in SALAS_CHOICES.values() if v["key"] == sala_key), SALAS_CHOICES["0"])
@@ -476,6 +544,54 @@ def trigger_24h_sync(n_clicks, n_intervals):
         msg
     ], color=color, dismissable=True, className="mt-2 py-2 small fw-bold")
 
+
+
+@app.callback(
+    [Output("sync-progress-interval", "disabled"),
+     Output("sync-progress-box", "style")],
+    Input("btn-sync-24h", "n_clicks"),
+    prevent_initial_call=True
+)
+def start_sync_process(n_clicks):
+    """Launches multi-sala scraper background thread and displays animated progress bar."""
+    if not n_clicks:
+        return True, {"display": "none"}
+    
+    if not sync_progress["running"]:
+        t = threading.Thread(target=worker_multisala_scraper)
+        t.daemon = True
+        t.start()
+        
+    return False, {"display": "block"}
+
+
+@app.callback(
+    [Output("sync-progress-bar", "value"),
+     Output("sync-progress-bar", "label"),
+     Output("sync-progress-bar", "color"),
+     Output("sync-progress-text", "children"),
+     Output("sync-progress-interval", "disabled", allow_duplicate=True),
+     Output("select-sala", "value", allow_duplicate=True)],
+    Input("sync-progress-interval", "n_intervals"),
+    State("select-sala", "value"),
+    prevent_initial_call=True
+)
+def update_sync_progress_bar(n_intervals, current_sala):
+    """Polls background worker thread progress and updates UI progress bar reactively."""
+    pct = sync_progress["percent"]
+    status = sync_progress["status"]
+    color = "success" if pct == 100 else "warning"
+    label = f"{pct}%"
+    
+    disable_interval = False
+    new_sala_val = dash.no_update
+    
+    if sync_progress["finished"] and not sync_progress["running"]:
+        disable_interval = True
+        # Force re-render of current active sala view with newly fetched decisions
+        new_sala_val = current_sala
+        
+    return pct, label, color, status, disable_interval, new_sala_val
 
 
 def run_dash_app(port=8050, debug=False, open_browser=True):
